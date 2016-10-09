@@ -1,5 +1,6 @@
 {
   "name": "browbar",
+  "productName": "Browbar",
   "version": "0.0.0",
   "description": "Mini browser in your menu bar",
   "main": "main/index.js",
@@ -9,7 +10,7 @@
     "build": "npm run build:main && npm run build:renderer",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint $(git ls-files | grep -E \"\\.tsx?$\") && stylelint renderer/style.css",
-    "watch": "guard --watchdir main renderer test",
+    "watch": "guard --watchdir main renderer",
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron ."
   },
@@ -30,11 +31,13 @@
   "homepage": "https://github.com/rhysd/Browbar#readme",
   "devDependencies": {
     "@types/electron": "^1.4.24",
+    "@types/loglevel": "^1.4.29",
     "@types/node": "^6.0.45",
     "typescript": "^2.0.3"
   },
   "dependencies": {
     "electron": "^1.4.3",
+    "loglevel": "^1.4.1",
     "menubar": "^5.1.0"
   }
 }
