@@ -45,6 +45,7 @@
     "bulma": "^0.2.1",
     "electron": "^1.4.3",
     "font-awesome": "^4.6.3",
+    "immutable": "^3.8.1",
     "loglevel": "^1.4.1",
     "menubar": "github:rhysd/menubar#ensure-to-launch-app",
     "react": "^15.3.2",

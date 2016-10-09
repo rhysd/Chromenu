@@ -11,5 +11,5 @@ ReactDOM.render(
     <Provider store={Store}>
         <App/>
     </Provider>,
-    document.getElementById('app-root'),
+    document.getElementById('browbar'),
 );
