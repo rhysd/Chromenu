@@ -11,9 +11,13 @@ process.on('unhandledRejection', (reason: string) => {
 function setupMenuBar(config: Config) {
     return new Promise<Menubar.MenubarApp>(resolve => {
         const html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}`;
-        log.debug('Will launch application:', html);
+        const icon = path.join(__dirname, '..', 'resources', `chrome-tray-icon-${config.icon_color}.png`);
+        log.debug('Will launch application:', html, icon);
         const mb = menubar({
             index: html,
+            icon,
+            width: 414,  // iPhone 6s
+            height: 100 + 736, // Icon area height + iPhone 6s
         });
         mb.once('ready', () => mb.showWindow());
         mb.once('after-create-window', () => {

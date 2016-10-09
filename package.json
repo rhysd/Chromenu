@@ -2,7 +2,7 @@
   "name": "browbar",
   "productName": "Browbar",
   "version": "0.0.0",
-  "description": "Mini browser in your menu bar",
+  "description": "Mobile Chromium in your menu bar",
   "main": "main/index.js",
   "scripts": {
     "build:main": "tsc --pretty -p main/",

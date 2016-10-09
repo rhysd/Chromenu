@@ -1,3 +1,4 @@
 interface Config {
     hot_key: string;
+    icon_color: 'black' | 'white';
 }

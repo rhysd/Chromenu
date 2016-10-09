@@ -5,6 +5,7 @@ import log from './log';
 
 const DEFAULT_CONFIG = {
     hot_key: 'CmdOrCtrl+Shift+S',
+    icon_color: 'black',
 } as Config;
 
 export default function loadConfig(): Promise<Config> {
@@ -14,7 +15,12 @@ export default function loadConfig(): Promise<Config> {
         fs.readFile(file, 'utf8', (err, json) => {
             if (err) {
                 log.info('Configuration file was not found, will create:', file);
-                fs.writeFile(file, JSON.stringify(DEFAULT_CONFIG, null, 2));
+                // XXX:
+                // If calling writeFile() directly here, it tries to create config file before Electron
+                // runtime creates data directory. As the result, writeFile() would fail to create a file.
+                // The 2000 ms delay ensures to create a file after data directory is created and avoids
+                // this problem.
+                setTimeout(() => fs.writeFile(file, JSON.stringify(DEFAULT_CONFIG, null, 2)), 2000);
                 return resolve(DEFAULT_CONFIG);
             }
             try {
