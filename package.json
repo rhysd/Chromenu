@@ -37,6 +37,8 @@
     "@types/react-dom": "^0.14.17",
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
+    "stylelint": "^7.4.0",
+    "stylelint-config-standard": "^13.0.2",
     "typescript": "^2.0.3"
   },
   "dependencies": {

@@ -3,3 +3,4 @@
 /renderer/**/*.js
 /renderer/**/*.js.map
 /node_modules
+npm-debug.log
