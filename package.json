@@ -33,11 +33,21 @@
     "@types/electron": "^1.4.24",
     "@types/loglevel": "^1.4.29",
     "@types/node": "^6.0.45",
+    "@types/react": "^0.14.39",
+    "@types/react-dom": "^0.14.17",
+    "@types/react-redux": "^4.4.32",
+    "@types/redux": "^3.6.31",
     "typescript": "^2.0.3"
   },
   "dependencies": {
+    "bulma": "^0.2.1",
     "electron": "^1.4.3",
+    "font-awesome": "^4.6.3",
     "loglevel": "^1.4.1",
-    "menubar": "github:rhysd/menubar#ensure-to-launch-app"
+    "menubar": "github:rhysd/menubar#ensure-to-launch-app",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
   }
 }
