@@ -55,6 +55,6 @@ declare namespace Menubar {
 }
 
 declare module 'menubar' {
-    const ctor: (opts: Menubar.MenubarOptions) => Menubar.MenubarApp;
+    const ctor: (opts?: Menubar.MenubarOptions) => Menubar.MenubarApp;
     export = ctor;
 }
