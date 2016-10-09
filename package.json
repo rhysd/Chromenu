@@ -38,6 +38,6 @@
   "dependencies": {
     "electron": "^1.4.3",
     "loglevel": "^1.4.1",
-    "menubar": "^5.1.0"
+    "menubar": "github:rhysd/menubar#ensure-to-launch-app"
   }
 }
