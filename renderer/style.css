@@ -1,3 +1,9 @@
+:root {
+  --header-height: 50px;
+  --icon-size: 40px;
+  --main-height: calc(100vh - var(--header-height));
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -21,16 +27,17 @@ body {
 
 .icons-header {
   width: auto;
-  height: 100px;
+  height: var(--header-height);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: #cccccc;
 }
 
 .page-icon {
-  width: 80px;
-  height: 100px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin: 0px 5px 0px 5px;
   border-radius: 10%;
   border: solid 1px #666666;
 }
@@ -39,7 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - 100px);
+  height: var(--main-height);
 }
 
 .landing-page__sub-message {
@@ -54,3 +61,27 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.add-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin: 0px 5px 0px 5px;
+  border-radius: 10%;
+  border: solid 1px #666666;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.webview-container {
+  width: 100%;
+  height: var(--main-height);
+}
+
+.webview-container__webview {
+  width: 100%;
+  height: 100%;
+}
+

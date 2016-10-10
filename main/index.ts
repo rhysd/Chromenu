@@ -18,7 +18,7 @@ function setupMenuBar(config: Config) {
             index: html,
             icon,
             width: 414,  // iPhone 6s
-            height: 100 + 736, // Icon area height + iPhone 6s
+            height: 50 + 10 + 736, // Icon area height + iPhone 6s
             alwaysOnTop: isDebug,
         });
         mb.once('ready', () => mb.showWindow());
