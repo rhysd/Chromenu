@@ -9,6 +9,17 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                 all: state.all.push({
                     url: '',
                     icon_image: '',
+                    configured: false,
+                }),
+            });
+        }
+        case 'ConfigurePage': {
+            return Object.assign({}, state, {
+                index: action.index,
+                all: state.all.set(action.index, {
+                    url: action.url,
+                    icon_image: action.image_url,
+                    configured: true,
                 }),
             });
         }

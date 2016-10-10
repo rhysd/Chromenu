@@ -4,6 +4,7 @@ import {List} from 'immutable';
 export interface Page {
     url: string;
     icon_image: string;
+    configured: boolean;
 }
 
 interface PagesState {

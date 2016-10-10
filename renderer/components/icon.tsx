@@ -3,6 +3,7 @@ import {Page} from '../states/pages';
 
 interface IconProps extends React.Props<Icon> {
     page: Page;
+    isCurrent: boolean;
 }
 
 export default class Icon extends React.Component<IconProps, {}> {
@@ -13,7 +14,11 @@ export default class Icon extends React.Component<IconProps, {}> {
 
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
-        console.log('TODO: Open URL with <webview>');
+        if (this.props.isCurrent) {
+            console.log('TODO: Open Configuration for this icon');
+        } else {
+            console.log('TODO: Open URL with <webview>');
+        }
     }
 
     render() {

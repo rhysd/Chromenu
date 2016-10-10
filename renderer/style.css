@@ -85,3 +85,34 @@ body {
   height: 100%;
 }
 
+.page-config {
+  width: 100%;
+  height: var(--main-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-config__input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 8px 0px;
+  padding: 0px 16px;
+}
+
+.page-config__buttons {
+  width: 100%;
+  margin: 12px 0px;
+  padding: 0px 16px 100px 16px;
+}
+
+.page-config__buttons > p {
+  display: flex;
+  justify-content: flex-begin;
+}
+
+.page-config__buttons > p > button {
+  margin-right: 8px;
+}

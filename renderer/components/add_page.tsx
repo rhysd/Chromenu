@@ -1,13 +1,27 @@
 import * as React from 'react';
+import {Dispatch} from '../store';
+import {createPage} from '../actions/pages';
 
-function onClick(e: React.MouseEvent<HTMLDivElement>) {
-    e.stopPropagation();
-    console.log('TODO: Should show "Add Page" view');
+interface AddPageProps {
+    dispatch: Dispatch;
 }
 
-const AddPage = () => (
-    <div className="add-icon" onClick={onClick}>
-        <i className="fa fa-plus fa-5x" aria-hidden="true"></i>
-    </div>
-);
-export default AddPage;
+export default class AddPage extends React.Component<AddPageProps, {}> {
+    constructor(props: AddPageProps) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        this.props.dispatch(createPage());
+    }
+
+    render() {
+        return (
+            <div className="add-icon" onClick={this.onClick}>
+                <i className="fa fa-plus fa-5x" aria-hidden="true"></i>
+            </div>
+        );
+    }
+}
