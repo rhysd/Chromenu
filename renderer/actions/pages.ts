@@ -14,3 +14,11 @@ export function configurePage(index: number, url: string, image_url: string): Ac
         image_url,
     };
 }
+
+export function setConfigured(index: number, value: boolean): Action {
+    return {
+        type: 'SetConfigured',
+        index,
+        value,
+    };
+}

@@ -14,7 +14,13 @@ interface HeaderProps extends React.Props<any> {
 const Header = (props: HeaderProps) => (
     <div className="icons-header">
         {props.pages.toArray().map((p, i) =>
-            <Icon page={p} isCurrent={i === props.index} key={i}/>)}
+            <Icon
+                page={p}
+                isCurrent={i === props.index}
+                index={i}
+                dispatch={props.dispatch}
+                key={i}
+            />)}
         <AddPage dispatch={props.dispatch}/>
     </div>
 );

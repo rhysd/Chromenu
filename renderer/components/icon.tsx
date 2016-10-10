@@ -1,10 +1,14 @@
 import * as React from 'react';
 import {Page} from '../states/pages';
 import log from '../log';
+import {setConfigured} from '../actions/pages';
+import {Dispatch} from '../store';
 
 interface IconProps extends React.Props<Icon> {
     page: Page;
     isCurrent: boolean;
+    index: number;
+    dispatch: Dispatch;
 }
 
 export default class Icon extends React.Component<IconProps, {}> {
@@ -17,6 +21,7 @@ export default class Icon extends React.Component<IconProps, {}> {
         e.stopPropagation();
         if (this.props.isCurrent) {
             log.debug('TODO: Open Configuration for this icon');
+            this.props.dispatch(setConfigured(this.props.index, false));
         } else {
             log.debug('TODO: Open URL with <webview>');
         }

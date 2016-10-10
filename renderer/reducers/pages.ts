@@ -23,6 +23,16 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                 }),
             });
         }
+        case 'SetConfigured': {
+            return Object.assign({}, state, {
+                index: action.index,
+                all: state.all.update(action.index, p => ({
+                    url: p.url,
+                    icon_image: p.icon_image,
+                    configured: action.value,
+                })),
+            });
+        }
         default:
             return state;
     }
