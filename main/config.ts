@@ -6,6 +6,7 @@ import log from './log';
 const DEFAULT_CONFIG = {
     hot_key: 'CmdOrCtrl+Shift+S',
     icon_color: 'black',
+    always_on_top: false,
 } as Config;
 
 export default function loadConfig(): Promise<Config> {
