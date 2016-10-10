@@ -22,3 +22,10 @@ export function setConfigured(index: number, value: boolean): Action {
         value,
     };
 }
+
+export function deletePage(index: number): Action {
+    return {
+        type: 'DeletePage',
+        index,
+    };
+}

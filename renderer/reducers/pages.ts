@@ -33,6 +33,19 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                 })),
             });
         }
+        case 'DeletePage': {
+            let index = state.index;
+            if (action.index === index) {
+                index -= 1;
+                if (index < 0) {
+                    index = null;
+                }
+            }
+            return Object.assign({}, state, {
+                index,
+                all: state.all.delete(action.index),
+            });
+        }
         default:
             return state;
     }

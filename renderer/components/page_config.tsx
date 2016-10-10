@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Page} from '../states/pages';
 import {Dispatch} from '../store';
-import {configurePage} from '../actions/pages';
+import {configurePage, deletePage, setConfigured} from '../actions/pages';
 import log from '../log';
 
 interface PageConfigProps extends React.Props<PageConfig> {
@@ -20,6 +20,7 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     onSubmit(e: React.MouseEvent<HTMLInputElement>) {
@@ -37,11 +38,21 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
 
     onCancel(e: React.MouseEvent<HTMLInputElement>) {
         e.stopPropagation();
-        if (this.props.page.url === '') {
-            log.debug('TODO: Delete this page because configuration for this page has not been done yet');
+        const {page, dispatch, index} = this.props;
+        if (page.url === '') {
+            log.debug('Delete this page because configuration for this page has not been done yet');
+            dispatch(deletePage(index));
         } else {
-            log.debug('TODO: Finish configuration and show a page');
+            log.debug('Finish configuration and show a page:', page.url);
+            dispatch(setConfigured(index, true));
         }
+    }
+
+    onDelete(e: React.MouseEvent<HTMLInputElement>) {
+        e.stopPropagation();
+        log.debug('Delete this page:', this.refs.url_input.value);
+        const {dispatch, index} = this.props;
+        dispatch(deletePage(index));
     }
 
     componentDidMount() {
@@ -84,6 +95,7 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
                     <p className="control">
                         <button className="button is-primary" onClick={this.onSubmit}>OK</button>
                         <button className="button" onClick={this.onCancel}>Cancel</button>
+                        <button className="button is-danger" onClick={this.onDelete}>Delete</button>
                     </p>
                 </div>
             </div>

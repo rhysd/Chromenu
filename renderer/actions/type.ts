@@ -9,6 +9,9 @@ type ActionType = {
     type: 'SetConfigured';
     index: number;
     value: boolean;
+} | {
+    type: 'DeletePage';
+    index: number;
 };
 
 export default ActionType;

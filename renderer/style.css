@@ -117,3 +117,8 @@ body {
 .page-config__buttons > p > button {
   margin-right: 8px;
 }
+
+.page-config__buttons > p > button:last-child {
+  margin-left: auto;
+  margin-right: 0px;
+}
