@@ -23,19 +23,20 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
 
     onSubmit(e: React.MouseEvent<HTMLInputElement>) {
         e.stopPropagation();
-        console.log('TODO: Submit configuration', this.refs.url_input);
         const url = this.refs.url_input.value;
         const image_url = this.refs.image_input.value || '';
         if (!url) {
             this.refs.url_input.className = 'input is-danger';
+            log.debug('Invalid URL input:', url);
             return;
         }
+        log.debug('Configure page: url:', url, 'image url:', image_url);
         this.props.dispatch(configurePage(this.props.index, url, image_url));
     }
 
     onCancel(e: React.MouseEvent<HTMLInputElement>) {
         e.stopPropagation();
-        console.log('TODO: Cancel configuration', this.refs.image_input);
+        log.debug('TODO: Cancel configuration', this.refs.image_input);
     }
 
     render() {

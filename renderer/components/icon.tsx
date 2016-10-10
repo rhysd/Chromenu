@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Page} from '../states/pages';
+import log from '../log';
 
 interface IconProps extends React.Props<Icon> {
     page: Page;
@@ -15,9 +16,9 @@ export default class Icon extends React.Component<IconProps, {}> {
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
         if (this.props.isCurrent) {
-            console.log('TODO: Open Configuration for this icon');
+            log.debug('TODO: Open Configuration for this icon');
         } else {
-            console.log('TODO: Open URL with <webview>');
+            log.debug('TODO: Open URL with <webview>');
         }
     }
 

@@ -24,7 +24,6 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
             });
         }
         default:
-            break;
+            return state;
     }
-    return state;
 }
