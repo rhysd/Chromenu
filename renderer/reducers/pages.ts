@@ -10,6 +10,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     url: '',
                     icon_image: '',
                     configured: false,
+                    title: '',
                 }),
             });
         }
@@ -20,6 +21,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     url: action.url,
                     icon_image: action.image_url,
                     configured: true,
+                    title: action.title,
                 }),
             });
         }
@@ -30,6 +32,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     url: p.url,
                     icon_image: p.icon_image,
                     configured: action.value,
+                    title: p.title,
                 })),
             });
         }

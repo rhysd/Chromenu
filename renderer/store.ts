@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 import root from './reducers/root';
-import State from './states/root';
+import Action from './actions';
 
-export type Dispatch = Redux.Dispatch<State>;
+export type Dispatch = (action: Action) => void;
 
 export default createStore(root);

@@ -5,6 +5,7 @@ export interface Page {
     url: string;
     icon_image: string;
     configured: boolean;
+    title: string;
 }
 
 interface PagesState {

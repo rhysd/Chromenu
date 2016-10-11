@@ -5,6 +5,7 @@ type ActionType = {
     index: number;
     url: string;
     image_url: string;
+    title: string;
 } | {
     type: 'SetConfigured';
     index: number;

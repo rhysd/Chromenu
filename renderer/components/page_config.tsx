@@ -37,6 +37,7 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
             index: this.props.index,
             url,
             image_url,
+            title: '', // TODO
         });
     }
 
