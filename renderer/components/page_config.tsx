@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Page} from '../states/pages';
 import {Dispatch} from '../store';
-import {configurePage, deletePage, setConfigured} from '../actions/pages';
 import log from '../log';
 
 interface PageConfigProps extends React.Props<PageConfig> {
@@ -33,7 +32,12 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
             return;
         }
         log.debug('Configure page: url:', url, 'image url:', image_url);
-        this.props.dispatch(configurePage(this.props.index, url, image_url));
+        this.props.dispatch({
+            type: 'ConfigurePage',
+            index: this.props.index,
+            url,
+            image_url,
+        });
     }
 
     onCancel(e: React.MouseEvent<HTMLInputElement>) {
@@ -41,10 +45,17 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         const {page, dispatch, index} = this.props;
         if (page.url === '') {
             log.debug('Delete this page because configuration for this page has not been done yet');
-            dispatch(deletePage(index));
+            dispatch({
+                type: 'DeletePage',
+                index,
+            });
         } else {
             log.debug('Finish configuration and show a page:', page.url);
-            dispatch(setConfigured(index, true));
+            dispatch({
+                type: 'SetConfigured',
+                index,
+                value: true,
+            });
         }
     }
 
@@ -52,7 +63,10 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         e.stopPropagation();
         log.debug('Delete this page:', this.refs.url_input.value);
         const {dispatch, index} = this.props;
-        dispatch(deletePage(index));
+        dispatch({
+            type: 'DeletePage',
+            index,
+        });
     }
 
     componentDidMount() {

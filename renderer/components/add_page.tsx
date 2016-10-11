@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Dispatch} from '../store';
-import {createPage} from '../actions/pages';
 
 interface AddPageProps {
     dispatch: Dispatch;
@@ -14,7 +13,7 @@ export default class AddPage extends React.Component<AddPageProps, {}> {
 
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
-        this.props.dispatch(createPage());
+        this.props.dispatch({type: 'CreatePage'});
     }
 
     render() {
