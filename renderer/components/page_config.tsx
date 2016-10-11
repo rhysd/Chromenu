@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Page} from '../states/pages';
 import {Dispatch} from '../store';
 import log from '../log';
+import * as tryTo from '../try_to';
 
 interface PageConfigProps extends React.Props<PageConfig> {
     dispatch: Dispatch;
@@ -13,6 +14,7 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
     refs: {
         url_input: HTMLInputElement;
         image_input: HTMLInputElement;
+        title_input: HTMLInputElement;
     };
 
     constructor(props: PageConfigProps) {
@@ -20,6 +22,14 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         this.onSubmit = this.onSubmit.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onDelete = this.onDelete.bind(this);
+    }
+
+    getTitle(url: string): Promise<string> {
+        const title = this.refs.title_input.value || '';
+        if (title) {
+            return Promise.resolve(title);
+        }
+        return tryTo.findTitle(url).catch(() => '');
     }
 
     onSubmit(e: React.MouseEvent<HTMLInputElement>) {
@@ -31,13 +41,17 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
             log.debug('Invalid URL input:', url);
             return;
         }
+
         log.debug('Configure page: url:', url, 'image url:', image_url);
-        this.props.dispatch({
-            type: 'ConfigurePage',
-            index: this.props.index,
-            url,
-            image_url,
-            title: '', // TODO
+
+        this.getTitle(url).then(title => {
+            this.props.dispatch({
+                type: 'ConfigurePage',
+                index: this.props.index,
+                url,
+                image_url,
+                title,
+            });
         });
     }
 
@@ -78,6 +92,9 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         if (page.icon_image) {
             this.refs.image_input.value = page.icon_image;
         }
+        if (page.title) {
+            this.refs.title_input.value = page.title;
+        }
     }
 
     render() {
@@ -96,13 +113,24 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
                     </p>
                 </div>
                 <div className="page-config__input">
-                    <label className="label">Icon image URL</label>
+                    <label className="label">Icon Image URL</label>
                     <p className="control">
                         <input
                             className="input is-primary"
                             type="text"
                             placeholder="optional"
                             ref="image_input"
+                        />
+                    </p>
+                </div>
+                <div className="page-config__input">
+                    <label className="label">Page Title</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="optional"
+                            ref="title_input"
                         />
                     </p>
                 </div>

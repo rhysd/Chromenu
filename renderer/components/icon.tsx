@@ -33,7 +33,7 @@ export default class Icon extends React.Component<IconProps, {}> {
     render() {
         const {page} = this.props;
         return (
-            <div className="page-icon" title={page.url} onClick={this.onClick}>
+            <div className="page-icon" title={page.title || page.url} onClick={this.onClick}>
                 <img src={page.icon_image} alt={this.props.page.url}/>
             </div>
         );

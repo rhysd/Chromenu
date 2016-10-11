@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/rhysd/Browbar#readme",
   "devDependencies": {
+    "@types/cheerio": "^0.17.31",
     "@types/electron": "^1.4.24",
     "@types/loglevel": "^1.4.29",
     "@types/node": "^6.0.45",
@@ -37,12 +38,14 @@
     "@types/react-dom": "^0.14.17",
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
+    "@types/request": "0.0.31",
     "stylelint": "^7.4.0",
     "stylelint-config-standard": "^13.0.2",
     "typescript": "^2.0.3"
   },
   "dependencies": {
     "bulma": "^0.2.1",
+    "cheerio": "^0.22.0",
     "electron": "^1.4.3",
     "font-awesome": "^4.6.3",
     "immutable": "^3.8.1",
@@ -51,6 +54,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "request": "^2.75.0"
   }
 }
