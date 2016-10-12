@@ -51,6 +51,7 @@
     "immutable": "^3.8.1",
     "loglevel": "^1.4.1",
     "menubar": "github:rhysd/menubar#ensure-to-launch-app",
+    "page-icon": "^0.3.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

@@ -1,5 +1,6 @@
 import * as request from 'request';
 import * as cheerio from 'cheerio';
+import * as pageIcon from 'page-icon';
 import log from './log';
 
 export function findTitle(url: string): Promise<string> {
@@ -24,5 +25,19 @@ export function findTitle(url: string): Promise<string> {
             log.debug('Fetching title of page: Success:', title);
             resolve(title);
         });
+    });
+}
+
+export function findIconUrl(url: string): Promise<string | null> {
+    return pageIcon(url).then(icon => {
+        if (!icon) {
+            log.debug('Icon was not found for:', url);
+            return null;
+        }
+        log.debug('Icon was found:', icon);
+        return icon.source;
+    }).catch(e => {
+        log.debug('Error on fetching icon!:', e);
+        return null;
     });
 }

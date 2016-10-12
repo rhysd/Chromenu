@@ -32,19 +32,28 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
         return tryTo.findTitle(url).catch(() => '');
     }
 
+    getIconUrl(url: string): Promise<string> {
+        const image_url = this.refs.image_input.value || '';
+        if (image_url) {
+            return Promise.resolve(image_url);
+        }
+        return tryTo.findIconUrl(url).then(i => i !== null ? i : '');
+    }
+
     onSubmit(e: React.MouseEvent<HTMLInputElement>) {
         e.stopPropagation();
         const url = this.refs.url_input.value;
-        const image_url = this.refs.image_input.value || '';
         if (!url || !url.startsWith('http://') || !url.startsWith('https://')) {
             this.refs.url_input.className = 'input is-danger';
             log.debug('Invalid URL input:', url);
             return;
         }
 
-        log.debug('Configure page: url:', url, 'image url:', image_url);
-
-        this.getTitle(url).then(title => {
+        Promise.all([
+            this.getTitle(url),
+            this.getIconUrl(url),
+        ]).then(([title, image_url]) => {
+            log.debug('Configure page: url:', url, 'image url:', image_url, 'title:', title);
             this.props.dispatch({
                 type: 'ConfigurePage',
                 index: this.props.index,
