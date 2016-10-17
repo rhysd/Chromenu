@@ -43,7 +43,7 @@ export default class PageConfig extends React.Component<PageConfigProps, {}> {
     onSubmit(e: React.MouseEvent<HTMLInputElement>) {
         e.stopPropagation();
         const url = this.refs.url_input.value;
-        if (!url || !url.startsWith('http://') || !url.startsWith('https://')) {
+        if (!url && !url.startsWith('http://') && !url.startsWith('https://')) {
             this.refs.url_input.className = 'input is-danger';
             log.debug('Invalid URL input:', url);
             return;
