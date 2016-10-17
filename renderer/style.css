@@ -43,6 +43,12 @@ body {
   cursor: pointer;
 }
 
+.page-icon__char {
+  text-align: center;
+  line-height: 38px;
+  font-size: 34px;
+}
+
 .landing-page {
   display: flex;
   flex-direction: column;

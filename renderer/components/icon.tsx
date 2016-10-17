@@ -10,6 +10,13 @@ interface IconProps extends React.Props<Icon> {
     dispatch: Dispatch;
 }
 
+function renderIconContents(p: Page) {
+    if (!p.icon_image) {
+        return <div className="page-icon__char">{p.title.charAt(0)}</div>;
+    }
+    return <img src={p.icon_image} alt={p.url}/>;
+}
+
 export default class Icon extends React.Component<IconProps, {}> {
     constructor(props: IconProps) {
         super(props);
@@ -34,7 +41,7 @@ export default class Icon extends React.Component<IconProps, {}> {
         const {page} = this.props;
         return (
             <div className="page-icon" title={page.title || page.url} onClick={this.onClick}>
-                <img src={page.icon_image} alt={this.props.page.url}/>
+                {renderIconContents(page)}
             </div>
         );
     }
