@@ -10,7 +10,7 @@ interface PageConfigProps extends React.Props<PageConfig> {
     index: number;
 }
 
-export default class PageConfig extends React.Component<PageConfigProps, {}> {
+export default class PageConfig extends React.PureComponent<PageConfigProps, {}> {
     refs: {
         url_input: HTMLInputElement;
         image_input: HTMLInputElement;

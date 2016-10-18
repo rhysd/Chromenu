@@ -5,7 +5,7 @@ interface AddPageProps {
     dispatch: Dispatch;
 }
 
-export default class AddPage extends React.Component<AddPageProps, {}> {
+export default class AddPage extends React.PureComponent<AddPageProps, {}> {
     constructor(props: AddPageProps) {
         super(props);
         this.onClick = this.onClick.bind(this);

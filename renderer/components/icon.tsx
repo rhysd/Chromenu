@@ -17,7 +17,7 @@ function renderIconContents(p: Page) {
     return <img src={p.icon_image} alt={p.url}/>;
 }
 
-export default class Icon extends React.Component<IconProps, {}> {
+export default class Icon extends React.PureComponent<IconProps, {}> {
     constructor(props: IconProps) {
         super(props);
         this.onClick = this.onClick.bind(this);
