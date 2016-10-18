@@ -65,6 +65,10 @@ body {
   margin-right: auto;
 }
 
+.landing-page__sub-message > h1 {
+  color: #666666;
+}
+
 .landing-page__main-message {
   margin: auto;
   display: flex;

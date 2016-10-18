@@ -26,11 +26,11 @@ export default class Icon extends React.PureComponent<IconProps, {}> {
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
         if (this.props.isCurrent) {
-            log.debug('TODO: Open Configuration for this icon');
+            const toggle = !this.props.page.configured;
             this.props.dispatch({
                 type: 'SetConfigured',
                 index: this.props.index,
-                value: false,
+                value: toggle,
             });
         } else {
             log.debug('TODO: Open URL with <webview>');
