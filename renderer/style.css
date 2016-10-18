@@ -31,7 +31,10 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #cccccc;
+  background-color: #e8e6e8;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e6e8), color-stop(100%, #d1cfd1));
+  background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
+  background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);
 }
 
 .page-icon {
@@ -74,12 +77,12 @@ body {
   height: var(--icon-size);
   margin: 0px 5px 0px 5px;
   border-radius: 10%;
-  border: solid 1px #666666;
   cursor: pointer;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #c0c0c0;
 }
 
 .webview-container {
