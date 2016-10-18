@@ -1,4 +1,5 @@
 import {List} from 'immutable';
+import * as Storage from './storage';
 
 export interface Page {
     url: string;
@@ -12,10 +13,13 @@ export interface PagesState {
     all: List<Page>;
 }
 
-export const DefaultPagesState: PagesState = {
-    index: null,
-    all: List<Page>(),
-};
+const loaded = Storage.load();
+
+export const DefaultPagesState: PagesState =
+    loaded !== null ? loaded.pages : {
+        index: null,
+        all: List<Page>(),
+    };
 
 interface State {
     pages: PagesState;
