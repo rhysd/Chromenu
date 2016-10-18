@@ -1,6 +1,5 @@
 import {List} from 'immutable';
 
-// TODO: Add title of the page
 export interface Page {
     url: string;
     icon_image: string;
@@ -8,13 +7,17 @@ export interface Page {
     title: string;
 }
 
-interface PagesState {
+export interface PagesState {
     index: number;
     all: List<Page>;
 }
-export default PagesState;
 
 export const DefaultPagesState: PagesState = {
     index: null,
     all: List<Page>(),
 };
+
+interface State {
+    pages: PagesState;
+}
+export default State;

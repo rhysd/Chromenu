@@ -2,7 +2,7 @@ import * as React from 'react';
 import {List} from 'immutable';
 import Icon from './icon';
 import AddPage from './add_page';
-import {Page} from '../states/pages';
+import {Page} from '../states';
 import {Dispatch} from '../store';
 
 interface HeaderProps extends React.Props<any> {

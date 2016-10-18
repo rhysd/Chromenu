@@ -4,7 +4,7 @@ import Header from './header';
 import Landing from './landing';
 import WebView from './webview';
 import PageConfig from './page_config';
-import State from '../states/root';
+import State from '../states';
 import {Dispatch} from '../store';
 
 type AppProps = State & React.Props<any> & {

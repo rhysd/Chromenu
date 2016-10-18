@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Page} from '../states/pages';
+import {Page} from '../states';
 import log from '../log';
 import {Dispatch} from '../store';
 

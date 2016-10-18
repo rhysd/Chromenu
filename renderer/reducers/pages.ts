@@ -1,5 +1,5 @@
 import Action from '../actions';
-import PagesState, {DefaultPagesState} from '../states/pages';
+import {PagesState, DefaultPagesState} from '../states';
 
 export default function pages(state: PagesState = DefaultPagesState, action: Action) {
     switch (action.type) {
