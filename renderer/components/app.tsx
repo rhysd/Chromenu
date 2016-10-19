@@ -19,7 +19,7 @@ function renderMain(props: AppProps): React.ReactElement<any> {
 
     const current = props.pages.all.get(props.pages.index);
 
-    if (!current.configured) {
+    if (!current.configured || !current.url) {
         return <PageConfig page={current} index={props.pages.index} dispatch={props.dispatch!}/>;
     }
 
