@@ -5,7 +5,7 @@ import log from './log';
 
 const DEFAULT_CONFIG = {
     hot_key: 'CmdOrCtrl+Shift+S',
-    icon_color: 'black',
+    icon_color: process.platform === 'darwin' ? 'black' : 'white',
     always_on_top: false,
 } as Config;
 
