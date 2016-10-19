@@ -21,7 +21,18 @@ export const DefaultPagesState: PagesState =
         all: List<Page>(),
     };
 
+export interface WebViewState {
+    progress: number;
+    loading: boolean;
+}
+
+export const DefaultWebViewState: WebViewState = {
+    progress: 0,
+    loading: false,
+};
+
 interface State {
     pages: PagesState;
+    webview: WebViewState;
 }
 export default State;

@@ -2,6 +2,7 @@
   --header-height: 50px;
   --icon-size: 40px;
   --main-height: calc(100vh - var(--header-height));
+  --color-primary: #00d1b2;
 }
 
 html {
@@ -134,4 +135,18 @@ body {
 .page-config__buttons > p > button:last-child {
   margin-left: auto;
   margin-right: 0px;
+}
+
+.progress-container {
+  height: 4px;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 0.3s linear 0ms;
+  background-color: var(--color-primary);
 }

@@ -13,6 +13,9 @@ type ActionType = {
 } | {
     type: 'DeletePage';
     index: number;
+} | {
+    type: 'UpdateLoadingProgress';
+    value: number;
 };
 
 export default ActionType;

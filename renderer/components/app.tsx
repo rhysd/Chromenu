@@ -4,6 +4,7 @@ import Header from './header';
 import Landing from './landing';
 import WebView from './webview';
 import PageConfig from './page_config';
+import Progress from './progress';
 import State from '../states';
 import {Dispatch} from '../store';
 
@@ -19,16 +20,17 @@ function renderMain(props: AppProps): React.ReactElement<any> {
     const current = props.pages.all.get(props.pages.index);
 
     if (!current.configured) {
-        return <PageConfig page={current} index={props.pages.index} dispatch={props.dispatch}/>;
+        return <PageConfig page={current} index={props.pages.index} dispatch={props.dispatch!}/>;
     }
 
-    return <WebView src={current.url}/>;
+    return <WebView src={current.url} dispatch={props.dispatch!}/>;
 }
 
 export const App = (props: AppProps) => (
     <div className="app-root">
         <Header pages={props.pages.all} index={props.pages.index} dispatch={props.dispatch!}/>
         {renderMain(props)}
+        <Progress loading={props.webview.loading} value={props.webview.progress}/>
     </div>
 );
 
