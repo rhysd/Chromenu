@@ -47,6 +47,12 @@ body {
   cursor: pointer;
 }
 
+.page-icon > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
 .page-icon__char {
   text-align: center;
   line-height: 38px;
