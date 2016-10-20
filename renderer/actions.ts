@@ -16,6 +16,9 @@ type ActionType = {
 } | {
     type: 'UpdateLoadingProgress';
     value: number;
+} | {
+    type: 'OpenPage';
+    index: number;
 };
 
 export default ActionType;

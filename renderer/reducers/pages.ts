@@ -3,6 +3,11 @@ import {PagesState, DefaultPagesState} from '../states';
 
 export default function pages(state: PagesState = DefaultPagesState, action: Action) {
     switch (action.type) {
+        case 'OpenPage': {
+            return Object.assign({}, state, {
+                index: action.index,
+            });
+        }
         case 'CreatePage': {
             return Object.assign({}, state, {
                 index: state.all.size,
