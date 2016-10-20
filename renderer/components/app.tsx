@@ -29,8 +29,8 @@ function renderMain(props: AppProps): React.ReactElement<any> {
 export const App = (props: AppProps) => (
     <div className="app-root">
         <Header pages={props.pages.all} index={props.pages.index} dispatch={props.dispatch!}/>
-        {renderMain(props)}
         <Progress loading={props.webview.loading} value={props.webview.progress}/>
+        {renderMain(props)}
     </div>
 );
 

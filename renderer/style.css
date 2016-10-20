@@ -138,11 +138,11 @@ body {
 }
 
 .progress-container {
-  height: 4px;
+  height: 3px;
   display: flex;
   width: 100%;
   position: fixed;
-  bottom: 0;
+  top: var(--header-height);
 }
 
 .progress-bar {
