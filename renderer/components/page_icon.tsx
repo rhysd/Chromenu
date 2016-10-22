@@ -3,7 +3,7 @@ import {Page} from '../states';
 import log from '../log';
 import {Dispatch} from '../store';
 
-interface IconProps extends React.Props<Icon> {
+interface IconProps extends React.Props<PageIcon> {
     page: Page;
     isCurrent: boolean;
     index: number;
@@ -17,7 +17,14 @@ function renderIconContents(p: Page) {
     return <img src={p.icon_image} alt={p.url}/>;
 }
 
-export default class Icon extends React.PureComponent<IconProps, {}> {
+function renderIndicator(enabled: boolean) {
+    if (!enabled) {
+        return undefined;
+    }
+    return <div className="page-icon__indicator"/>;
+}
+
+export default class PageIcon extends React.PureComponent<IconProps, {}> {
     constructor(props: IconProps) {
         super(props);
         this.onClick = this.onClick.bind(this);
@@ -44,10 +51,11 @@ export default class Icon extends React.PureComponent<IconProps, {}> {
     }
 
     render() {
-        const {page} = this.props;
+        const {page, isCurrent} = this.props;
         return (
             <div className="page-icon" title={page.title || page.url} onClick={this.onClick}>
                 {renderIconContents(page)}
+                {renderIndicator(isCurrent)}
             </div>
         );
     }

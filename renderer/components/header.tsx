@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {List} from 'immutable';
-import Icon from './icon';
+import PageIcon from './page_icon';
 import AddPage from './add_page';
 import {Page} from '../states';
 import {Dispatch} from '../store';
@@ -14,7 +14,7 @@ interface HeaderProps extends React.Props<any> {
 const Header = (props: HeaderProps) => (
     <div className="icons-header">
         {props.pages.toArray().map((p, i) =>
-            <Icon
+            <PageIcon
                 page={p}
                 isCurrent={i === props.index}
                 index={i}
