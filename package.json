@@ -53,6 +53,7 @@
     "menubar": "github:rhysd/menubar#ensure-to-launch-app",
     "page-icon": "^0.3.0",
     "react": "^15.3.2",
+    "react-bytesize-icons": "^0.7.0",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",

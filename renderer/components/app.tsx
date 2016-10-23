@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import Header from './header';
+import Footer from './footer';
 import Landing from './landing';
 import WebView from './webview';
 import PageConfig from './page_config';
 import Progress from './progress';
-import State from '../states';
+import State, {PagesState} from '../states';
 import {Dispatch} from '../store';
 
 type AppProps = State & React.Props<any> & {
@@ -26,11 +27,26 @@ function renderMain(props: AppProps): React.ReactElement<any> {
     return <WebView src={current.url} dispatch={props.dispatch!}/>;
 }
 
+function getCurrentPageUrl(state: PagesState): string | null {
+    const current = state.all.get(state.index);
+    if (current === null || !current.configured) {
+        return null;
+    }
+    return current.url || null;
+}
+
 export const App = (props: AppProps) => (
     <div className="app-root">
         <Header pages={props.pages.all} index={props.pages.index} dispatch={props.dispatch!}/>
         <Progress loading={props.webview.loading} value={props.webview.progress}/>
         {renderMain(props)}
+        <Footer
+            canGoBack={props.webview.canGoBack}
+            canGoForward={props.webview.canGoForward}
+            loading={props.webview.loading}
+            pageUrl={getCurrentPageUrl(props.pages)}
+            dispatch={props.dispatch}
+        />
     </div>
 );
 

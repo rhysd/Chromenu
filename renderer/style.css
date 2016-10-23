@@ -1,8 +1,9 @@
 :root {
   --header-height: 60px;
+  --footer-height: 50px;
   --icon-size: 40px;
   --indicator-height: 10px;
-  --main-height: calc(100vh - var(--header-height));
+  --main-height: calc(100vh - var(--header-height) - var(--footer-height));
   --color-primary: #00d1b2;
 }
 
@@ -177,4 +178,20 @@ body {
   height: 100%;
   transition: width 0.3s linear 0ms;
   background-color: var(--color-primary);
+}
+
+.controls-footer {
+  height: var(--footer-height);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #e8e6e8;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e6e8), color-stop(100%, #d1cfd1));
+  background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
+  background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);
+}
+
+.control-button {
+  cursor: pointer;
 }

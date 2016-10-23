@@ -24,11 +24,15 @@ export const DefaultPagesState: PagesState =
 export interface WebViewState {
     progress: number;
     loading: boolean;
+    canGoBack: boolean;
+    canGoForward: boolean;
 }
 
 export const DefaultWebViewState: WebViewState = {
     progress: 0,
     loading: false,
+    canGoBack: false,
+    canGoForward: false,
 };
 
 interface State {
