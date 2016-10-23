@@ -19,6 +19,9 @@ type ActionType = {
 } | {
     type: 'OpenPage';
     index: number;
+} | {
+    type: 'LoadingComplete';
+    webview: Electron.WebViewElement;
 };
 
 export default ActionType;

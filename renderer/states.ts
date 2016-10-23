@@ -24,15 +24,13 @@ export const DefaultPagesState: PagesState =
 export interface WebViewState {
     progress: number;
     loading: boolean;
-    canGoBack: boolean;
-    canGoForward: boolean;
+    element: Electron.WebViewElement | null;
 }
 
 export const DefaultWebViewState: WebViewState = {
     progress: 0,
     loading: false,
-    canGoBack: false,
-    canGoForward: false,
+    element: null,
 };
 
 interface State {

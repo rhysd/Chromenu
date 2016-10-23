@@ -7,6 +7,14 @@ export default function webview(state: WebViewState = DefaultWebViewState, actio
             return {
                 progress: action.value,
                 loading: action.value < 100,
+                element: state.element,
+            };
+        }
+        case 'LoadingComplete': {
+            return {
+                progress: 100,
+                loading: false,
+                element: action.webview,
             };
         }
         default:

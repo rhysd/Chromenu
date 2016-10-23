@@ -41,10 +41,9 @@ export const App = (props: AppProps) => (
         <Progress loading={props.webview.loading} value={props.webview.progress}/>
         {renderMain(props)}
         <Footer
-            canGoBack={props.webview.canGoBack}
-            canGoForward={props.webview.canGoForward}
             loading={props.webview.loading}
             pageUrl={getCurrentPageUrl(props.pages)}
+            element={props.webview.element}
             dispatch={props.dispatch}
         />
     </div>
