@@ -17,6 +17,11 @@ export default function webview(state: WebViewState = DefaultWebViewState, actio
                 element: action.webview,
             };
         }
+        case 'WebViewUnmounted': {
+            return Object.assign({}, state, {
+                element: null,
+            });
+        }
         default:
             return state;
     }

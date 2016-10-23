@@ -22,6 +22,8 @@ type ActionType = {
 } | {
     type: 'LoadingComplete';
     webview: Electron.WebViewElement;
+} | {
+    type: 'WebViewUnmounted';
 };
 
 export default ActionType;

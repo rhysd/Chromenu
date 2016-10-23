@@ -36,6 +36,10 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         body.addEventListener('did-stop-loading', () => this.props.dispatch({type: 'LoadingComplete', webview: body}));
     }
 
+    componentWillUnmount() {
+        this.props.dispatch({type: 'WebViewUnmounted'});
+    }
+
     render() {
         return (
             <div className="webview-container">
