@@ -43,7 +43,7 @@ body {
 .page-icon {
   width: var(--icon-size);
   height: calc(var(--icon-size) + var(--indicator-height));
-  margin: 0 5px 0 5px;
+  margin: 0 5px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@ body {
 .add-icon__container {
   width: var(--icon-size);
   height: calc(var(--icon-size) + var(--indicator-height));
-  margin: 0 5px 0 5px;
+  margin: 0 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,14 +142,14 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 8px 0px;
-  padding: 0px 16px;
+  margin: 8px 0;
+  padding: 0 16px;
 }
 
 .page-config__buttons {
   width: 100%;
-  margin: 12px 0px;
-  padding: 0px 16px 100px 16px;
+  margin: 12px 0;
+  padding: 0 16px 100px;
 }
 
 .page-config__buttons > p {
@@ -163,7 +163,7 @@ body {
 
 .page-config__buttons > p > button:last-child {
   margin-left: auto;
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .progress-container {
@@ -198,6 +198,7 @@ body {
   height: var(--control-icon-size);
   color: #666666;
 }
+
 .control-button.control-button-disabled {
   cursor: default;
   color: #cccccc;
