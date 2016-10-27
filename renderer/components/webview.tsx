@@ -46,7 +46,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
                 <webview
                     src={this.props.src}
                     useragent={this.props.useragent || DEFAULT_USERAGENT}
-                    partition="persistent:browbar"
+                    partition="persistent:chromenu"
                     autosize="on"
                     className="webview-container__webview"
                     ref="body"

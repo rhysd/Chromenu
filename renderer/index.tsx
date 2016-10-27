@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={Store}>
         <App/>
     </Provider>,
-    document.getElementById('browbar'),
+    document.getElementById('chromenu'),
 );
 
 window.onunload = () => {

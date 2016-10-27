@@ -7,7 +7,7 @@ const Landing = () => (
         </div>
         <div className="landing-page__main-message">
             <h1 className="title is-1">Hello World!</h1>
-            <h2 className="subtitle">Welcome to Browbar</h2>
+            <h2 className="subtitle">Welcome to Chromenu</h2>
         </div>
     </div>
 );
