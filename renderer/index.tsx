@@ -8,8 +8,9 @@ import * as Storage from './storage';
 import Keymaps from './keymaps';
 import log from './log';
 
-// TODO:
-// Read configurations from local storage
+if (process.env.NODE_ENV !== 'development') {
+    process.env.NODE_ENV = 'production';
+}
 
 ReactDOM.render(
     <Provider store={Store}>
