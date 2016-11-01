@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "description": "Mobile Chromium in your menu bar",
   "main": "main/index.js",
+  "bin": {
+    "chromenu": "./bin/cli.js"
+  },
   "scripts": {
     "build:main": "tsc --pretty -p main/",
     "build:renderer": "tsc --pretty -p renderer/",
