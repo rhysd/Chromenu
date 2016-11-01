@@ -13,6 +13,8 @@ type KeymapAction
     | 'forward'
     | 'home'
     | 'open-external-browser'
+    | 'next-page'
+    | 'previous-page'
 ;
 
 interface Config {

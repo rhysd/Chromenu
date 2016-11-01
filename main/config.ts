@@ -21,6 +21,8 @@ const DEFAULT_CONFIG = {
         'mod+h': 'home',
         backspace: 'back',
         'mod+o': 'open-external-browser',
+        'ctrl+tab': 'next-page',
+        'ctrl+shift+tab': 'previous-page',
     },
 } as Config;
 

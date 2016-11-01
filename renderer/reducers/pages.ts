@@ -4,10 +4,11 @@ import {PagesState, DefaultPagesState} from '../states';
 export default function pages(state: PagesState = DefaultPagesState, action: Action) {
     switch (action.type) {
         case 'OpenPage': {
-            console.log('POYO:', action);
-            return Object.assign({}, state, {
-                index: action.index,
-            });
+            const index =
+                action.index < 0 ? 0 :
+                state.all.size <= action.index ? state.all.size - 1 :
+                action.index;
+            return Object.assign({}, state, { index });
         }
         case 'CreatePage': {
             return Object.assign({}, state, {

@@ -9,7 +9,7 @@ export interface Page {
 }
 
 export interface PagesState {
-    index: number;
+    index: number | null;
     all: List<Page>;
 }
 

@@ -63,4 +63,18 @@ ipc.once('chromenu:config', (_: any, config: Config) => {
         }
         shell.openExternal(elem.src);
     });
+    keymaps.on('next-page', () => {
+        const index = Store.getState().pages.index;
+        if (index === null) {
+            return;
+        }
+        Store.dispatch({type: 'OpenPage', index: index + 1});
+    });
+    keymaps.on('previous-page', () => {
+        const index = Store.getState().pages.index;
+        if (index === null) {
+            return;
+        }
+        Store.dispatch({type: 'OpenPage', index: index - 1});
+    });
 });
