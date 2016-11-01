@@ -31,13 +31,13 @@ body {
 .icons-header {
   width: auto;
   height: var(--header-height);
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: #e8e6e8;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e6e8), color-stop(100%, #d1cfd1));
-  background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
   background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);
+  border-bottom: 1px solid #c2c0c2;
 }
 
 .page-icon {
@@ -63,7 +63,8 @@ body {
   width: var(--icon-size);
   height: var(--icon-size);
   border-radius: 10%;
-  border: solid 1px #666666;
+  border: solid 1px #c2c0c2;
+  background-color: #fcfcfc;
 }
 
 .page-icon__indicator {
@@ -182,14 +183,14 @@ body {
 
 .controls-footer {
   height: var(--footer-height);
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   background-color: #e8e6e8;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e6e8), color-stop(100%, #d1cfd1));
-  background-image: -webkit-linear-gradient(top, #e8e6e8 0%, #d1cfd1 100%);
   background-image: linear-gradient(to bottom, #e8e6e8 0%, #d1cfd1 100%);
+  border-top: 1px solid #c2c0c2;
 }
 
 .control-button {
