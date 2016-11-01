@@ -39,6 +39,7 @@ function setupMenuBar(config: Config) {
             if (isDebug) {
                 mb.window.webContents.openDevTools({mode: 'detach'});
             }
+            mb.window.webContents.send('chromenu:config', config);
             resolve(mb);
         });
     });

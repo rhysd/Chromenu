@@ -7,6 +7,18 @@ const DEFAULT_CONFIG = {
     hot_key: 'CmdOrCtrl+Shift+S',
     icon_color: process.platform === 'darwin' ? 'black' : 'white',
     always_on_top: false,
+    keymaps: {
+        'mod+1': 'page1',
+        'mod+2': 'page2',
+        'mod+3': 'page3',
+        'mod+4': 'page4',
+        'mod+5': 'page5',
+        'mod+6': 'page6',
+        'mod+7': 'page7',
+        'mod+8': 'page8',
+        'mod+9': 'page9',
+        'mod+r': 'reload',
+    },
 } as Config;
 
 export default function loadConfig(): Promise<Config> {
@@ -26,6 +38,9 @@ export default function loadConfig(): Promise<Config> {
             }
             try {
                 const config = JSON.parse(json);
+                if (config.hot_key && config.hot_key.startsWith('mod+')) {
+                    config.hot_key = `CmdOrCtrl+${config.hot_key.slice(4)}`;
+                }
                 log.debug('Configuration was loaded successfully', config);
                 resolve(config);
             } catch (e) {

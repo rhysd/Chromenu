@@ -19,6 +19,6 @@
     "**/*.ts",
     "**/*.tsx",
     "typings/*.d.ts",
-    "../node_modules/immutable/dist/immutable.d.ts"
+    "../main/typings/config.d.ts"
   ]
 }

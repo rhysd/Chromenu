@@ -44,6 +44,7 @@
     "typescript": "^2.0.3"
   },
   "dependencies": {
+    "@types/mousetrap": "^1.5.32",
     "bulma": "^0.2.3",
     "cheerio": "^0.22.0",
     "electron": "^1.4.4",
@@ -51,6 +52,7 @@
     "immutable": "^3.8.1",
     "loglevel": "^1.4.1",
     "menubar": "github:rhysd/menubar#ensure-to-launch-app",
+    "mousetrap": "^1.6.0",
     "page-icon": "^0.3.0",
     "react": "^15.3.2",
     "react-bytesize-icons": "^0.7.0",
