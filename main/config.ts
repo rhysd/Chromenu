@@ -18,6 +18,9 @@ const DEFAULT_CONFIG = {
         'mod+8': 'page8',
         'mod+9': 'page9',
         'mod+r': 'reload',
+        'mod+h': 'home',
+        backspace: 'back',
+        'mod+o': 'open-external-browser',
     },
 } as Config;
 

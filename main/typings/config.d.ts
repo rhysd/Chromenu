@@ -8,7 +8,12 @@ type KeymapAction
     | 'page7'
     | 'page8'
     | 'page9'
-    | 'reload';
+    | 'reload'
+    | 'back'
+    | 'forward'
+    | 'home'
+    | 'open-external-browser'
+;
 
 interface Config {
     hot_key: string;

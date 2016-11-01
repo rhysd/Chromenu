@@ -9,6 +9,7 @@ export default class Keymaps extends EventEmitter {
             Mousetrap.bind(key, e => {
                 e.preventDefault();
                 log.debug('Key pressed:', key, e);
+                log.debug('Will emit keymap action:', this.config[key]);
                 this.emit(this.config[key]);
             });
         }

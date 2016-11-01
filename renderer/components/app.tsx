@@ -29,7 +29,7 @@ function renderMain(props: AppProps): React.ReactElement<any> {
 
 function getCurrentPageUrl(state: PagesState): string | null {
     const current = state.all.get(state.index);
-    if (current === null || !current.configured) {
+    if (!current || !current.configured) {
         return null;
     }
     return current.url || null;
