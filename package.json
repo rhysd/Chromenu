@@ -1,7 +1,7 @@
 {
   "name": "chromenu",
   "productName": "Chromenu",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Mobile Chromium in your menu bar",
   "main": "main/index.js",
   "bin": {
