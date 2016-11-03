@@ -97,4 +97,11 @@ ipc.once('chromenu:config', (_: any, config: Config) => {
     keymaps.on('scroll-up-page', executeJS('window.scrollBy(0, -window.innerHeight)'));
     keymaps.on('scroll-bottom', executeJS('window.scrollTo(0, document.body.scrollHeight)'));
     keymaps.on('scroll-top', executeJS('window.scrollTo(0, 0)'));
+    keymaps.on('open-devtools', () => {
+        const elem = Store.getState().webview.element;
+        if (!elem) {
+            return;
+        }
+        elem.getWebContents().openDevTools({mode: 'detach'});
+    });
 });

@@ -25,6 +25,7 @@ type KeymapAction
     | 'scroll-up-page'
     | 'scroll-top'
     | 'scroll-bottom'
+    | 'open-devtools'
 ;
 
 interface Config {
