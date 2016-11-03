@@ -5,7 +5,13 @@ const electron = require('electron');
 const path = require('path');
 const args = [path.join(__dirname, '..')];
 
-child_process.spawn(electron, args, {
-    stdio: 'ignore',
-    detached: true
-}).unref();
+if (process.env.NODE_ENV === 'development') {
+    child_process.spawn(electron, args, {
+        stdio: 'inherit'
+    });
+} else {
+    child_process.spawn(electron, args, {
+        stdio: 'ignore',
+        detached: true
+    }).unref();
+}
