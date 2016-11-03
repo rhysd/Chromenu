@@ -15,6 +15,16 @@ type KeymapAction
     | 'open-external-browser'
     | 'next-page'
     | 'previous-page'
+    | 'scroll-down'
+    | 'scroll-up'
+    | 'scroll-left'
+    | 'scroll-right'
+    | 'scroll-down-half-page'
+    | 'scroll-up-half-page'
+    | 'scroll-down-page'
+    | 'scroll-up-page'
+    | 'scroll-top'
+    | 'scroll-bottom'
 ;
 
 interface Config {

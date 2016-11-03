@@ -23,6 +23,16 @@ window.onunload = () => {
     Storage.save();
 };
 
+function executeJS(source: string) {
+    return () => {
+        const elem = Store.getState().webview.element;
+        if (!elem) {
+            return;
+        }
+        elem.executeJavaScript(source);
+    };
+}
+
 ipc.once('chromenu:config', (_: any, config: Config) => {
     log.debug('Config was sent from main:', config);
     const keymaps = new Keymaps(config.keymaps);
@@ -77,4 +87,14 @@ ipc.once('chromenu:config', (_: any, config: Config) => {
         }
         Store.dispatch({type: 'OpenPage', index: index - 1});
     });
+    keymaps.on('scroll-down', executeJS('window.scrollBy(0, window.innerHeight / 5)'));
+    keymaps.on('scroll-up', executeJS('window.scrollBy(0, -window.innerHeight / 5)'));
+    keymaps.on('scroll-left', executeJS('window.scrollBy(-window.innerWidth / 3, 0)'));
+    keymaps.on('scroll-right', executeJS('window.scrollBy(window.innerWidth / 3, 0)'));
+    keymaps.on('scroll-down-half-page', executeJS('window.scrollBy(0, window.innerHeight / 2)'));
+    keymaps.on('scroll-up-half-page', executeJS('window.scrollBy(0, -window.innerHeight / 2)'));
+    keymaps.on('scroll-down-page', executeJS('window.scrollBy(0, window.innerHeight)'));
+    keymaps.on('scroll-up-page', executeJS('window.scrollBy(0, -window.innerHeight)'));
+    keymaps.on('scroll-bottom', executeJS('window.scrollTo(0, document.body.scrollHeight)'));
+    keymaps.on('scroll-top', executeJS('window.scrollTo(0, 0)'));
 });
