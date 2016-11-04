@@ -29,7 +29,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         wv.src = this.props.src;
         wv.className = 'webview-container__webview';
         wv.setAttribute('useragent', this.props.useragent || DEFAULT_USERAGENT);
-        wv.setAttribute('partition', 'persistent:chromenu');
+        wv.setAttribute('partition', 'persist:chromenu');
         wv.setAttribute('autosize', 'on');
 
         wv.addEventListener('did-start-loading', () => this.dispatchProgress(10));
@@ -55,6 +55,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
     componentDidUpdate(prev: WebViewProps) {
         if (this.props.src !== prev.src) {
             this.webview.src = this.props.src;
+            this.webview.clearHistory();
         }
         // TODO?: Check props.useragent also?
     }
