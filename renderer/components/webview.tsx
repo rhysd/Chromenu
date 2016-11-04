@@ -10,9 +10,12 @@ interface WebViewProps extends React.Props<WebView> {
 }
 
 export default class WebView extends React.PureComponent<WebViewProps, {}> {
-    refs: {
-        body: Electron.WebViewElement;
-    };
+    container: HTMLDivElement;
+    webview: Electron.WebViewElement;
+
+    onContainerRef = (ref: HTMLDivElement) => {
+        this.container = ref;
+    }
 
     dispatchProgress(value: number) {
         this.props.dispatch({
@@ -22,37 +25,42 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
     }
 
     componentDidMount() {
-        const body = this.refs.body;
-        body.addEventListener('did-start-loading', () => this.dispatchProgress(10));
-        body.addEventListener('did-navigate', () => this.dispatchProgress(20));
-        body.addEventListener('dom-ready', () => this.dispatchProgress(70));
-        body.addEventListener('did-navigate-in-page', () => this.dispatchProgress(95));
+        const wv = document.createElement('webview');
+        wv.src = this.props.src;
+        wv.className = 'webview-container__webview';
+        wv.setAttribute('useragent', this.props.useragent || DEFAULT_USERAGENT);
+        wv.setAttribute('partition', 'persistent:chromenu');
+        wv.setAttribute('autosize', 'on');
+
+        wv.addEventListener('did-start-loading', () => this.dispatchProgress(10));
+        wv.addEventListener('did-navigate', () => this.dispatchProgress(20));
+        wv.addEventListener('dom-ready', () => this.dispatchProgress(70));
+        wv.addEventListener('did-navigate-in-page', () => this.dispatchProgress(95));
         // After 'did-navigate-in-page', actually below two events happen but they almost at
         // the same timing as 'did-stop-loading' event.  So I'll skip them.
         //
         //     'did-frame-finish-load'
         //     'did-finish-load'
         //
-        body.addEventListener('did-stop-loading', () => this.props.dispatch({type: 'LoadingComplete', webview: body}));
+        wv.addEventListener('did-stop-loading', () => this.props.dispatch({type: 'LoadingComplete', webview: wv}));
+
+        this.webview = wv;
+        this.container.appendChild(wv);
     }
 
     componentWillUnmount() {
         this.props.dispatch({type: 'WebViewUnmounted'});
     }
 
+    componentDidUpdate(prev: WebViewProps) {
+        if (this.props.src !== prev.src) {
+            this.webview.src = this.props.src;
+        }
+        // TODO?: Check props.useragent also?
+    }
+
     render() {
-        return (
-            <div className="webview-container">
-                <webview
-                    src={this.props.src}
-                    useragent={this.props.useragent || DEFAULT_USERAGENT}
-                    partition="persistent:chromenu"
-                    autosize="on"
-                    className="webview-container__webview"
-                    ref="body"
-                ></webview>
-            </div>
-        );
+        return <div className="webview-container" ref={this.onContainerRef}/>;
     }
 }
 
