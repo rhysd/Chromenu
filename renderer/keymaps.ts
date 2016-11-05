@@ -41,9 +41,13 @@ export default class Keymaps extends EventEmitter {
         for (const key in config) {
             Mousetrap.bind(key, e => {
                 e.preventDefault();
-                log.debug('Key pressed:', key, e);
-                log.debug('Will emit keymap action:', this.config[key]);
+
                 const name = this.config[key];
+                log.debug('Key pressed: ' + key, name);
+                if (name === null) {
+                    return;
+                }
+
                 if (name.endsWith('.js')) {
                     evalFileInRemote(name);
                 } else {
