@@ -25,5 +25,6 @@ window.onunload = () => {
 
 ipc.once('chromenu:config', (_: any, config: Config) => {
     log.debug('Config was sent from main:', config);
-    new Keymaps(config.keymaps);
+    const keymaps = new Keymaps(config.keymaps);
+    keymaps.registerAllKeymaps();
 });

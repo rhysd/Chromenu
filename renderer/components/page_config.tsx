@@ -11,41 +11,28 @@ interface PageConfigProps extends React.Props<PageConfig> {
 }
 
 export default class PageConfig extends React.PureComponent<PageConfigProps, {}> {
-    refs: {
-        url_input: HTMLInputElement;
-        image_input: HTMLInputElement;
-        title_input: HTMLInputElement;
-    };
+    url_input: HTMLInputElement;
+    image_input: HTMLInputElement;
+    title_input: HTMLInputElement;
 
-    constructor(props: PageConfigProps) {
-        super(props);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onCancel = this.onCancel.bind(this);
-        this.onDelete = this.onDelete.bind(this);
+    onUrlInputRef = (ref: HTMLInputElement) => {
+        this.url_input = ref;
     }
 
-    getTitle(url: string): Promise<string> {
-        const title = this.refs.title_input.value || '';
-        if (title) {
-            return Promise.resolve(title);
-        }
-        return tryTo.findTitle(url).catch(() => '');
+    onImageInputRef = (ref: HTMLInputElement) => {
+        this.image_input = ref;
     }
 
-    getIconUrl(url: string): Promise<string> {
-        const image_url = this.refs.image_input.value || '';
-        if (image_url) {
-            return Promise.resolve(image_url);
-        }
-        return tryTo.findIconUrl(url).then(i => i !== null ? i : '');
+    onTitleInputRef = (ref: HTMLInputElement) => {
+        this.title_input = ref;
     }
 
-    onSubmit(e: React.MouseEvent<HTMLInputElement>) {
+    onSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        const url = this.refs.url_input.value;
+        const url = this.url_input.value;
 
         if (!url || !url.startsWith('http://') && !url.startsWith('https://')) {
-            this.refs.url_input.className = 'input is-danger';
+            this.url_input.className = 'input is-danger';
             log.debug('Invalid URL input:', url);
             return;
         }
@@ -65,7 +52,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         });
     }
 
-    onCancel(e: React.MouseEvent<HTMLInputElement>) {
+    onCancel = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
         const {page, dispatch, index} = this.props;
         if (page.url === '') {
@@ -84,9 +71,9 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         }
     }
 
-    onDelete(e: React.MouseEvent<HTMLInputElement>) {
+    onDelete = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        log.debug('Delete this page:', this.refs.url_input.value);
+        log.debug('Delete this page:', this.url_input.value);
         const {dispatch, index} = this.props;
         dispatch({
             type: 'DeletePage',
@@ -94,16 +81,32 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         });
     }
 
+    getTitle(url: string): Promise<string> {
+        const title = this.title_input.value || '';
+        if (title) {
+            return Promise.resolve(title);
+        }
+        return tryTo.findTitle(url).catch(() => '');
+    }
+
+    getIconUrl(url: string): Promise<string> {
+        const image_url = this.image_input.value || '';
+        if (image_url) {
+            return Promise.resolve(image_url);
+        }
+        return tryTo.findIconUrl(url).then(i => i !== null ? i : '');
+    }
+
     componentDidMount() {
         const {page} = this.props;
         if (page.url) {
-            this.refs.url_input.value = page.url;
+            this.url_input.value = page.url;
         }
         if (page.icon_image) {
-            this.refs.image_input.value = page.icon_image;
+            this.image_input.value = page.icon_image;
         }
         if (page.title) {
-            this.refs.title_input.value = page.title;
+            this.title_input.value = page.title;
         }
     }
 
@@ -118,7 +121,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             className="input is-primary"
                             type="text"
                             placeholder="required"
-                            ref="url_input"
+                            ref={this.onUrlInputRef}
                         />
                     </p>
                 </div>
@@ -129,7 +132,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             className="input is-primary"
                             type="text"
                             placeholder="optional"
-                            ref="image_input"
+                            ref={this.onImageInputRef}
                         />
                     </p>
                 </div>
@@ -140,7 +143,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             className="input is-primary"
                             type="text"
                             placeholder="optional"
-                            ref="title_input"
+                            ref={this.onTitleInputRef}
                         />
                     </p>
                 </div>

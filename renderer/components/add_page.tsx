@@ -20,7 +20,7 @@ export default class AddPage extends React.PureComponent<AddPageProps, {}> {
         return (
             <div className="add-icon__container">
                 <div className="add-icon" onClick={this.onClick}>
-                    <i className="fa fa-plus fa-5x" aria-hidden="true"></i>
+                    <i className="fa fa-plus fa-5x" aria-hidden="true"/>
                 </div>
             </div>
         );

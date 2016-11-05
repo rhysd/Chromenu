@@ -51,7 +51,6 @@ export default class Keymaps extends EventEmitter {
                 }
             });
         }
-        this.registerAllKeymaps();
     }
 
     registerAllKeymaps() {
