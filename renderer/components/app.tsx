@@ -27,7 +27,17 @@ function renderMain(props: AppProps): React.ReactElement<any> {
     return <WebView src={current.url} dispatch={props.dispatch!}/>;
 }
 
+function renderProgress(props: AppProps) {
+    if (!props.webview.loading) {
+        return null;
+    }
+    return <Progress value={props.webview.progress}/>;
+}
+
 function getCurrentPageUrl(state: PagesState): string | null {
+    if (state.index === null) {
+        return null;
+    }
     const current = state.all.get(state.index);
     if (!current || !current.configured) {
         return null;
@@ -38,13 +48,13 @@ function getCurrentPageUrl(state: PagesState): string | null {
 export const App = (props: AppProps) => (
     <div className="app-root">
         <Header pages={props.pages.all} index={props.pages.index} dispatch={props.dispatch!}/>
-        <Progress loading={props.webview.loading} value={props.webview.progress}/>
+        {renderProgress(props)}
         {renderMain(props)}
         <Footer
             loading={props.webview.loading}
             pageUrl={getCurrentPageUrl(props.pages)}
             element={props.webview.element}
-            dispatch={props.dispatch}
+            dispatch={props.dispatch!}
         />
     </div>
 );

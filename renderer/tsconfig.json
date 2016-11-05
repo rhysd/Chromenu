@@ -10,7 +10,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmitOnError": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "target": "es2015",
     "sourceMap": true,
     "jsx": "react"

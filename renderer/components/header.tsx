@@ -7,7 +7,7 @@ import {Dispatch} from '../store';
 
 interface HeaderProps extends React.Props<any> {
     pages: List<Page>;
-    index: number;
+    index: number | null;
     dispatch: Dispatch;
 }
 

@@ -36,7 +36,7 @@ function evalFileInRemote(file: string) {
 }
 
 export default class Keymaps extends EventEmitter {
-    constructor(public config: {[key: string]: string}) {
+    constructor(public config: {[key: string]: string | null}) {
         super();
         for (const key in config) {
             Mousetrap.bind(key, e => {
@@ -81,6 +81,9 @@ export default class Keymaps extends EventEmitter {
         });
         this.on('home', () => {
             const state = Store.getState();
+            if (state.pages.index === null) {
+                return;
+            }
             const elem = state.webview.element;
             const current = state.pages.all.get(state.pages.index);
             if (current && current.url && elem) {

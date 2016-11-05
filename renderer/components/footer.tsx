@@ -25,16 +25,25 @@ export default class Footer extends React.PureComponent<FooterProps, {}> {
 
     goBack(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
+        if (this.props.element === null) {
+            return;
+        }
         this.props.element.goBack();
     }
 
     goForward(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
+        if (this.props.element === null) {
+            return;
+        }
         this.props.element.goForward();
     }
 
     resetPage(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
+        if (this.props.element === null || this.props.pageUrl === null) {
+            return;
+        }
         this.props.element.src = this.props.pageUrl;
     }
 
@@ -72,8 +81,8 @@ export default class Footer extends React.PureComponent<FooterProps, {}> {
         const page_open = pageUrl !== null;
         return (
             <div className="controls-footer">
-                <ControlButton icon={ArrowLeft} onClick={this.goBack} enabled={element && element.canGoBack()}/>
-                <ControlButton icon={ArrowRight} onClick={this.goForward} enabled={element && element.canGoForward()}/>
+                <ControlButton icon={ArrowLeft} onClick={this.goBack} enabled={element !== null && element.canGoBack()}/>
+                <ControlButton icon={ArrowRight} onClick={this.goForward} enabled={element !== null && element.canGoForward()}/>
                 <ControlButton icon={Home} onClick={this.resetPage} enabled={page_open}/>
                 <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open}/>
                 <ControlButton icon={External} onClick={this.openInExternalBrowser} enabled={page_open}/>
