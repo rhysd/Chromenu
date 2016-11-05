@@ -1,10 +1,14 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import {EventEmitter} from 'events';
 import * as Mousetrap from 'mousetrap';
-import {shell} from 'electron';
+import {shell, remote} from 'electron';
 import Store from './store';
 import log from './log';
 
-function executeJS(source: string) {
+const UserDataPath = remote.app.getPath('userData');
+
+function executeJavaScriptCallback(source: string) {
     return () => {
         const elem = Store.getState().webview.element;
         if (!elem) {
@@ -14,15 +18,37 @@ function executeJS(source: string) {
     };
 }
 
+function evalFileInRemote(file: string) {
+    if (!path.isAbsolute(file)) {
+        file = path.join(UserDataPath, file);
+    }
+    fs.readFile(file, 'utf8', (err, source) => {
+        if (err) {
+            log.error('Error while loading JavaScript source from file ' + file, err);
+            return;
+        }
+        const elem = Store.getState().webview.element;
+        if (!elem) {
+            return;
+        }
+        elem.executeJavaScript(source);
+    });
+}
+
 export default class Keymaps extends EventEmitter {
-    constructor(public config: {[key: string]: KeymapAction}) {
+    constructor(public config: {[key: string]: string}) {
         super();
         for (const key in config) {
             Mousetrap.bind(key, e => {
                 e.preventDefault();
                 log.debug('Key pressed:', key, e);
                 log.debug('Will emit keymap action:', this.config[key]);
-                this.emit(this.config[key]);
+                const name = this.config[key];
+                if (name.endsWith('.js')) {
+                    evalFileInRemote(name);
+                } else {
+                    this.emit(name);
+                }
             });
         }
         this.registerAllKeymaps();
@@ -76,16 +102,16 @@ export default class Keymaps extends EventEmitter {
                 Store.dispatch({type: 'OpenPage', index: index - 1});
             }
         });
-        this.on('scroll-down', executeJS('window.scrollBy(0, window.innerHeight / 5)'));
-        this.on('scroll-up', executeJS('window.scrollBy(0, -window.innerHeight / 5)'));
-        this.on('scroll-left', executeJS('window.scrollBy(-window.innerWidth / 3, 0)'));
-        this.on('scroll-right', executeJS('window.scrollBy(window.innerWidth / 3, 0)'));
-        this.on('scroll-down-half-page', executeJS('window.scrollBy(0, window.innerHeight / 2)'));
-        this.on('scroll-up-half-page', executeJS('window.scrollBy(0, -window.innerHeight / 2)'));
-        this.on('scroll-down-page', executeJS('window.scrollBy(0, window.innerHeight)'));
-        this.on('scroll-up-page', executeJS('window.scrollBy(0, -window.innerHeight)'));
-        this.on('scroll-bottom', executeJS('window.scrollTo(0, document.body.scrollHeight)'));
-        this.on('scroll-top', executeJS('window.scrollTo(0, 0)'));
+        this.on('scroll-down',           executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 5)'));
+        this.on('scroll-up',             executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 5)'));
+        this.on('scroll-left',           executeJavaScriptCallback('window.scrollBy(-window.innerWidth / 3, 0)'));
+        this.on('scroll-right',          executeJavaScriptCallback('window.scrollBy(window.innerWidth / 3, 0)'));
+        this.on('scroll-down-half-page', executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 2)'));
+        this.on('scroll-up-half-page',   executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 2)'));
+        this.on('scroll-down-page',      executeJavaScriptCallback('window.scrollBy(0, window.innerHeight)'));
+        this.on('scroll-up-page',        executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight)'));
+        this.on('scroll-bottom',         executeJavaScriptCallback('window.scrollTo(0, document.body.scrollHeight)'));
+        this.on('scroll-top',            executeJavaScriptCallback('window.scrollTo(0, 0)'));
         this.on('open-devtools', () => {
             const elem = Store.getState().webview.element;
             if (elem) {
