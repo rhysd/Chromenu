@@ -1,9 +1,10 @@
 :root {
   --header-height: 60px;
   --footer-height: 50px;
-  --icon-size: 40px;
+  --icon-size: 30px;
   --control-icon-size: 32px;
-  --indicator-height: 10px;
+  --indicator-height: 12px;
+  --indicator-margin: 6px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
@@ -43,7 +44,7 @@ body {
 .page-icon {
   width: var(--icon-size);
   height: calc(var(--icon-size) + var(--indicator-height));
-  margin: 0 5px;
+  margin-left: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -68,9 +69,9 @@ body {
 }
 
 .page-icon__indicator {
-  height: calc(var(--indicator-height) - 4px);
-  width: calc(var(--indicator-height) - 4px);
-  margin-top: 4px;
+  height: calc(var(--indicator-height) - var(--indicator-margin));
+  width: calc(var(--indicator-height) - var(--indicator-margin));
+  margin-top: var(--indicator-margin);
   border-radius: 50%;
   background-color: #666666;
 }
@@ -111,10 +112,15 @@ body {
   background-color: #c0c0c0;
 }
 
+/* Prevent bluma from fixing icon size */
+.add-icon > i {
+  font-size: 14px;
+}
+
 .add-icon__container {
   width: var(--icon-size);
   height: calc(var(--icon-size) + var(--indicator-height));
-  margin: 0 5px;
+  margin: 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
