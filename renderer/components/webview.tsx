@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Dispatch} from '../store';
+import log from '../log';
 
 const DEFAULT_USERAGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1';
 
@@ -43,6 +44,14 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         //     'did-finish-load'
         //
         wv.addEventListener('did-stop-loading', () => this.props.dispatch({type: 'LoadingComplete', webview: wv}));
+        // When target="_blank" specified, open the page in the same webview.
+        wv.addEventListener('new-window', e => {
+            e.preventDefault();
+            wv.src = e.url;
+        });
+        wv.addEventListener('crashed', () => {
+            log.error('Webview crashed! Reload <webview> to recover.');
+        });
 
         this.webview = wv;
         this.container.appendChild(wv);
