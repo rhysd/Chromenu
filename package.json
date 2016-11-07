@@ -8,12 +8,13 @@
     "chromenu": "./bin/cli.js"
   },
   "scripts": {
+    "build:bin": "tsc --pretty -p bin/",
     "build:main": "tsc --pretty -p main/",
     "build:renderer": "tsc --pretty -p renderer/",
-    "build": "npm run build:main && npm run build:renderer",
+    "build": "npm run build:bin && npm run build:main && npm run build:renderer",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint $(git ls-files | grep -E \"\\.tsx?$\") && stylelint renderer/style.css",
-    "watch": "guard --watchdir main renderer",
+    "watch": "guard --watchdir main renderer bin",
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron ."
   },

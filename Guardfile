@@ -29,17 +29,8 @@ guard :shell do
     npm_run 'build:renderer'
   end
 
-  watch %r[^test/main/.+\.ts$] do |m|
-    f = m[0]
-    timestamp f
-    if npm_run 'build:test:main'
-      t = "test/main/js/#{File.dirname f}/#{File.basename(f, File.extname(f))}.js"
-      if File.exist? t
-        puts "ava #{t}"
-        system "./node_modules/.bin/ava", "--verbose", "--serial", t
-      else
-        puts "Not found, ava skipped: #{t}"
-      end
-    end
+  watch %r[^bin/.+\.ts$] do |m|
+    timestamp m[0]
+    npm_run 'build:bin'
   end
 end

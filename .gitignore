@@ -1,6 +1,7 @@
+*.js.map
 /main/**/*.js
-/main/**/*.js.map
 /renderer/**/*.js
-/renderer/**/*.js.map
 /node_modules
 npm-debug.log
+/bin/*.js
+!/bin/cli.js
