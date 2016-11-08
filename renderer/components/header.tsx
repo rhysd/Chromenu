@@ -5,6 +5,10 @@ import AddPage from './add_page';
 import {Page} from '../states';
 import {Dispatch} from '../store';
 
+function cancel(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+}
+
 interface HeaderProps extends React.Props<any> {
     pages: List<Page>;
     index: number | null;
@@ -12,7 +16,7 @@ interface HeaderProps extends React.Props<any> {
 }
 
 const Header = (props: HeaderProps) => (
-    <div className="icons-header">
+    <div className="icons-header" onDrop={cancel} onDragOver={cancel} onDragEnter={cancel}>
         {props.pages.toArray().map((p, i) =>
             <PageIcon
                 page={p}

@@ -5,6 +5,10 @@ import ControlButton from './control_button';
 import {Dispatch} from '../store';
 import log from '../log';
 
+function cancel(e: React.DragEvent<any>) {
+    e.preventDefault();
+}
+
 interface FooterProps extends React.Props<Footer> {
     dispatch: Dispatch;
     loading: boolean;
@@ -80,7 +84,7 @@ export default class Footer extends React.PureComponent<FooterProps, {}> {
         const reload_handler = loading ? this.stopLoading : this.reloadPage;
         const page_open = pageUrl !== null;
         return (
-            <div className="controls-footer">
+            <div className="controls-footer" onDrop={cancel} onDragEnter={cancel} onDragOver={cancel}>
                 <ControlButton icon={ArrowLeft} onClick={this.goBack} enabled={element !== null && element.canGoBack()}/>
                 <ControlButton icon={ArrowRight} onClick={this.goForward} enabled={element !== null && element.canGoForward()}/>
                 <ControlButton icon={Home} onClick={this.resetPage} enabled={page_open}/>
