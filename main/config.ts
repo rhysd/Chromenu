@@ -7,6 +7,7 @@ const DEFAULT_CONFIG = {
     hot_key: 'CmdOrCtrl+Shift+S',
     icon_color: process.platform === 'darwin' ? 'black' : 'white',
     always_on_top: false,
+    normal_window: false,
     keymaps: {
         'mod+1': 'page1',
         'mod+2': 'page2',
