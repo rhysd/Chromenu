@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as CSSTransitionGroup from 'react-addons-css-transition-group';
 import {Page} from '../states';
 import {Dispatch} from '../store';
 import log from '../log';
@@ -113,57 +112,49 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
 
     render() {
         return (
-            <CSSTransitionGroup
-                transitionName="config-anim"
-                transitionAppear={true}
-                transitionAppearTimeout={300}
-                transitionLeave={true}
-                transitionLeaveTimeout={300}
-            >
-                <div className="page-config">
-                    <h1 className="title">Configuration</h1>
-                    <div className="page-config__input">
-                        <label className="label">Page URL</label>
-                        <p className="control">
-                            <input
-                                className="input is-primary"
-                                type="text"
-                                placeholder="required"
-                                ref={this.onUrlInputRef}
-                            />
-                        </p>
-                    </div>
-                    <div className="page-config__input">
-                        <label className="label">Icon Image URL</label>
-                        <p className="control">
-                            <input
-                                className="input is-primary"
-                                type="text"
-                                placeholder="optional"
-                                ref={this.onImageInputRef}
-                            />
-                        </p>
-                    </div>
-                    <div className="page-config__input">
-                        <label className="label">Page Title</label>
-                        <p className="control">
-                            <input
-                                className="input is-primary"
-                                type="text"
-                                placeholder="optional"
-                                ref={this.onTitleInputRef}
-                            />
-                        </p>
-                    </div>
-                    <div className="page-config__buttons">
-                        <p className="control">
-                            <button className="button is-primary" onClick={this.onSubmit}>OK</button>
-                            <button className="button" onClick={this.onCancel}>Cancel</button>
-                            <button className="button is-danger" onClick={this.onDelete}>Delete</button>
-                        </p>
-                    </div>
+            <div className="page-config">
+                <h1 className="title">Configuration</h1>
+                <div className="page-config__input">
+                    <label className="label">Page URL</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="required"
+                            ref={this.onUrlInputRef}
+                        />
+                    </p>
                 </div>
-            </CSSTransitionGroup>
+                <div className="page-config__input">
+                    <label className="label">Icon Image URL</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="optional"
+                            ref={this.onImageInputRef}
+                        />
+                    </p>
+                </div>
+                <div className="page-config__input">
+                    <label className="label">Page Title</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="optional"
+                            ref={this.onTitleInputRef}
+                        />
+                    </p>
+                </div>
+                <div className="page-config__buttons">
+                    <p className="control">
+                        <button className="button is-primary" onClick={this.onSubmit}>OK</button>
+                        <button className="button" onClick={this.onCancel}>Cancel</button>
+                        <button className="button is-danger" onClick={this.onDelete}>Delete</button>
+                    </p>
+                </div>
+            </div>
         );
     }
 }
