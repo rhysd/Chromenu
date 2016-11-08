@@ -6,6 +6,7 @@
   --indicator-height: 12px;
   --indicator-margin: 6px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+  --color-highlight: #40b17a;
 }
 
 html {
@@ -109,6 +110,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #c8c8c8;
+}
+
+.add-icon:hover {
   background-color: #c0c0c0;
 }
 
@@ -184,7 +189,7 @@ body {
 .progress-bar {
   height: 100%;
   transition: width 0.3s linear 0ms;
-  background-color: #2e8af7;
+  background-color: var(--color-highlight);
 }
 
 .controls-footer {
@@ -204,6 +209,10 @@ body {
   width: var(--control-icon-size);
   height: var(--control-icon-size);
   color: #666666;
+}
+
+.control-button:hover {
+  color: var(--color-highlight);
 }
 
 .control-button.control-button-disabled {
