@@ -178,6 +178,24 @@ body {
   margin-right: 0;
 }
 
+.config-anim-appear {
+  transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+}
+
+.config-anim-appear.config-anim-appear-active {
+  transform: perspective(400px);
+  transition: transform 300ms ease-in;
+}
+
+.config-anim-leave {
+  transform: perspective(400px);
+}
+
+.config-anim-leave.config-anim-leave-active {
+  transform: perspective(400px) rotate3d(0, 1, 0, -90deg);
+  transition: transform 300ms ease-in;
+}
+
 .progress-container {
   height: 3px;
   display: flex;
