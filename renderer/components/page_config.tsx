@@ -120,7 +120,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="required"
+                            placeholder="Required"
                             ref={this.onUrlInputRef}
                         />
                     </p>
@@ -131,7 +131,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="optional"
+                            placeholder="Optional"
                             ref={this.onImageInputRef}
                         />
                     </p>
@@ -142,7 +142,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="optional"
+                            placeholder="Optional"
                             ref={this.onTitleInputRef}
                         />
                     </p>
