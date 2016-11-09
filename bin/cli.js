@@ -3,13 +3,13 @@
 const child_process = require('child_process');
 const electron = require('electron');
 const path = require('path');
-const setupLaunchctl = require('./setup-launchctl').default;
+const launchctl = require('./launchctl');
 
 const args = [path.join(__dirname, '..')];
 
 if (process.argv.indexOf('--help') !== -1) {
     process.stdout.write(
-`$ chromenu [--help|--setup-launchctl]
+`$ chromenu [--no-detach|--setup-launchctl|--unsetup-launchctl|--help]
 
     ${require('../package.json').description}
 
@@ -19,10 +19,14 @@ if (process.argv.indexOf('--help') !== -1) {
 }
 
 if (process.argv.indexOf('--setup-launchctl') !== -1) {
-    process.exit(setupLaunchctl());
+    process.exit(launchctl.setup());
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.argv.indexOf('--unsetup-launchctl') !== -1) {
+    process.exit(launchctl.unsetup());
+}
+
+if (process.env.NODE_ENV === 'development' || process.argv.indexOf('--no-detach') !== -1) {
     child_process.spawn(electron, args, {
         stdio: 'inherit'
     });

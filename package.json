@@ -18,7 +18,8 @@
     "lint": "npm-run-all --parallel tslint stylelint",
     "watch": "guard --watchdir main renderer bin",
     "debug": "NODE_ENV=development electron .",
-    "start": "NODE_ENV=production electron ."
+    "start": "NODE_ENV=production electron .",
+    "preuninstall": "node ./bin/cli.js --unsetup-launchctl"
   },
   "repository": {
     "type": "git",
