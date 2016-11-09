@@ -60,13 +60,17 @@ body {
 
 .page-icon__char {
   text-align: center;
-  line-height: 38px;
-  font-size: 34px;
+  line-height: var(--icon-size);
+  font-size: calc(var(--icon-size) - 6px);
   width: var(--icon-size);
   height: var(--icon-size);
   border-radius: 10%;
   border: solid 1px #c2c0c2;
-  background-color: #fcfcfc;
+  background-color: #ececec;
+}
+
+.page-icon__char:hover {
+  background-color: #ddd;
 }
 
 .page-icon__indicator {

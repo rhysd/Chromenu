@@ -15,8 +15,8 @@ export function findTitle(url: string): Promise<string> {
 
     return new Promise<string>((resolve, reject) => {
         request(options, (err, res, body) => {
-            if (err || res.statusCode !== 200) {
-                log.debug('Failed to fetch title of page:', err, res.statusCode);
+            if (err || !res || res.statusCode !== 200) {
+                log.debug('Failed to fetch title of page:', err, res);
                 return reject(err);
             }
 
