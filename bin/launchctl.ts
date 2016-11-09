@@ -1,8 +1,9 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import {execSync} from 'child_process';
 
-const PlistPath = path.join(__dirname, 'chromenu-launchctl.plist');
+const PlistPath = path.join(os.homedir(), 'io.github.rhysd.chromenu.plist');
 const CliPath = path.join(__dirname, 'cli.js');
 const StdoutPath = path.join(__dirname, 'stdout.log');
 const StderrPath = path.join(__dirname, 'stderr.log');
@@ -33,11 +34,6 @@ function preparePlistFile() {
         return;
     }
 
-    const username = execSync('id -un').toString().trim();
-    if (username === '') {
-        throw new Error('`id -un` failed: Result was empty');
-    }
-
     const plist =
 `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -58,8 +54,6 @@ function preparePlistFile() {
       <string>${process.argv[0]}</string>
       <string>${CliPath}</string>
     </array>
-    <key>UserName</key>
-    <string>${username}</string>
     <key>StandardOutPath</key>
     <string>${StdoutPath}</string>
     <key>StandardErrorPath</key>
@@ -68,8 +62,9 @@ function preparePlistFile() {
 </plist>
 `
     ;
+
     fs.writeFileSync(PlistPath, plist, 'utf8');
-    console.log(`Generated: ${PlistPath}`);
+    console.log(`Generated: '${PlistPath}'. If you didn't install Chromenu via npm, please remove it manually when you uninstall Chromenu.`);
 }
 
 function launchctl(subcmd: 'load' | 'unload') {

@@ -8,11 +8,28 @@ const launchctl = require('./launchctl');
 const args = [path.join(__dirname, '..')];
 
 if (process.argv.indexOf('--help') !== -1) {
+    const package = require('../package.json');
     process.stdout.write(
 `$ chromenu [--no-detach|--setup-launchctl|--unsetup-launchctl|--help]
 
-    ${require('../package.json').description}
+    ${package.description} (version ${package.version})
 
+subcommands:
+    --no-detach
+        Do not detach application process. By default, the application
+        process will be detached. Note that when $NODE_ENV is 'development',
+        the process won't also be detached.
+
+    --setup-launchctl
+        Setup to start this application at system booting. This option is
+        only for macOS. If you use other platform, please setup manually.
+
+    --unsetup-launchctl
+        If you used --setup-launchctl and this option stops launching this
+        application on system booting.
+
+    --help
+        Show this help.
 `
     );
     process.exit(0);
