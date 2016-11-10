@@ -38,27 +38,27 @@
   "homepage": "https://github.com/rhysd/Chromenu#readme",
   "devDependencies": {
     "@types/cheerio": "^0.17.31",
-    "@types/electron": "^1.4.24",
+    "@types/electron": "^1.4.26",
     "@types/loglevel": "^1.4.29",
     "@types/mousetrap": "^1.5.32",
-    "@types/node": "^6.0.45",
-    "@types/react": "^0.14.41",
+    "@types/node": "^6.0.46",
+    "@types/react": "^0.14.47",
     "@types/react-dom": "^0.14.18",
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
-    "@types/request": "0.0.32",
+    "@types/request": "0.0.33",
     "npm-run-all": "^3.1.1",
     "stylelint": "^7.5.0",
-    "stylelint-config-standard": "^13.0.2",
+    "stylelint-config-standard": "^14.0.0",
     "tslint": "^3.15.1",
     "tslint-react": "^1.1.0",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.8"
   },
   "dependencies": {
     "bulma": "^0.2.3",
     "cheerio": "^0.22.0",
-    "electron": "^1.4.4",
-    "font-awesome": "^4.6.3",
+    "electron": "^1.4.6",
+    "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
     "loglevel": "^1.4.1",
     "menubar": "github:rhysd/menubar#ensure-to-launch-app",
@@ -69,6 +69,6 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "request": "^2.75.0"
+    "request": "^2.78.0"
   }
 }
