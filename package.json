@@ -1,7 +1,7 @@
 {
   "name": "chromenu",
   "productName": "Chromenu",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Mobile Chromium in your menu bar",
   "main": "main/index.js",
   "bin": {
@@ -19,6 +19,7 @@
     "watch": "guard --watchdir main renderer bin",
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron .",
+    "preversion": "npm run lint",
     "preuninstall": "node ./bin/cli.js --unsetup-launchctl"
   },
   "repository": {
