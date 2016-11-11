@@ -13,10 +13,14 @@ const IsDebug = process.env.NODE_ENV === 'development';
 const DefaultWidth = 414;  // iPhone 6s
 const DefaultHeight = 50 + 10 + 736 + 50; // Icon area height + iPhone 6s + footer
 
+const appReady = new Promise(resolve => app.on('ready', resolve));
+
 function setupMenuBar(config: Config) {
     log.debug('Setup a menubar window');
     return new Promise<Menubar.MenubarApp>(resolve => {
-        const icon = path.join(__dirname, '..', 'resources', `chrome-tray-icon-${config.icon_color}.png`);
+        const icon = path.join(__dirname, '..', 'resources', `chrome-tray-icon-${
+            config.icon_color === 'white' ? 'white' : 'black'
+        }.png`);
         log.debug('Will launch application:', Html, icon);
         const mb = menubar({
             index: Html,
@@ -54,6 +58,9 @@ function setupMenuBar(config: Config) {
 function setupNormalWindow(config: Config) {
     log.debug('Setup a normal window');
     return new Promise<Electron.BrowserWindow>(resolve => {
+        if (process.platform === 'darwin') {
+            app.dock.setIcon(path.join(__dirname, '..', 'resources', 'icon', 'app.png'));
+        }
         const win = new BrowserWindow({
             width: DefaultWidth,
             height: DefaultHeight,
@@ -78,16 +85,18 @@ function setupNormalWindow(config: Config) {
             if (IsDebug) {
                 win.webContents.openDevTools({mode: 'detach'});
             }
-            if (process.platform === 'darwin') {
-                app.dock.setIcon(path.join(__dirname, '..', 'resources', 'icon', 'app.png'));
-            }
             resolve(win);
         });
     });
 }
 
+// Note:
+// No need to wait for 'ready' event when launching menubar style application
+// because 'menubar' package internally waits for app being ready.
 loadConfig().then(
-    c => c.normal_window ? setupNormalWindow(c) : setupMenuBar(c)
+    c => c.normal_window ?
+        appReady.then(() => setupNormalWindow(c)) :
+        setupMenuBar(c)
 ).then(() => {
     log.debug('Application launched!');
 });
