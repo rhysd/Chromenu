@@ -1,20 +1,19 @@
 #! /usr/bin/env node
 
 const child_process = require('child_process');
-const electron = require('electron');
 const path = require('path');
 const launchctl = require('./launchctl');
 
 const args = [path.join(__dirname, '..')];
 
 if (process.argv.indexOf('--help') !== -1) {
-    const package = require('../package.json');
+    const pkg = require('../package.json');
     process.stdout.write(
 `$ chromenu [--no-detach|--setup-launchctl|--unsetup-launchctl|--help]
 
-    ${package.description} (version ${package.version})
+    ${pkg.description} (version ${pkg.version})
 
-subcommands:
+Options:
     --no-detach
         Do not detach application process. By default, the application
         process will be detached. Note that when $NODE_ENV is 'development',
@@ -42,6 +41,11 @@ if (process.argv.indexOf('--setup-launchctl') !== -1) {
 if (process.argv.indexOf('--unsetup-launchctl') !== -1) {
     process.exit(launchctl.unsetup());
 }
+
+// Note:
+// Load electron module here to avoid "no module 'electron'" error on preuninstall
+// hook when `npm uninstall -g chromenu`.
+const electron = require('electron');
 
 if (process.env.NODE_ENV === 'development' || process.argv.indexOf('--no-detach') !== -1) {
     child_process.spawn(electron, args, {
