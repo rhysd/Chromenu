@@ -6,7 +6,7 @@
   --indicator-height: 12px;
   --indicator-margin: 6px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
-  --color-highlight: #40b17a;
+  --color-highlight: #4285f4;
 }
 
 html {
@@ -193,7 +193,6 @@ body {
 .progress-bar {
   height: 100%;
   transition: width 0.3s linear 0ms;
-  background-color: var(--color-highlight);
 }
 
 .controls-footer {

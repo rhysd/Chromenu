@@ -35,7 +35,8 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
 
         wv.addEventListener('did-start-loading', () => this.dispatchProgress(10));
         wv.addEventListener('did-navigate', () => this.dispatchProgress(20));
-        wv.addEventListener('dom-ready', () => this.dispatchProgress(70));
+        wv.addEventListener('dom-ready', () => this.dispatchProgress(80));
+        wv.addEventListener('did-finish-load', () => this.dispatchProgress(90));
         wv.addEventListener('did-navigate-in-page', () => this.dispatchProgress(95));
         // After 'did-navigate-in-page', actually below two events happen but they almost at
         // the same timing as 'did-stop-loading' event.  So I'll skip them.
