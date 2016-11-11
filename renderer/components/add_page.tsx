@@ -18,7 +18,7 @@ export default class AddPage extends React.PureComponent<AddPageProps, {}> {
 
     render() {
         return (
-            <div className="add-icon__container">
+            <div className="add-icon__container" title="New page">
                 <div className="add-icon" onClick={this.onClick}>
                     <i className="fa fa-plus" aria-hidden="true"/>
                 </div>
