@@ -2,3 +2,6 @@ resources/chrome-icon-black.png
 resources/chrome-icon-white.png
 *.plist
 *.log
+*.icns
+*.ico
+*.svg

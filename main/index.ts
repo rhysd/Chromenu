@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as menubar from 'menubar';
-import {globalShortcut, BrowserWindow} from 'electron';
+import {app, globalShortcut, BrowserWindow} from 'electron';
 import loadConfig from './config';
 import log from './log';
 
@@ -57,6 +57,7 @@ function setupNormalWindow(config: Config) {
         const win = new BrowserWindow({
             width: DefaultWidth,
             height: DefaultHeight,
+            icon: path.join(__dirname, '..', 'resources', 'icon', 'app.png'),
         });
         win.loadURL(Html);
         win.webContents.once('dom-ready', () => {
@@ -76,6 +77,9 @@ function setupNormalWindow(config: Config) {
             win.webContents.send('chromenu:config', config);
             if (IsDebug) {
                 win.webContents.openDevTools({mode: 'detach'});
+            }
+            if (process.platform === 'darwin') {
+                app.dock.setIcon(path.join(__dirname, '..', 'resources', 'icon', 'app.png'));
             }
             resolve(win);
         });
