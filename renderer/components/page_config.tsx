@@ -121,6 +121,8 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             className="input is-primary"
                             type="text"
                             placeholder="Required"
+                            autoComplete="off"
+                            autoFocus
                             ref={this.onUrlInputRef}
                         />
                     </p>
