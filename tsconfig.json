@@ -17,8 +17,6 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    "typings/*.d.ts",
-    "../main/typings/config.d.ts"
+    "**/*.tsx"
   ]
 }

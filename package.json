@@ -8,10 +8,7 @@
     "chromenu": "./bin/cli.js"
   },
   "scripts": {
-    "build:bin": "tsc --pretty -p bin/",
-    "build:main": "tsc --pretty -p main/",
-    "build:renderer": "tsc --pretty -p renderer/",
-    "build": "npm-run-all --parallel build:bin build:main build:renderer",
+    "build": "tsc --pretty -p .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tslint": "tslint $(git ls-files | grep -E \"\\.tsx?$\")",
     "stylelint": "stylelint renderer/style.css",
