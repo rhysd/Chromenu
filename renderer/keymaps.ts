@@ -108,6 +108,12 @@ export default class Keymaps extends EventEmitter {
                 Store.dispatch({type: 'OpenPage', index: index - 1});
             }
         });
+        this.on('search', () => {
+            const s = Store.getState().webview.search;
+            if (s !== null) {
+                s.openSearchWindow();
+            }
+        });
         this.on('scroll-down',           executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 5)'));
         this.on('scroll-up',             executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 5)'));
         this.on('scroll-left',           executeJavaScriptCallback('window.scrollBy(-window.innerWidth / 3, 0)'));
