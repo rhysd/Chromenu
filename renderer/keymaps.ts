@@ -108,9 +108,14 @@ export default class Keymaps extends EventEmitter {
                 Store.dispatch({type: 'OpenPage', index: index - 1});
             }
         });
-        this.on('search', () => {
+        this.on('toggle-search', () => {
             const s = Store.getState().webview.search;
-            if (s !== null) {
+            if (s === null) {
+                return;
+            }
+            if (s.opened) {
+                s.closeSearchWindow();
+            } else {
                 s.openSearchWindow();
             }
         });
