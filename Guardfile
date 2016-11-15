@@ -19,18 +19,8 @@ def npm_run(task)
 end
 
 guard :shell do
-  watch %r[^main/.+\.ts$] do |m|
+  watch %r[^.+\.tsx?$] do |m|
     timestamp m[0]
-    npm_run 'build:main'
-  end
-
-  watch %r[^renderer/.+\.tsx?$] do |m|
-    timestamp m[0]
-    npm_run 'build:renderer'
-  end
-
-  watch %r[^bin/.+\.ts$] do |m|
-    timestamp m[0]
-    npm_run 'build:bin'
+    npm_run 'build'
   end
 end
