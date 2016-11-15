@@ -14,6 +14,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
     url_input: HTMLInputElement;
     image_input: HTMLInputElement;
     title_input: HTMLInputElement;
+    reload_on_show_checkbox: HTMLInputElement;
 
     onUrlInputRef = (ref: HTMLInputElement) => {
         this.url_input = ref;
@@ -25,6 +26,10 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
 
     onTitleInputRef = (ref: HTMLInputElement) => {
         this.title_input = ref;
+    }
+
+    onReloadOnShowCheckboxRef = (ref: HTMLInputElement) => {
+        this.reload_on_show_checkbox = ref;
     }
 
     onSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -48,6 +53,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                 url,
                 image_url,
                 title,
+                reload_on_show: this.reload_on_show_checkbox.checked,
             });
         });
     }
@@ -108,6 +114,9 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         if (page.title) {
             this.title_input.value = page.title;
         }
+        if (page.reload_on_show) {
+            this.reload_on_show_checkbox.checked = true;
+        }
     }
 
     render() {
@@ -148,6 +157,10 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             ref={this.onTitleInputRef}
                         />
                     </p>
+                </div>
+                <div className="page-config__checkbox">
+                    <input type="checkbox" ref={this.onReloadOnShowCheckboxRef}/>
+                    Reload this page on show
                 </div>
                 <div className="page-config__buttons">
                     <p className="control">

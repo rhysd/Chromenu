@@ -50,3 +50,17 @@ fs.stat(UserCss, (err, stats) => {
     link.href = UserCss;
     document.head.appendChild(link);
 });
+
+remote.getCurrentWindow().on('focus', () => {
+    log.debug('Window focused');
+    const state = Store.getState();
+    if (state.pages.index === null) {
+        return;
+    }
+    const current = state.pages.all.get(state.pages.index);
+    const elem = state.webview.element;
+    if (current && current.url && current.reload_on_show && elem) {
+        log.debug('Reload page due to window focus', current);
+        elem.reload();
+    }
+});

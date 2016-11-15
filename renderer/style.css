@@ -182,6 +182,20 @@ body {
   margin-right: 0;
 }
 
+.page-config__checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 8px 0;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.page-config__checkbox > input {
+  margin-right: 8px;
+}
+
 .progress-container {
   height: 3px;
   display: flex;

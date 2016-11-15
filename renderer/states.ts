@@ -7,6 +7,7 @@ export interface Page {
     icon_image: string;
     configured: boolean;
     title: string;
+    reload_on_show: boolean;
 }
 
 export interface PagesState {

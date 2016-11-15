@@ -18,6 +18,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     icon_image: '',
                     configured: false,
                     title: '',
+                    reload_on_show: false,
                 }),
             });
         }
@@ -29,18 +30,19 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     icon_image: action.image_url,
                     configured: true,
                     title: action.title,
+                    reload_on_show: action.reload_on_show,
                 }),
             });
         }
         case 'SetConfigured': {
             return Object.assign({}, state, {
                 index: action.index,
-                all: state.all.update(action.index, p => ({
-                    url: p.url,
-                    icon_image: p.icon_image,
-                    configured: action.value,
-                    title: p.title,
-                })),
+                all: state.all.update(
+                    action.index,
+                    p => Object.assign({}, p, {
+                        configured: action.value,
+                    }),
+                ),
             });
         }
         case 'DeletePage': {

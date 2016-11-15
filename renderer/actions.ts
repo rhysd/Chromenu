@@ -6,6 +6,7 @@ type ActionType = {
     url: string;
     image_url: string;
     title: string;
+    reload_on_show: boolean;
 } | {
     type: 'SetConfigured';
     index: number;
