@@ -225,17 +225,59 @@ body {
 
 .electron-in-page-search-window {
   position: fixed;
-  top: 0;
+  top: calc(var(--header-height) - 1px);
   right: 0;
-  border: solid grey 1px;
+  box-sizing: border-box;
+  background-color: #d1cfd1;
+  border: 1px solid #c2c0c2;
+  border-top-style: none;
+  border-bottom-left-radius: 8px;
   width: 300px;
   height: 36px;
 }
 
-.search-inactive {
+.electron-in-page-search-window.search-firstpaint {
   visibility: hidden;
 }
 
-.search-active {
-  visibility: visible;
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1.0;
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1.0;
+  }
+
+  to {
+    visibility: hidden;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}
+
+.electron-in-page-search-window.search-inactive {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: slideOutUp;
+}
+
+.electron-in-page-search-window.search-active {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: slideInDown;
 }
