@@ -1,21 +1,16 @@
 import * as React from 'react';
-import ConfigInput from './config_input';
 import {Page} from '../states';
 import {Dispatch} from '../store';
 import log from '../log';
 import * as tryTo from '../try_to';
 
-interface Props extends React.Props<PageConfig> {
+interface PageConfigProps extends React.Props<PageConfig> {
     dispatch: Dispatch;
     page: Page;
     index: number;
 }
 
-interface State {
-    invalid_url: boolean;
-}
-
-export default class PageConfig extends React.PureComponent<Props, State> {
+export default class PageConfig extends React.PureComponent<PageConfigProps, {}> {
     url_input: HTMLInputElement;
     image_input: HTMLInputElement;
     title_input: HTMLInputElement;
@@ -42,19 +37,9 @@ export default class PageConfig extends React.PureComponent<Props, State> {
         const url = this.url_input.value;
 
         if (!url || !url.startsWith('http://') && !url.startsWith('https://')) {
-            if (!this.state.invalid_url) {
-                this.setState({
-                    invalid_url: true,
-                });
-            }
+            this.url_input.className = 'input is-danger';
             log.debug('Invalid URL input:', url);
             return;
-        }
-
-        if (this.state.invalid_url) {
-            this.setState({
-                invalid_url: false,
-            });
         }
 
         Promise.all([
@@ -102,13 +87,6 @@ export default class PageConfig extends React.PureComponent<Props, State> {
         });
     }
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            invalid_url: false,
-        };
-    }
-
     getTitle(url: string): Promise<string> {
         const title = this.title_input.value || '';
         if (title) {
@@ -145,18 +123,30 @@ export default class PageConfig extends React.PureComponent<Props, State> {
         return (
             <div className="page-config">
                 <h1 className="title">Configuration</h1>
-                <ConfigInput
-                    label="Page URL"
-                    placeholder="Required"
-                    type={this.state.invalid_url ? 'danger' : 'primary'}
-                    errorMessage={this.state.invalid_url ? 'Invalid URL' : undefined}
-                    onRef={this.onUrlInputRef}
-                />
-                <ConfigInput
-                    label="Icon Image URL"
-                    placeholder="Optional"
-                    onRef={this.onImageInputRef}
-                />
+                <div className="page-config__input">
+                    <label className="label">Page URL</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="Required"
+                            autoComplete="off"
+                            autoFocus
+                            ref={this.onUrlInputRef}
+                        />
+                    </p>
+                </div>
+                <div className="page-config__input">
+                    <label className="label">Icon Image URL</label>
+                    <p className="control">
+                        <input
+                            className="input is-primary"
+                            type="text"
+                            placeholder="Optional"
+                            ref={this.onImageInputRef}
+                        />
+                    </p>
+                </div>
                 <div className="page-config__input">
                     <label className="label">Page Title</label>
                     <p className="control">
