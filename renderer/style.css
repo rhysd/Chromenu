@@ -1,10 +1,10 @@
 :root {
-  --header-height: 60px;
+  --header-height: 50px;
   --footer-height: 50px;
   --icon-size: 30px;
   --control-icon-size: 32px;
-  --indicator-height: 12px;
-  --indicator-margin: 6px;
+  --indicator-height: 10px;
+  --indicator-margin: 4px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
   --color-highlight: #4285f4;
 }
