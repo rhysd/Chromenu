@@ -129,7 +129,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="Required"
+                            placeholder="URL must starts with 'https://' or 'http://' (Required)"
                             autoComplete="off"
                             autoFocus
                             ref={this.onUrlInputRef}
@@ -142,7 +142,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="Optional"
+                            placeholder="URL to image file for this page (Optional)"
                             ref={this.onImageInputRef}
                         />
                     </p>
@@ -153,7 +153,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         <input
                             className="input is-primary"
                             type="text"
-                            placeholder="Optional"
+                            placeholder="Title for this page (Optional)"
                             ref={this.onTitleInputRef}
                         />
                     </p>
