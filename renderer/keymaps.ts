@@ -135,5 +135,8 @@ export default class Keymaps extends EventEmitter {
                 elem.getWebContents().openDevTools({mode: 'detach'});
             }
         });
+        this.on('reset-app', () => {
+            remote.getCurrentWindow().reload();
+        });
     }
 }
