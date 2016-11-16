@@ -110,10 +110,10 @@ body {
   height: var(--icon-size);
   border-radius: 10%;
   cursor: pointer;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #c8c8c8;
 }
 

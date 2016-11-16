@@ -36,11 +36,11 @@
   "homepage": "https://github.com/rhysd/Chromenu#readme",
   "devDependencies": {
     "@types/cheerio": "^0.17.31",
-    "@types/electron": "^1.4.26",
+    "@types/electron": "^1.4.27",
     "@types/loglevel": "^1.4.29",
     "@types/mousetrap": "^1.5.32",
-    "@types/node": "^6.0.46",
-    "@types/react": "^0.14.47",
+    "@types/node": "^6.0.48",
+    "@types/react": "^0.14.48",
     "@types/react-dom": "^0.14.18",
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
@@ -50,13 +50,13 @@
     "stylelint-config-standard": "^14.0.0",
     "tslint": "^3.15.1",
     "tslint-react": "^1.1.0",
-    "typescript": "^2.0.8"
+    "typescript": "^2.0.10"
   },
   "dependencies": {
     "bulma": "^0.2.3",
     "cheerio": "^0.22.0",
     "electron": "^1.4.6",
-    "electron-in-page-search": "^1.1.0",
+    "electron-in-page-search": "^1.1.1",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
     "loglevel": "^1.4.1",
@@ -64,9 +64,9 @@
     "mousetrap": "^1.6.0",
     "page-icon": "^0.3.0",
     "react": "^15.3.2",
-    "react-bytesize-icons": "^0.7.0",
+    "react-bytesize-icons": "github:rhysd/react-bytesize-icons#package",
     "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
+    "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "request": "^2.78.0"
   }
