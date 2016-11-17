@@ -8,6 +8,10 @@ process.on('unhandledRejection', (reason: string) => {
     log.error('FATAL: Unhandled rejection! Reason:', reason);
 });
 
+app.on('will-quit', () => {
+    log.debug('Application is quitting');
+});
+
 const Html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}`;
 const IsDebug = process.env.NODE_ENV === 'development';
 const DefaultWidth = 375;  // iPhone 6s
