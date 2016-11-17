@@ -5,6 +5,8 @@ import log from '../log';
 
 type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
 
+const HELP_PAGE_URL = 'https://github.com/rhysd/Chromenu#readme';
+
 interface ItemProps {
     onClick: ClickHandler;
     text: string;
@@ -20,6 +22,15 @@ const Item = (props: ItemProps) => (
     </a>
 );
 
+function openExternal(url: string) {
+    if (!shell.openExternal(url)) {
+        log.error('Failed to open:', url);
+        return false;
+    }
+    ipc.send('chromenu:hide-window');
+    return true;
+}
+
 interface MoreControlProps extends React.Props<MoreControl> {
     opened: boolean;
     element: Electron.WebViewElement | null;
@@ -34,13 +45,10 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         if (element === null) {
             return;
         }
-        const url = element.getURL();
-        if (!shell.openExternal(url)) {
-            log.error('Failed to open:', url);
+        if (!openExternal(element.getURL())) {
             return;
         }
         this.props.onClick(e);
-        ipc.send('chromenu:hide-window');
     }
 
     toggleSearch: ClickHandler = e => {
@@ -57,6 +65,14 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         this.props.onClick(e);
     }
 
+    showHelp: ClickHandler = e => {
+        e.stopPropagation();
+        if (!openExternal(HELP_PAGE_URL)) {
+            return;
+        }
+        this.props.onClick(e);
+    };
+
     render() {
         const style = {
             display: this.props.opened ? undefined : 'none',
@@ -66,6 +82,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
                 <nav className="panel">
                     <Item text="Open In Browser" icon="external-link" onClick={this.openInBrowser}/>
                     <Item text="Search" icon="search" onClick={this.toggleSearch}/>
+                    <Item text="Help" icon="question" onClick={this.showHelp}/>
                 </nav>
             </div>
         );
