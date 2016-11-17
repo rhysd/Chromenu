@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shell} from 'electron';
+import {shell, ipcRenderer as ipc} from 'electron';
 import {InPageSearch} from 'electron-in-page-search';
 import log from '../log';
 
@@ -40,6 +40,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             return;
         }
         this.props.onClick(e);
+        ipc.send('chromenu:hide-window');
     }
 
     toggleSearch: ClickHandler = e => {

@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as menubar from 'menubar';
-import {app, globalShortcut, BrowserWindow} from 'electron';
+import {app, globalShortcut, BrowserWindow, ipcMain as ipc} from 'electron';
 import loadConfig from './config';
 import log from './log';
 
@@ -50,6 +50,9 @@ function setupMenuBar(config: Config) {
             mb.window.webContents.once('dom-ready', () => {
                 mb.window.webContents.send('chromenu:config', config);
             });
+            ipc.on('chromenu:hide-window', () => {
+                mb.hideWindow();
+            });
             resolve(mb);
         });
     });
@@ -85,6 +88,9 @@ function setupNormalWindow(config: Config) {
             if (IsDebug) {
                 win.webContents.openDevTools({mode: 'detach'});
             }
+            ipc.on('chromenu:hide-window', () => {
+                win.hide();
+            });
             resolve(win);
         });
     });
