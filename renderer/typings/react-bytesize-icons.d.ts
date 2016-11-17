@@ -43,8 +43,8 @@ declare module 'react-bytesize-icons' {
     export class Send extends BytesizeIconComponent {}
     export class Edit extends BytesizeIconComponent {}
     export class Eject extends BytesizeIconComponent {}
-    export class EllipsisHorizontal extends BytesizeIconComponent {}
-    export class EllipsisVertical extends BytesizeIconComponent {}
+    export class VerticalEllipsis extends BytesizeIconComponent {}
+    export class HorizontalEllipssis extends BytesizeIconComponent {}
     export class End extends BytesizeIconComponent {}
     export class Export extends BytesizeIconComponent {}
     export class External extends BytesizeIconComponent {}

@@ -54,6 +54,7 @@ export const App = (props: AppProps) => (
             loading={props.webview.loading}
             pageUrl={getCurrentPageUrl(props.pages)}
             element={props.webview.element}
+            search={props.webview.search}
             dispatch={props.dispatch!}
         />
     </div>

@@ -237,6 +237,14 @@ body {
   color: #cccccc;
 }
 
+.more-control {
+  position: fixed;
+  right: 0;
+  bottom: var(--footer-height);
+  background-color: #e8e6e8;
+  border: 1px solid #c2c0c2;
+}
+
 .electron-in-page-search-window {
   position: fixed;
   top: calc(var(--header-height) - 1px);
