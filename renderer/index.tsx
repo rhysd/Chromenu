@@ -59,8 +59,19 @@ remote.getCurrentWindow().on('focus', () => {
     }
     const current = state.pages.all.get(state.pages.index);
     const elem = state.webview.element;
-    if (current && current.url && current.reload_on_show && elem) {
-        log.debug('Reload page due to window focus', current);
+    if (!current || !current.url || !current.reload_on_show || !elem) {
+        return;
+    }
+    if (typeof current.reload_min_interval !== 'number' ||
+        typeof state.webview.timestamp !== 'number') {
+        log.debug('Reload page due to window focus without interval check', current);
         elem.reload();
+    }
+    const spent_ms = Date.now() - state.webview.timestamp;
+    if (current.reload_min_interval < spent_ms / 1000) {
+        log.debug('Reload page due to window focus with interval check', current, 'spent time (ms): ', spent_ms);
+        elem.reload();
+    } else {
+        log.debug('Reload page was not reloaded on window focus because interval is shorter than threthold', spent_ms, current.reload_min_interval);
     }
 });

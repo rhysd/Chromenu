@@ -5,12 +5,10 @@ import searchInPage from 'electron-in-page-search';
 export default function webview(state: WebViewState = DefaultWebViewState, action: Action) {
     switch (action.type) {
         case 'UpdateLoadingProgress': {
-            return {
+            return Object.assign({}, state, {
                 progress: action.value,
                 loading: action.value < 100,
-                element: state.element,
-                search: state.search,
-            };
+            });
         }
         case 'LoadingComplete': {
             return {
@@ -18,6 +16,7 @@ export default function webview(state: WebViewState = DefaultWebViewState, actio
                 loading: false,
                 element: action.webview,
                 search: searchInPage(action.webview),
+                timestamp: Date.now(),
             };
         }
         case 'WebViewUnmounted': {

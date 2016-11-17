@@ -182,7 +182,7 @@ body {
   margin-right: 0;
 }
 
-.page-config__checkbox {
+.page-config__interval-config {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -192,8 +192,14 @@ body {
   font-size: 14px;
 }
 
-.page-config__checkbox > input {
+.page-config__reload-config {
   margin-right: 8px;
+}
+
+.page-config__min-interval-input {
+  max-width: 45px;
+  margin: 0 4px;
+  outline: 0;
 }
 
 .progress-container {

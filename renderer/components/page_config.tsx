@@ -15,6 +15,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
     image_input: HTMLInputElement;
     title_input: HTMLInputElement;
     reload_on_show_checkbox: HTMLInputElement;
+    reload_min_interval_input: HTMLInputElement;
 
     onUrlInputRef = (ref: HTMLInputElement) => {
         this.url_input = ref;
@@ -32,6 +33,10 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         this.reload_on_show_checkbox = ref;
     }
 
+    onReloadMinIntervalRef = (ref: HTMLInputElement) => {
+        this.reload_min_interval_input = ref;
+    }
+
     onSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
         const url = this.url_input.value;
@@ -42,19 +47,29 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
             return;
         }
 
+        let reload_min_interval = null as number | null;
+        if (this.reload_min_interval_input.value !== '') {
+            const v = parseInt(this.reload_min_interval_input.value, 10);
+            if (!isNaN(v) && v > 0) {
+                reload_min_interval = v;
+            }
+        }
+
         Promise.all([
             this.getTitle(url),
             this.getIconUrl(url),
         ]).then(([title, image_url]) => {
-            log.debug('Configure page: url:', url, 'image url:', image_url, 'title:', title);
-            this.props.dispatch({
-                type: 'ConfigurePage',
+            const action = {
+                type: 'ConfigurePage' as 'ConfigurePage', // TODO this should be fixed in TypeScript 2.1!
                 index: this.props.index,
                 url,
                 image_url,
                 title,
                 reload_on_show: this.reload_on_show_checkbox.checked,
-            });
+                reload_min_interval,
+            };
+            log.debug('Configure page:', action);
+            this.props.dispatch(action);
         });
     }
 
@@ -117,6 +132,9 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         if (page.reload_on_show) {
             this.reload_on_show_checkbox.checked = true;
         }
+        if (typeof page.reload_min_interval === 'number') {
+            this.reload_min_interval_input.value = page.reload_min_interval.toString();
+        }
     }
 
     render() {
@@ -158,9 +176,14 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                         />
                     </p>
                 </div>
-                <div className="page-config__checkbox">
-                    <input type="checkbox" ref={this.onReloadOnShowCheckboxRef}/>
-                    Reload this page on show
+                <div className="page-config__interval-config">
+                    <input className="page-config__reload-config" type="checkbox" ref={this.onReloadOnShowCheckboxRef}/>
+                    Reload on show (Minimal interval: <input
+                        className="page-config__min-interval-input"
+                        type="text"
+                        placeholder="sec"
+                        ref={this.onReloadMinIntervalRef}
+                    />)
                 </div>
                 <div className="page-config__buttons">
                     <p className="control">

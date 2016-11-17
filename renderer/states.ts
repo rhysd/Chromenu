@@ -8,6 +8,7 @@ export interface Page {
     configured: boolean;
     title: string;
     reload_on_show: boolean;
+    reload_min_interval: number | null;
 }
 
 export interface PagesState {
@@ -28,6 +29,7 @@ export interface WebViewState {
     loading: boolean;
     element: Electron.WebViewElement | null;
     search: InPageSearch | null;
+    timestamp: number | null;
 }
 
 export const DefaultWebViewState: WebViewState = {
@@ -35,6 +37,7 @@ export const DefaultWebViewState: WebViewState = {
     loading: false,
     element: null,
     search: null,
+    timestamp: null,
 };
 
 interface State {

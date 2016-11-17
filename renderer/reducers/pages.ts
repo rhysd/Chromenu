@@ -19,6 +19,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     configured: false,
                     title: '',
                     reload_on_show: false,
+                    reload_min_interval: null,
                 }),
             });
         }
@@ -31,6 +32,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     configured: true,
                     title: action.title,
                     reload_on_show: action.reload_on_show,
+                    reload_min_interval: action.reload_min_interval,
                 }),
             });
         }
