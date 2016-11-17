@@ -35,53 +35,6 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
         };
     }
 
-    goBack(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        if (this.props.element === null) {
-            return;
-        }
-        this.props.element.goBack();
-    }
-
-    goForward(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        if (this.props.element === null) {
-            return;
-        }
-        this.props.element.goForward();
-    }
-
-    resetPage(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        if (this.props.element === null || this.props.pageUrl === null) {
-            return;
-        }
-        this.props.element.src = this.props.pageUrl;
-    }
-
-    stopLoading(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        const element = this.props.element;
-        if (element) {
-            element.stop();
-        }
-    }
-
-    reloadPage(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        const element = this.props.element;
-        if (element) {
-            element.reload();
-        }
-    }
-
-    toggleMoreItems(e: React.MouseEvent<HTMLDivElement>) {
-        e.stopPropagation();
-        this.setState({
-            more: !this.state.more,
-        });
-    }
-
     render() {
         const {loading, pageUrl, element, search} = this.props;
         const reload_icon = loading ? Close : Reload;
@@ -99,5 +52,64 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
                 <MoreControl opened={more_open} element={element} search={search} onClick={this.toggleMoreItems}/>
             </div>
         );
+    }
+
+    private goBack(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        if (this.props.element === null) {
+            return;
+        }
+        this.props.element.goBack();
+        this.hideMoreItems();
+    }
+
+    private goForward(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        if (this.props.element === null) {
+            return;
+        }
+        this.props.element.goForward();
+        this.hideMoreItems();
+    }
+
+    private resetPage(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        if (this.props.element === null || this.props.pageUrl === null) {
+            return;
+        }
+        this.props.element.src = this.props.pageUrl;
+        this.hideMoreItems();
+    }
+
+    private stopLoading(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        const element = this.props.element;
+        if (element) {
+            element.stop();
+        }
+        this.hideMoreItems();
+    }
+
+    private reloadPage(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        const element = this.props.element;
+        if (element) {
+            element.reload();
+        }
+        this.hideMoreItems();
+    }
+
+    private toggleMoreItems(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+        this.setState({
+            more: !this.state.more,
+        });
+    }
+
+    private hideMoreItems() {
+        if (!this.state.more) {
+            return;
+        }
+        this.setState({ more: false });
     }
 }
