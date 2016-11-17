@@ -1,8 +1,8 @@
 :root {
   --header-height: 50px;
-  --footer-height: 50px;
+  --footer-height: 40px;
   --icon-size: 30px;
-  --control-icon-size: 32px;
+  --control-icon-size: 24px;
   --indicator-height: 10px;
   --indicator-margin: 4px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));

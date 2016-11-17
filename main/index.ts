@@ -11,7 +11,7 @@ process.on('unhandledRejection', (reason: string) => {
 const Html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}`;
 const IsDebug = process.env.NODE_ENV === 'development';
 const DefaultWidth = 375;  // iPhone 6s
-const DefaultHeight = 50 + 667 + 50; // Icon area height + iPhone 6s + footer
+const DefaultHeight = 50 + 667 + 40; // Icon area height + iPhone 6s + footer
 
 const appReady = new Promise(resolve => app.on('ready', resolve));
 

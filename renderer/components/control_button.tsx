@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {BytesizeIconComponent} from 'react-bytesize-icons';
 
-const IconSize = 32;
+const IconSize = 24;
 
 interface ControlButtonProps extends React.Props<ControlButton> {
     icon: typeof BytesizeIconComponent;
