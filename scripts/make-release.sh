@@ -33,10 +33,11 @@ function make-dist() {
         rm -rf dist
     fi
     mkdir dist
+    local version=$(./bin/cli.js --version)
     for dir in `ls -1 | grep '^Chromenu-'`; do
         mv "$dir/LICENSE" "$dir/LICENSE.electron"
         cp LICENSE README.md "$dir"
-        zip --symlinks "dist/${dir}.zip" -r "$dir"
+        zip --symlinks "dist/${dir}-${version}.zip" -r "$dir"
     done
     rm -r Chromenu-*
     open dist
