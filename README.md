@@ -6,7 +6,7 @@ You can access to a mini browser quickly via clicking menu item or hot key every
 
 This app consists of three parts; header, main view and footer.
 
-![main screenshot](https://github.com/rhysd/ss/blob/master/Chromenu/main.png?raw=true)
+![main screenshot](https://github.com/rhysd/ss/blob/master/Chromenu/main.jpg?raw=true)
 
 - **Header**: you can register some pages and switch them by clicking icons.
 - **Main view**: web pages will be rendered here.
@@ -38,6 +38,8 @@ It opens a configuration view and you can input the information of the page whic
 - URL of the page (required)
 - Icon image (optional)
 - Page title (optional)
+
+![configuration page](https://github.com/rhysd/ss/blob/master/Chromenu/configuration.png?raw=true)
 
 After clicking 'OK', new icon will be added to header and the page will be opened in main view.
 
