@@ -43,7 +43,7 @@ It opens a configuration view and you can input the information of the page whic
 
 After clicking 'OK', new icon will be added to header and the page will be opened in main view.
 
-![after registeration](https://github.com/rhysd/ss/blob/master/Chromenu/after-registeration.png?raw=true)
+![after registration](https://github.com/rhysd/ss/blob/master/Chromenu/after-registration.png?raw=true)
 
 Now you can explore the page freely. Footer has some buttons to control browseing (go forward/back,
 go home (registered URL), reload).
