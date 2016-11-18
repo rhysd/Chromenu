@@ -34,6 +34,11 @@ Options:
     process.exit(0);
 }
 
+if (process.argv.indexOf('--version') !== -1) {
+    process.stdout.write(`${require('../package.json').version}\n`);
+    process.exit(0);
+}
+
 if (process.argv.indexOf('--setup-launchctl') !== -1) {
     process.exit(launchctl.setup());
 }

@@ -5,3 +5,11 @@ resources/chrome-icon-white.png
 *.icns
 *.ico
 *.svg
+/dist
+/app
+/Chromenu-*
+/Guardfile
+/tslint.json
+/tsconfig.json
+*.ts
+*.js.map

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import shallowCompare = require('react-addons-shallow-compare')
+import shallowCompare = require('react-addons-shallow-compare');
 import {shell, ipcRenderer as ipc, remote} from 'electron';
 import {InPageSearch} from 'electron-in-page-search';
 import log from '../log';

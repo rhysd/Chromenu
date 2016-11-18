@@ -17,7 +17,8 @@
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron .",
     "preversion": "npm run lint",
-    "preuninstall": "node ./bin/cli.js --unsetup-launchctl"
+    "preuninstall": "node ./bin/cli.js --unsetup-launchctl",
+    "release": "npm run lint && ./scripts/make-release.sh"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
     "@types/request": "0.0.33",
+    "electron-packager": "^8.3.0",
     "npm-run-all": "^3.1.1",
     "stylelint": "^7.5.0",
     "stylelint-config-standard": "^14.0.0",
