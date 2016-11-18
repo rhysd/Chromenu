@@ -16,6 +16,7 @@
     "watch": "guard --watchdir main renderer bin",
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron .",
+    "pack": "build --dir",
     "preversion": "npm run lint",
     "preuninstall": "node ./bin/cli.js --unsetup-launchctl"
   },
@@ -46,6 +47,8 @@
     "@types/react-redux": "^4.4.32",
     "@types/redux": "^3.6.31",
     "@types/request": "0.0.33",
+    "electron": "^1.4.7",
+    "electron-builder": "^8.6.0",
     "npm-run-all": "^3.1.1",
     "stylelint": "^7.5.0",
     "stylelint-config-standard": "^14.0.0",
@@ -56,7 +59,6 @@
   "dependencies": {
     "bulma": "^0.2.3",
     "cheerio": "^0.22.0",
-    "electron": "^1.4.7",
     "electron-in-page-search": "^1.1.2",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
@@ -71,5 +73,48 @@
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "request": "^2.78.0"
+  },
+  "build": {
+    "appId": "io.github.rhysd.chromenu",
+    "asar": false,
+    "dmg": {
+      "icon": "./resources/icon/app.icns",
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "synopsis": "Mini Chromium in your menubar",
+      "executableName": "chromenu"
+    },
+    "win": {
+      "icon": "./resources/icon/app.ico"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "rhysd"
+    },
+    "files": [
+      "resources",
+      "README.md",
+      "LICENSE",
+      "main",
+      "renderer",
+      "node_modules"
+    ]
   }
 }
