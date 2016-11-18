@@ -1,4 +1,5 @@
 import * as React from 'react';
+import shallowCompare = require('react-addons-shallow-compare')
 import {shell, ipcRenderer as ipc, remote} from 'electron';
 import {InPageSearch} from 'electron-in-page-search';
 import log from '../log';
@@ -80,6 +81,16 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         }
         this.props.onClick(e);
     };
+
+    shouldComponentUpdate(next_props: MoreControlProps, next_state: {}) {
+        if (!this.props.opened && !next_props.opened) {
+            // Note:
+            // When 'opened' is false, whole this component is not shown.
+            // So we can skip re-rendering this component in the case.
+            return false;
+        }
+        return shallowCompare(this, next_props, next_state);
+    }
 
     render() {
         const style = {

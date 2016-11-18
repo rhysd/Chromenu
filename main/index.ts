@@ -12,8 +12,8 @@ app.on('will-quit', () => {
     log.debug('Application is quitting');
 });
 
-const Html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}`;
 const IsDebug = process.env.NODE_ENV === 'development';
+const Html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}${IsDebug ? '?react_perf' : ''}`;
 const DefaultWidth = 375;  // iPhone 6s
 const DefaultHeight = 50 + 667 + 40; // Icon area height + iPhone 6s + footer
 
