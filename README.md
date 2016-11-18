@@ -6,7 +6,7 @@ You can access to a mini browser quickly via clicking menu item or hot key every
 
 This app consists of three parts; header, main view and footer.
 
-![main screenshot](TODO)
+![main screenshot](https://github.com/rhysd/ss/blob/master/Chromenu/main.png?raw=true)
 
 - **Header**: you can register some pages and switch them by clicking icons.
 - **Main view**: web pages will be rendered here.
@@ -14,7 +14,7 @@ This app consists of three parts; header, main view and footer.
 
 ## Installation
 
-Download a package for your environment from [release page](TODO).
+Download a package for your environment from [release page](https://github.com/rhysd/Chromenu/releases).
 After unarchive the zip, you can start app by clicking or executing a binary in the directory.
 
 Or install via [npm](https://www.npmjs.com/package/chromenu).
@@ -30,7 +30,7 @@ $ chromenu
 
 Just after starting app, you can see below window.
 
-![just after starting](TODO)
+![just after starting](https://github.com/rhysd/ss/blob/master/Chromenu/startup.png?raw=true)
 
 For now, what you can do is register new page from '+' button at header.
 It opens a configuration view and you can input the information of the page which you want to register.
@@ -41,7 +41,7 @@ It opens a configuration view and you can input the information of the page whic
 
 After clicking 'OK', new icon will be added to header and the page will be opened in main view.
 
-![after registeration](TODO)
+![after registeration](https://github.com/rhysd/ss/blob/master/Chromenu/after-registeration.png?raw=true)
 
 Now you can explore the page freely. Footer has some buttons to control browseing (go forward/back,
 go home (registered URL), reload).
@@ -85,7 +85,7 @@ or `Ctrl` key in other platforms.
 
 You can search some words in the page like `Cmd+F` (or `Ctrl+F`) in Chrome.
 
-![search animated gif](TODO)
+![search animated gif](https://github.com/rhysd/ss/blob/master/Chromenu/page-search.gif?raw=true)
 
 ## Configuration
 
