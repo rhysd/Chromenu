@@ -36,7 +36,7 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
     }
 
     render() {
-        const {loading, pageUrl, element, search, dispatch} = this.props;
+        const {loading, pageUrl, element, search} = this.props;
         const reload_icon = loading ? Close : Reload;
         const reload_handler = loading ? this.stopLoading : this.reloadPage;
         const reload_tip = loading ? 'Stop' : 'Reload';
@@ -49,13 +49,7 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
                 <ControlButton icon={Home} onClick={this.resetPage} enabled={page_open} tip="Home"/>
                 <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open} tip={reload_tip}/>
                 <ControlButton icon={VerticalEllipsis} onClick={this.toggleMoreItems} enabled={page_open} tip="More..."/>
-                <MoreControl
-                    opened={more_open}
-                    element={element}
-                    search={search}
-                    dispatch={dispatch}
-                    onClick={this.toggleMoreItems}
-                />
+                <MoreControl opened={more_open} element={element} search={search} onClick={this.toggleMoreItems}/>
             </div>
         );
     }
