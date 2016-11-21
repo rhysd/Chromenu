@@ -28,6 +28,12 @@ export default function webview(state: WebViewState = DefaultWebViewState, actio
                 search: null,
             });
         }
+        case 'OpenUrl': {
+            if (state.element !== null) {
+                state.element.src = action.url;
+            }
+            return state;
+        }
         default:
             return state;
     }

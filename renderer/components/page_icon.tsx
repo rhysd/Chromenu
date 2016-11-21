@@ -34,12 +34,10 @@ export default class PageIcon extends React.PureComponent<IconProps, {}> {
         e.stopPropagation();
         const {isCurrent, dispatch, page, index} = this.props;
         if (isCurrent) {
-            log.debug('toggle configuration page:', page);
-            const toggle = !page.configured;
+            log.debug('Reset page:', page);
             dispatch({
-                type: 'SetConfigured',
-                index,
-                value: toggle,
+                type: 'OpenUrl',
+                url: page.url,
             });
         } else {
             log.debug('Open page:', page);

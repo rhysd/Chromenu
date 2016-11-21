@@ -3,6 +3,7 @@ import shallowCompare = require('react-addons-shallow-compare');
 import {shell, ipcRenderer as ipc, remote} from 'electron';
 import {InPageSearch} from 'electron-in-page-search';
 import log from '../log';
+import {Dispatch} from '../store';
 
 type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
 
@@ -45,6 +46,7 @@ interface MoreControlProps extends React.Props<MoreControl> {
     element: Electron.WebViewElement | null;
     search: InPageSearch | null;
     onClick: ClickHandler;
+    dispatch: Dispatch;
 }
 
 export default class MoreControl extends React.PureComponent<MoreControlProps, {}> {
@@ -82,6 +84,16 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         this.props.onClick(e);
     };
 
+    openConfig: ClickHandler = e => {
+        e.stopPropagation();
+        const {onClick, dispatch} = this.props;
+        dispatch({
+            type: 'SetCurrentPageConfigured',
+            value: false,
+        });
+        onClick(e);
+    }
+
     shouldComponentUpdate(next_props: MoreControlProps, next_state: {}) {
         if (!this.props.opened && !next_props.opened) {
             // Note:
@@ -101,6 +113,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
                 <nav className="panel">
                     <Item text="Quit App" icon="times" onClick={handleClickQuit}/>
                     <Item text="Help" icon="question" onClick={this.showHelp}/>
+                    <Item text="Config" icon="cog" onClick={this.openConfig}/>
                     <Item text="Open In Browser" icon="external-link" onClick={this.openInBrowser}/>
                     <Item text="Search" icon="search" onClick={this.toggleSearch}/>
                 </nav>

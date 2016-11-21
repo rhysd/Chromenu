@@ -26,6 +26,12 @@ type ActionType = {
     webview: Electron.WebViewElement;
 } | {
     type: 'WebViewUnmounted';
+} | {
+    type: 'SetCurrentPageConfigured';
+    value: boolean;
+} | {
+    type: 'OpenUrl';
+    url: string;
 };
 
 export default ActionType;

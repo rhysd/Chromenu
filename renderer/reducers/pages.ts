@@ -1,6 +1,18 @@
 import Action from '../actions';
 import {PagesState, DefaultPagesState} from '../states';
 
+function setConfigured(state: PagesState, index: number, value: boolean) {
+    return Object.assign({}, state, {
+        index,
+        all: state.all.update(
+            index,
+            p => Object.assign({}, p, {
+                configured: value,
+            }),
+        ),
+    });
+}
+
 export default function pages(state: PagesState = DefaultPagesState, action: Action) {
     switch (action.type) {
         case 'OpenPage': {
@@ -37,15 +49,13 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
             });
         }
         case 'SetConfigured': {
-            return Object.assign({}, state, {
-                index: action.index,
-                all: state.all.update(
-                    action.index,
-                    p => Object.assign({}, p, {
-                        configured: action.value,
-                    }),
-                ),
-            });
+            return setConfigured(state, action.index, action.value);
+        }
+        case 'SetCurrentPageConfigured': {
+            if (state.index === null) {
+                return state;
+            }
+            return setConfigured(state, state.index, action.value);
         }
         case 'DeletePage': {
             let index = state.index;
