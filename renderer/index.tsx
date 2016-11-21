@@ -7,7 +7,7 @@ import {ipcRenderer as ipc, remote} from 'electron';
 import Store from './store';
 import App from './components/app';
 import * as Storage from './storage';
-import Keymaps from './keymaps';
+import registerAllKeymaps from './keymaps';
 import log from './log';
 
 if (process.env.NODE_ENV !== 'development') {
@@ -27,8 +27,7 @@ window.onunload = () => {
 
 ipc.once('chromenu:config', (_: any, config: Config) => {
     log.debug('Config was sent from main:', config);
-    const keymaps = new Keymaps(config.keymaps);
-    keymaps.registerAllKeymaps();
+    registerAllKeymaps(config.keymaps);
 });
 
 const UserCss = path.join(remote.app.getPath('userData'), 'user.css');
