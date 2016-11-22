@@ -108,6 +108,7 @@ body {
 .add-icon {
   width: var(--icon-size);
   height: var(--icon-size);
+  padding: 8px;
   border-radius: 10%;
   cursor: pointer;
   display: flex;

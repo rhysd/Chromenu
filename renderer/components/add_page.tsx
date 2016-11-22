@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Dispatch} from '../store';
-import {Plus} from 'react-bytesize-icons';
+import Icon from 'react-component-bytesize-icons';
 
 interface AddPageProps {
     dispatch: Dispatch;
@@ -21,7 +21,7 @@ export default class AddPage extends React.PureComponent<AddPageProps, {}> {
         return (
             <div className="add-icon__container" title="New page">
                 <div className="add-icon" onClick={this.onClick}>
-                    <Plus width={16} height={16}/>
+                    <Icon name="plus" size="small"/>
                 </div>
             </div>
         );

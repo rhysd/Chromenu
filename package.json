@@ -68,7 +68,6 @@
     "page-icon": "^0.3.0",
     "react": "^15.4.0",
     "react-addons-shallow-compare": "^15.4.0",
-    "react-bytesize-icons": "github:rhysd/react-bytesize-icons#package",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",

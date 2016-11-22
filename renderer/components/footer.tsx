@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {ArrowLeft, ArrowRight, Home, Reload, Close, VerticalEllipsis} from 'react-bytesize-icons';
 import {InPageSearch} from 'electron-in-page-search';
 import ControlButton from './control_button';
 import MoreControl from './more_control';
@@ -37,18 +36,18 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
 
     render() {
         const {loading, pageUrl, element, search} = this.props;
-        const reload_icon = loading ? Close : Reload;
+        const reload_icon = loading ? 'close' : 'reload';
         const reload_handler = loading ? this.stopLoading : this.reloadPage;
         const reload_tip = loading ? 'Stop' : 'Reload';
         const page_open = pageUrl !== null;
         const more_open = this.state.more && element !== null && search !== null;
         return (
             <div className="controls-footer" onDrop={cancel} onDragEnter={cancel} onDragOver={cancel}>
-                <ControlButton icon={ArrowLeft} onClick={this.goBack} enabled={element !== null && element.canGoBack()} tip="Back"/>
-                <ControlButton icon={ArrowRight} onClick={this.goForward} enabled={element !== null && element.canGoForward()} tip="Forward"/>
-                <ControlButton icon={Home} onClick={this.resetPage} enabled={page_open} tip="Home"/>
+                <ControlButton icon="arrow-left" onClick={this.goBack} enabled={element !== null && element.canGoBack()} tip="Back"/>
+                <ControlButton icon="arrow-right" onClick={this.goForward} enabled={element !== null && element.canGoForward()} tip="Forward"/>
+                <ControlButton icon="home" onClick={this.resetPage} enabled={page_open} tip="Home"/>
                 <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open} tip={reload_tip}/>
-                <ControlButton icon={VerticalEllipsis} onClick={this.toggleMoreItems} enabled={page_open} tip="More..."/>
+                <ControlButton icon="ellipsis-vertical" onClick={this.toggleMoreItems} enabled={page_open} tip="More..."/>
                 <MoreControl opened={more_open} element={element} search={search} onClick={this.toggleMoreItems}/>
             </div>
         );
