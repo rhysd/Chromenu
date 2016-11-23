@@ -82,6 +82,16 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         this.props.onClick(e);
     };
 
+    openDevTools: ClickHandler = e => {
+        e.stopPropagation();
+        const elem = this.props.element;
+        if (elem === null) {
+            return;
+        }
+        elem.getWebContents().openDevTools({mode: 'detach'});
+        this.props.onClick(e);
+    }
+
     shouldComponentUpdate(next_props: MoreControlProps, next_state: {}) {
         if (!this.props.opened && !next_props.opened) {
             // Note:
@@ -100,6 +110,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             <div className="more-control" style={style}>
                 <nav className="panel">
                     <Item text="Quit App" icon="times" onClick={handleClickQuit}/>
+                    <Item text="Open DevTools" icon="wrench " onClick={this.openDevTools}/>
                     <Item text="Help" icon="question" onClick={this.showHelp}/>
                     <Item text="Open In Browser" icon="external-link" onClick={this.openInBrowser}/>
                     <Item text="Search" icon="search" onClick={this.toggleSearch}/>
