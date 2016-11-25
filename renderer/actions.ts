@@ -1,3 +1,5 @@
+import {InPageSearch} from 'electron-in-page-search';
+
 type ActionType = {
     type: 'CreatePage';
 } | {
@@ -24,8 +26,7 @@ type ActionType = {
 } | {
     type: 'LoadingComplete';
     webview: Electron.WebViewElement;
-} | {
-    type: 'WebViewUnmounted';
+    search: InPageSearch;
 };
 
 export default ActionType;

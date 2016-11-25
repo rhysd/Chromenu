@@ -24,7 +24,12 @@ function renderMain(props: AppProps): React.ReactElement<any> {
         return <PageConfig page={current} index={props.pages.index} dispatch={props.dispatch!}/>;
     }
 
-    return <WebView src={current.url} dispatch={props.dispatch!}/>;
+    return <WebView
+        src={current.url}
+        element={props.webview.element}
+        search={props.webview.search}
+        dispatch={props.dispatch!}
+    />;
 }
 
 function renderProgress(props: AppProps) {

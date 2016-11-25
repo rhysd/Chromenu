@@ -1,4 +1,5 @@
 import * as React from 'react';
+import searchInPage, {InPageSearch} from 'electron-in-page-search';
 import {Dispatch} from '../store';
 import log from '../log';
 
@@ -7,12 +8,15 @@ const DEFAULT_USERAGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS 
 interface WebViewProps extends React.Props<WebView> {
     src: string;
     useragent?: string;
+    search: InPageSearch | null;
+    element: Electron.WebViewElement | null;
     dispatch: Dispatch;
 }
 
 export default class WebView extends React.PureComponent<WebViewProps, {}> {
     container: HTMLDivElement;
     webview: Electron.WebViewElement;
+    search: InPageSearch;
 
     onContainerRef = (ref: HTMLDivElement) => {
         this.container = ref;
@@ -26,10 +30,18 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
     }
 
     componentDidMount() {
+        const {src, useragent, search, element, dispatch} = this.props;
+        if (element !== null && search !== null) {
+            this.container.appendChild(element);
+            this.webview = element;
+            this.search = search;
+            return;
+        }
+
         const wv = document.createElement('webview');
-        wv.src = this.props.src;
+        wv.src = src;
         wv.className = 'webview-container__webview';
-        wv.setAttribute('useragent', this.props.useragent || DEFAULT_USERAGENT);
+        wv.setAttribute('useragent', useragent || DEFAULT_USERAGENT);
         wv.setAttribute('partition', 'persist:chromenu');
         wv.setAttribute('autosize', 'on');
 
@@ -44,7 +56,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         //     'did-frame-finish-load'
         //     'did-finish-load'
         //
-        wv.addEventListener('did-stop-loading', () => this.props.dispatch({type: 'LoadingComplete', webview: wv}));
+        wv.addEventListener('did-stop-loading', () => dispatch({type: 'LoadingComplete', webview: wv, search: this.search}));
         // When target="_blank" specified, open the page in the same webview.
         wv.addEventListener('new-window', e => {
             e.preventDefault();
@@ -56,10 +68,12 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
 
         this.webview = wv;
         this.container.appendChild(wv);
+        this.search = searchInPage(wv);
     }
 
     componentWillUnmount() {
-        this.props.dispatch({type: 'WebViewUnmounted'});
+        this.container.removeChild(this.webview);
+        this.search.closeSearchWindow();
     }
 
     componentDidUpdate(prev: WebViewProps) {
