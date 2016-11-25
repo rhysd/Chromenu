@@ -15,13 +15,14 @@ export default function webview(state: WebViewState = DefaultWebViewState, actio
                 progress: 100,
                 loading: false,
                 element: action.webview,
-                search: searchInPage(action.webview),
+                search: state.search || searchInPage(action.webview),
                 timestamp: Date.now(),
             };
         }
         case 'WebViewUnmounted': {
-            if (state.search !== null && state.search.opened) {
+            if (state.search !== null) {
                 state.search.closeSearchWindow();
+                state.search.finalize();
             }
             return Object.assign({}, state, {
                 element: null,
