@@ -80,7 +80,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             return;
         }
         this.props.onClick(e);
-    };
+    }
 
     openDevTools: ClickHandler = e => {
         e.stopPropagation();
