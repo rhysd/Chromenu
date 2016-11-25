@@ -122,6 +122,20 @@ After losing focus, application keeps to be shown. Default value is `false`.
 If this value is set to `true`, application will launch with normal window rather than menubar window.
 Default value is `false`.
 
+### `url_blacklist`
+
+You can specify patterns of URL to block loading some contents. Default value is `[]`.
+
+```json
+[
+    "https://*.github.com/*",
+    "*://electron.github.io",
+    "https://example.com/*"
+]
+```
+
+These patterns will be passed to [Electron's `WebRequest.onBeforeRequest` callback](http://electron.atom.io/docs/api/web-request/).
+
 ### `keymaps`
 
 Key-map value to specify key shortcuts.

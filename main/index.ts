@@ -1,6 +1,12 @@
 import * as path from 'path';
 import * as menubar from 'menubar';
-import {app, globalShortcut, BrowserWindow, ipcMain as ipc} from 'electron';
+import {
+    app,
+    globalShortcut,
+    BrowserWindow,
+    ipcMain as ipc,
+    session,
+} from 'electron';
 import loadConfig from './config';
 import log from './log';
 
@@ -18,6 +24,26 @@ const DefaultWidth = 375;  // iPhone 6s
 const DefaultHeight = 50 + 667 + 40; // Icon area height + iPhone 6s + footer
 
 const appReady = new Promise(resolve => app.on('ready', resolve));
+
+function setupUrlFilter(config: Config) {
+    if (!config.url_blacklist || config.url_blacklist.length === 0) {
+        return config;
+    }
+
+    const filter = {
+        urls: config.url_blacklist,
+    };
+
+    session.fromPartition('persist:futamata').webRequest.onBeforeRequest(
+        filter,
+        (details, callback) => {
+            log.debug('Blacklisted request canceled: ', details.url);
+            callback({cancel: true});
+        },
+    );
+
+    return config;
+}
 
 function setupMenuBar(config: Config) {
     log.debug('Setup a menubar window');
@@ -103,7 +129,7 @@ function setupNormalWindow(config: Config) {
 // Note:
 // No need to wait for 'ready' event when launching menubar style application
 // because 'menubar' package internally waits for app being ready.
-loadConfig().then(
+loadConfig().then(setupUrlFilter).then(
     c => c.normal_window ?
         appReady.then(() => setupNormalWindow(c)) :
         setupMenuBar(c)

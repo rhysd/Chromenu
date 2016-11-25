@@ -8,6 +8,7 @@ const DEFAULT_CONFIG = {
     icon_color: process.platform === 'darwin' ? 'black' : 'white',
     always_on_top: false,
     normal_window: false,
+    url_blacklist: [],
     keymaps: {
         'mod+1': 'page1',
         'mod+2': 'page2',
