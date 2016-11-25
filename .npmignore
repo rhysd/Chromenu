@@ -11,5 +11,7 @@ resources/chrome-icon-white.png
 /Guardfile
 /tslint.json
 /tsconfig.json
+/scripts
 *.ts
+*.tsx
 *.js.map
