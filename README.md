@@ -142,11 +142,12 @@ Key-map value to specify key shortcuts.
 
 Key is a key sequence. The format is the same as [mousetrap package's one](https://craig.is/killing/mice).
 
-Value is an action name in the key shortcuts lit of above section.
+Value is an action name in the key shortcuts list of above section.
 Or you can specify the relative path to JavaScript file in configuration directory.
 
 ```json
 {
+    "mod+q": "toggle-search",
     "mod+s": "path/to/select-some-tab.js"
 }
 ```
