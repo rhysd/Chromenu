@@ -34,7 +34,7 @@ function setupUrlFilter(config: Config) {
         urls: config.url_blacklist,
     };
 
-    session.fromPartition('persist:futamata').webRequest.onBeforeRequest(
+    session.fromPartition('persist:chromenu').webRequest.onBeforeRequest(
         filter,
         (details, callback) => {
             log.debug('Blacklisted request canceled: ', details.url);
