@@ -2,35 +2,36 @@
 
 const child_process = require('child_process');
 const path = require('path');
+const heredoc = require('heredocument');
 const launchctl = require('./launchctl');
 
 const args = [path.join(__dirname, '..')];
 
 if (process.argv.indexOf('--help') !== -1) {
     const pkg = require('../package.json');
-    process.stdout.write(
-`$ chromenu [--no-detach|--setup-launchctl|--unsetup-launchctl|--help]
+    process.stdout.write(heredoc`
+        $ chromenu [--no-detach|--setup-launchctl|--unsetup-launchctl|--help]
 
-    ${pkg.description} (version ${pkg.version})
+            ${pkg.description} (version ${pkg.version})
 
-Options:
-    --no-detach
-        Do not detach application process. By default, the application
-        process will be detached. Note that when $NODE_ENV is 'development',
-        the process won't also be detached.
+        Options:
+            --no-detach
+                Do not detach application process. By default, the application
+                process will be detached. Note that when $NODE_ENV is 'development',
+                the process won't also be detached.
 
-    --setup-launchctl
-        Setup to start this application at system booting. This option is
-        only for macOS. If you use other platform, please setup manually.
+            --setup-launchctl
+                Setup to start this application at system booting. This option is
+                only for macOS. If you use other platform, please setup manually.
 
-    --unsetup-launchctl
-        If you used --setup-launchctl and this option stops launching this
-        application on system booting.
+            --unsetup-launchctl
+                If you used --setup-launchctl and this option stops launching this
+                application on system booting.
 
-    --help
-        Show this help.
-`
-    );
+            --help
+                Show this help.
+
+    `);
     process.exit(0);
 }
 
