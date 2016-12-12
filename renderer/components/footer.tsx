@@ -9,11 +9,11 @@ function cancel(e: React.DragEvent<any>) {
 }
 
 interface FooterProps extends React.Props<Footer> {
-    dispatch: Dispatch;
-    loading: boolean;
-    pageUrl: string | null;
-    element: Electron.WebViewElement | null;
-    search: InPageSearch | null;
+    readonly dispatch: Dispatch;
+    readonly loading: boolean;
+    readonly pageUrl: string | null;
+    readonly element: Electron.WebViewElement | null;
+    readonly search: InPageSearch | null;
 }
 
 interface FooterState {

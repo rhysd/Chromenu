@@ -2,10 +2,10 @@ import * as React from 'react';
 import Icon, {BytesizeIconName} from 'react-component-bytesize-icons';
 
 interface ControlButtonProps extends React.Props<ControlButton> {
-    icon: BytesizeIconName;
-    enabled: boolean;
-    onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
-    tip?: string;
+    readonly icon: BytesizeIconName;
+    readonly enabled: boolean;
+    readonly onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+    readonly tip?: string;
 }
 
 export default class ControlButton extends React.PureComponent<ControlButtonProps, {}> {

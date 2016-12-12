@@ -6,11 +6,11 @@ import log from '../log';
 const DEFAULT_USERAGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1';
 
 interface WebViewProps extends React.Props<WebView> {
-    src: string;
-    useragent?: string;
-    search: InPageSearch | null;
-    element: Electron.WebViewElement | null;
-    dispatch: Dispatch;
+    readonly src: string;
+    readonly useragent?: string;
+    readonly search: InPageSearch | null;
+    readonly element: Electron.WebViewElement | null;
+    readonly dispatch: Dispatch;
 }
 
 export default class WebView extends React.PureComponent<WebViewProps, {}> {

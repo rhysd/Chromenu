@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface ProgressProps extends React.Props<any> {
-    value: number;
+    readonly value: number;
 }
 
 const GOOGLE_COLORS = [

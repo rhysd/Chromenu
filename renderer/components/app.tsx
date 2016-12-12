@@ -10,7 +10,7 @@ import State, {PagesState} from '../states';
 import {Dispatch} from '../store';
 
 type AppProps = State & React.Props<any> & {
-    dispatch?: Dispatch;
+    readonly dispatch?: Dispatch;
 };
 
 function renderMain(props: AppProps): React.ReactElement<any> {

@@ -1,32 +1,32 @@
 import {InPageSearch} from 'electron-in-page-search';
 
 type ActionType = {
-    type: 'CreatePage';
+    readonly type: 'CreatePage';
 } | {
-    type: 'ConfigurePage';
-    index: number;
-    url: string;
-    image_url: string;
-    title: string;
-    reload_on_show: boolean;
-    reload_min_interval: number | null;
+    readonly type: 'ConfigurePage';
+    readonly index: number;
+    readonly url: string;
+    readonly image_url: string;
+    readonly title: string;
+    readonly reload_on_show: boolean;
+    readonly reload_min_interval: number | null;
 } | {
-    type: 'SetConfigured';
-    index: number;
-    value: boolean;
+    readonly type: 'SetConfigured';
+    readonly index: number;
+    readonly value: boolean;
 } | {
-    type: 'DeletePage';
-    index: number;
+    readonly type: 'DeletePage';
+    readonly index: number;
 } | {
-    type: 'UpdateLoadingProgress';
-    value: number;
+    readonly type: 'UpdateLoadingProgress';
+    readonly value: number;
 } | {
-    type: 'OpenPage';
-    index: number;
+    readonly type: 'OpenPage';
+    readonly index: number;
 } | {
-    type: 'LoadingComplete';
-    webview: Electron.WebViewElement;
-    search: InPageSearch;
+    readonly type: 'LoadingComplete';
+    readonly webview: Electron.WebViewElement;
+    readonly search: InPageSearch;
 };
 
 export default ActionType;

@@ -3,11 +3,12 @@ import {Page} from '../states';
 import {Dispatch} from '../store';
 import log from '../log';
 import * as tryTo from '../try_to';
+import ActionType from '../actions';
 
 interface PageConfigProps extends React.Props<PageConfig> {
-    dispatch: Dispatch;
-    page: Page;
-    index: number;
+    readonly dispatch: Dispatch;
+    readonly page: Page;
+    readonly index: number;
 }
 
 export default class PageConfig extends React.PureComponent<PageConfigProps, {}> {
@@ -60,14 +61,14 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
             this.getIconUrl(url),
         ]).then(([title, image_url]) => {
             const action = {
-                type: 'ConfigurePage' as 'ConfigurePage', // TODO this should be fixed in TypeScript 2.1!
+                type: 'ConfigurePage',
                 index: this.props.index,
                 url,
                 image_url,
                 title,
                 reload_on_show: this.reload_on_show_checkbox.checked,
                 reload_min_interval,
-            };
+            } as ActionType;
             log.debug('Configure page:', action);
             this.props.dispatch(action);
         });

@@ -4,10 +4,10 @@ import log from '../log';
 import {Dispatch} from '../store';
 
 interface IconProps extends React.Props<PageIcon> {
-    page: Page;
-    isCurrent: boolean;
-    index: number;
-    dispatch: Dispatch;
+    readonly page: Page;
+    readonly isCurrent: boolean;
+    readonly index: number;
+    readonly dispatch: Dispatch;
 }
 
 function renderIconContents(p: Page) {

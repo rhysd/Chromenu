@@ -9,9 +9,9 @@ type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
 const HELP_PAGE_URL = 'https://github.com/rhysd/Chromenu#readme';
 
 interface ItemProps {
-    onClick: ClickHandler;
-    text: string;
-    icon: string;
+    readonly onClick: ClickHandler;
+    readonly text: string;
+    readonly icon: string;
 }
 
 const Item = (props: ItemProps) => (

@@ -3,7 +3,7 @@ import {Dispatch} from '../store';
 import Icon from 'react-component-bytesize-icons';
 
 interface AddPageProps {
-    dispatch: Dispatch;
+    readonly dispatch: Dispatch;
 }
 
 export default class AddPage extends React.PureComponent<AddPageProps, {}> {

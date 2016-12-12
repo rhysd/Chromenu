@@ -10,9 +10,9 @@ function cancel(e: React.DragEvent<HTMLDivElement>) {
 }
 
 interface HeaderProps extends React.Props<any> {
-    pages: List<Page>;
-    index: number | null;
-    dispatch: Dispatch;
+    readonly pages: List<Page>;
+    readonly index: number | null;
+    readonly dispatch: Dispatch;
 }
 
 const Header = (props: HeaderProps) => (
