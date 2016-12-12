@@ -4,10 +4,11 @@ import {WebViewState, DefaultWebViewState} from '../states';
 export default function webview(state: WebViewState = DefaultWebViewState, action: Action) {
     switch (action.type) {
         case 'UpdateLoadingProgress': {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 progress: action.value,
                 loading: action.value < 100,
-            });
+            };
         }
         case 'LoadingComplete': {
             return {

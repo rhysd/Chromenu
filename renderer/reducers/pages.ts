@@ -8,10 +8,11 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                 action.index < 0 ? 0 :
                 state.all.size <= action.index ? state.all.size - 1 :
                 action.index;
-            return Object.assign({}, state, { index });
+            return { ...state, index };
         }
         case 'CreatePage': {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 index: state.all.size,
                 all: state.all.push({
                     url: '',
@@ -21,10 +22,11 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     reload_on_show: false,
                     reload_min_interval: null,
                 }),
-            });
+            };
         }
         case 'ConfigurePage': {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 index: action.index,
                 all: state.all.set(action.index, {
                     url: action.url,
@@ -34,10 +36,11 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     reload_on_show: action.reload_on_show,
                     reload_min_interval: action.reload_min_interval,
                 }),
-            });
+            };
         }
         case 'SetConfigured': {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 index: action.index,
                 all: state.all.update(
                     action.index,
@@ -45,7 +48,7 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                         configured: action.value,
                     }),
                 ),
-            });
+            };
         }
         case 'DeletePage': {
             let index = state.index;
@@ -55,10 +58,11 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
                     index = null;
                 }
             }
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 index,
                 all: state.all.delete(action.index),
-            });
+            };
         }
         default:
             return state;
