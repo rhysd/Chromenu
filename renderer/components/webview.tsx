@@ -35,6 +35,14 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
             this.container.appendChild(element);
             this.webview = element;
             this.search = search;
+
+            if (element.src !== src) {
+                // Note:
+                // 'src' means the home URL of the page. It may be different from
+                // a current page shown in <webview>.
+                element.src = src;
+            }
+
             return;
         }
 
