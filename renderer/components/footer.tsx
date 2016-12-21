@@ -35,22 +35,35 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
     }
 
     render() {
-        const {loading, pageUrl, element, search} = this.props;
+        const {loading, pageUrl, search} = this.props;
+        const webview = this.getMountedWebview();
         const reload_icon = loading ? 'close' : 'reload';
         const reload_handler = loading ? this.stopLoading : this.reloadPage;
         const reload_tip = loading ? 'Stop' : 'Reload';
         const page_open = pageUrl !== null;
-        const more_open = this.state.more && element !== null && search !== null;
+        const more_open = this.state.more && webview !== null && search !== null;
         return (
             <div className="controls-footer" onDrop={cancel} onDragEnter={cancel} onDragOver={cancel}>
-                <ControlButton icon="arrow-left" onClick={this.goBack} enabled={element !== null && element.canGoBack()} tip="Back"/>
-                <ControlButton icon="arrow-right" onClick={this.goForward} enabled={element !== null && element.canGoForward()} tip="Forward"/>
+                <ControlButton icon="arrow-left" onClick={this.goBack} enabled={webview !== null && webview.canGoBack()} tip="Back"/>
+                <ControlButton icon="arrow-right" onClick={this.goForward} enabled={webview !== null && webview.canGoForward()} tip="Forward"/>
                 <ControlButton icon="home" onClick={this.resetPage} enabled={page_open} tip="Home"/>
                 <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open} tip={reload_tip}/>
                 <ControlButton icon="ellipsis-vertical" onClick={this.toggleMoreItems} enabled={page_open} tip="More..."/>
-                <MoreControl opened={more_open} element={element} search={search} onClick={this.toggleMoreItems}/>
+                <MoreControl opened={more_open} element={webview} search={search} onClick={this.toggleMoreItems}/>
             </div>
         );
+    }
+
+    private getMountedWebview() {
+        const e = this.props.element;
+        if (e === null) {
+            return null;
+        }
+        if (e.getWebContents() === null) {
+            // Note: When <webview> is not mounted in DOM, it returns null.
+            return null;
+        }
+        return e;
     }
 
     private goBack(e: React.MouseEvent<HTMLDivElement>) {
