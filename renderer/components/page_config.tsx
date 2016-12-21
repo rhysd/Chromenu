@@ -41,6 +41,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
     onSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
         const url = this.url_input.value;
+        const reload_on_show = this.reload_on_show_checkbox.checked;
 
         if (!url || !url.startsWith('http://') && !url.startsWith('https://')) {
             this.url_input.className = 'input is-danger';
@@ -66,7 +67,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                 url,
                 image_url,
                 title,
-                reload_on_show: this.reload_on_show_checkbox.checked,
+                reload_on_show,
                 reload_min_interval,
             } as ActionType;
             log.debug('Configure page:', action);
