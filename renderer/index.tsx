@@ -75,3 +75,8 @@ remote.getCurrentWindow().on('focus', () => {
         log.debug('Reload page was not reloaded on window focus because interval is shorter than threthold', spent_ms, current.reload_min_interval);
     }
 });
+
+remote.getCurrentWindow().on('hide', () => {
+    log.debug('Window hidden');
+    ipc.send('chromenu:suspend-window');
+});
