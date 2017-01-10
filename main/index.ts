@@ -50,7 +50,7 @@ function setupMenuBar(config: Config) {
     return new Promise<Menubar.MenubarApp>(resolve => {
         const icon = path.join(__dirname, '..', 'resources', `chrome-tray-icon-${
             config.icon_color === 'white' ? 'white' : 'black'
-        }.png`);
+        }@2x.png`);
         log.debug('Will launch application:', Html, icon);
         const mb = menubar({
             index: Html,
