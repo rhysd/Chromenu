@@ -106,7 +106,11 @@ function setupNormalWindow(config: Config) {
                 globalShortcut.register(config.hot_key, () => {
                     if (win.isFocused()) {
                         log.debug('Toggle window: shown -> hidden');
-                        win.hide();
+                        if (process.platform === 'darwin') {
+                            app.hide();
+                        } else {
+                            win.hide();
+                        }
                     } else {
                         log.debug('Toggle window: hidden -> shown');
                         win.show();
