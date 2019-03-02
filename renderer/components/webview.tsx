@@ -3,9 +3,6 @@ import searchInPage, { InPageSearch } from 'electron-in-page-search';
 import { Dispatch } from '../store';
 import log from '../log';
 
-const DEFAULT_USERAGENT =
-    'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1';
-
 interface WebViewProps extends React.Props<WebView> {
     readonly src: string;
     readonly useragent?: string;
@@ -50,7 +47,9 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         const wv = document.createElement('webview');
         wv.src = src;
         wv.className = 'webview-container__webview';
-        wv.setAttribute('useragent', useragent || DEFAULT_USERAGENT);
+        if (useragent) {
+            wv.setAttribute('useragent', useragent);
+        }
         wv.setAttribute('partition', 'persist:chromenu');
         wv.setAttribute('autosize', 'on');
 
