@@ -47,7 +47,7 @@ interface MoreControlProps extends React.Props<MoreControl> {
     onClick: ClickHandler;
 }
 
-export default class MoreControl extends React.PureComponent<MoreControlProps, {}> {
+export default class MoreControl extends React.Component<MoreControlProps, {}> {
     openInBrowser: ClickHandler = e => {
         e.stopPropagation();
         const element = this.props.element;
