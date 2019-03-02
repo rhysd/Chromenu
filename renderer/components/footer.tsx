@@ -12,7 +12,7 @@ interface FooterProps extends React.Props<Footer> {
     readonly dispatch: Dispatch;
     readonly loading: boolean;
     readonly pageUrl: string | null;
-    readonly element: Electron.WebViewElement | null;
+    readonly element: Electron.WebviewTag | null;
     readonly search: InPageSearch | null;
 }
 

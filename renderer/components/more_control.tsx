@@ -42,7 +42,7 @@ function handleClickQuit() {
 
 interface MoreControlProps extends React.Props<MoreControl> {
     opened: boolean;
-    element: Electron.WebViewElement | null;
+    element: Electron.WebviewTag | null;
     search: InPageSearch | null;
     onClick: ClickHandler;
 }
@@ -92,7 +92,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         this.props.onClick(e);
     }
 
-    shouldComponentUpdate(next_props: MoreControlProps, next_state: {}) {
+    shouldComponentUpdate(next_props: MoreControlProps, next_state: {}): boolean {
         if (!this.props.opened && !next_props.opened) {
             // Note:
             // When 'opened' is false, whole this component is not shown.

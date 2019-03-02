@@ -27,7 +27,7 @@ export const DefaultPagesState: PagesState =
 export interface WebViewState {
     readonly progress: number;
     readonly loading: boolean;
-    readonly element: Electron.WebViewElement | null;
+    readonly element: Electron.WebviewTag | null;
     readonly search: InPageSearch | null;
     readonly timestamp: number | null;
 }

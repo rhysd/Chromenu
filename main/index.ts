@@ -133,10 +133,15 @@ function setupNormalWindow(config: Config) {
 // Note:
 // No need to wait for 'ready' event when launching menubar style application
 // because 'menubar' package internally waits for app being ready.
-loadConfig().then(setupUrlFilter).then(
-    c => c.normal_window ?
-        appReady.then(() => setupNormalWindow(c)) :
-        setupMenuBar(c)
-).then(() => {
+async function go() {
+    const c = await setupUrlFilter(await loadConfig());
+    if (c.normal_window) {
+        await appReady;
+        await setupNormalWindow(c);
+    } else {
+        await setupMenuBar(c);
+    }
     log.debug('Application launched!');
-});
+}
+
+go();

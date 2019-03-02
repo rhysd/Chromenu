@@ -67,8 +67,8 @@ remote.getCurrentWindow().on('focus', () => {
         log.debug('Reload page due to window focus without interval check', current);
         elem.reload();
     }
-    const spent_ms = Date.now() - state.webview.timestamp;
-    if (current.reload_min_interval < spent_ms / 1000) {
+    const spent_ms = Date.now() - state.webview.timestamp!;
+    if (current.reload_min_interval! < spent_ms / 1000) {
         log.debug('Reload page due to window focus with interval check', current, 'spent time (ms): ', spent_ms);
         elem.reload();
     } else {

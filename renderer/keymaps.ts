@@ -92,7 +92,7 @@ export default class Keymaps extends EventEmitter {
         });
         this.on('open-external-browser', () => {
             const elem = Store.getState().webview.element;
-            if (elem) {
+            if (elem && elem.src) {
                 shell.openExternal(elem.src);
             }
         });

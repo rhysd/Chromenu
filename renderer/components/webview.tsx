@@ -9,13 +9,13 @@ interface WebViewProps extends React.Props<WebView> {
     readonly src: string;
     readonly useragent?: string;
     readonly search: InPageSearch | null;
-    readonly element: Electron.WebViewElement | null;
+    readonly element: Electron.WebviewTag | null;
     readonly dispatch: Dispatch;
 }
 
 export default class WebView extends React.PureComponent<WebViewProps, {}> {
     container: HTMLDivElement;
-    webview: Electron.WebViewElement;
+    webview: Electron.WebviewTag;
     search: InPageSearch;
 
     onContainerRef = (ref: HTMLDivElement) => {

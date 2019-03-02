@@ -38,7 +38,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         this.reload_min_interval_input = ref;
     }
 
-    onSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
+    onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         const url = this.url_input.value;
         const reload_on_show = this.reload_on_show_checkbox.checked;
@@ -75,7 +75,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         });
     }
 
-    onCancel = (e: React.MouseEvent<HTMLInputElement>) => {
+    onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         const {page, dispatch, index} = this.props;
         if (page.url === '') {
@@ -94,7 +94,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         }
     }
 
-    onDelete = (e: React.MouseEvent<HTMLInputElement>) => {
+    onDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         log.debug('Delete this page:', this.url_input.value);
         const {dispatch, index} = this.props;
@@ -151,7 +151,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                             type="text"
                             placeholder="URL must starts with 'https://' or 'http://' (Required)"
                             autoComplete="off"
-                            autoFocus
+                            autoFocus={true}
                             ref={this.onUrlInputRef}
                         />
                     </p>

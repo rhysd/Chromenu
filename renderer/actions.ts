@@ -25,7 +25,7 @@ type ActionType = {
     readonly index: number;
 } | {
     readonly type: 'LoadingComplete';
-    readonly webview: Electron.WebViewElement;
+    readonly webview: Electron.WebviewTag;
     readonly search: InPageSearch;
 };
 
