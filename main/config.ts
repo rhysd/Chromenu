@@ -35,7 +35,7 @@ const DEFAULT_CONFIG = {
     },
 } as Config;
 
-function noop() {}
+function noop() { /* do nothing */ }
 
 export default function loadConfig(): Promise<Config> {
     return new Promise<Config>(resolve => {

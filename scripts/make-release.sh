@@ -23,9 +23,9 @@ function pack-app() {
     local electron_version=$(electron --version)
     electron_version=${electron_version#v}
 
-    electron-packager ./app --platform=darwin --arch=x64 "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --build-version=$version --icon=./resources/icon/app.icns --version=$electron_version
-    electron-packager ./app --platform=linux --arch=all "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --build-version=$version --icon=./resources/icon/app.ico --version=$electron_version
-    electron-packager ./app --platform=win32 --arch=all "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --build-version=$version --icon=./resources/icon/app.ico --version=$electron_version --version-string=$version
+    electron-packager ./app --platform=darwin --arch=x64 "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --app-version=$version --icon=./resources/icon/app.icns --electron-version=$electron_version
+    electron-packager ./app --platform=linux --arch=all "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --app-version=$version --icon=./resources/icon/app.ico --electron-version=$electron_version
+    electron-packager ./app --platform=win32 --arch=all "--app-copyright=copyright (c) 2016 rhysd" --app-version=$version --app-version=$version --icon=./resources/icon/app.ico --electron-version=$electron_version --version-string=$version
 }
 
 function make-dist() {
@@ -39,7 +39,7 @@ function make-dist() {
         cp LICENSE README.md "$dir"
         zip --symlinks "dist/${dir}-${version}.zip" -r "$dir"
     done
-    rm -r Chromenu-*
+    rm -rf Chromenu-*
     open dist
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "chromenu",
   "productName": "Chromenu",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Mobile Chromium in your menu bar",
   "main": "main/index.js",
   "bin": {
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc --pretty -p .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tslint": "tslint $(git ls-files | grep -E \"\\.tsx?$\")",
+    "tslint": "tslint -p .",
     "stylelint": "stylelint renderer/style.css",
     "lint": "npm-run-all --parallel tslint stylelint",
     "watch": "guard --watchdir main renderer bin",
