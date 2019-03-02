@@ -30,7 +30,7 @@ $ chromenu
 
 Just after starting app, you can see below window.
 
-![just after starting](https://github.com/rhysd/ss/blob/master/Chromenu/startup.png?raw=true)
+<img src="https://github.com/rhysd/ss/blob/master/Chromenu/startup.png?raw=true" alt="just after starting" width=243 height=434/>
 
 For now, what you can do is register new page from '+' button at header.
 It opens a configuration view and you can input the information of the page which you want to register.
@@ -39,11 +39,11 @@ It opens a configuration view and you can input the information of the page whic
 - Icon image (optional)
 - Page title (optional)
 
-![configuration page](https://github.com/rhysd/ss/blob/master/Chromenu/configuration.png?raw=true)
+<img src="https://github.com/rhysd/ss/blob/master/Chromenu/configuration.png?raw=true" alt="configuration page" width=243 height=434/>
 
 After clicking 'OK', new icon will be added to header and the page will be opened in main view.
 
-![after registration](https://github.com/rhysd/ss/blob/master/Chromenu/after-registration.png?raw=true)
+<img src="https://github.com/rhysd/ss/blob/master/Chromenu/after-registration.png?raw=true" alt="after registration" width=243 height=434/>
 
 Now you can explore the page freely. Footer has some buttons to control browseing (go forward/back,
 go home (registered URL), reload).
