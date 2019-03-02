@@ -1,5 +1,5 @@
 import Action from '../actions';
-import {WebViewState, DefaultWebViewState} from '../states';
+import { WebViewState, DefaultWebViewState } from '../states';
 
 export default function webview(state: WebViewState = DefaultWebViewState, action: Action) {
     switch (action.type) {

@@ -55,11 +55,13 @@ const electron = require('electron');
 
 if (process.env.NODE_ENV === 'development' || process.argv.indexOf('--no-detach') !== -1) {
     child_process.spawn(electron, args, {
-        stdio: 'inherit'
+        stdio: 'inherit',
     });
 } else {
-    child_process.spawn(electron, args, {
-        stdio: 'ignore',
-        detached: true
-    }).unref();
+    child_process
+        .spawn(electron, args, {
+            stdio: 'ignore',
+            detached: true,
+        })
+        .unref();
 }

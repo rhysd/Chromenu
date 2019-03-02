@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Icon, {BytesizeIconName} from 'react-component-bytesize-icons';
+import Icon, { BytesizeIconName } from 'react-component-bytesize-icons';
 
 interface ControlButtonProps extends React.Props<ControlButton> {
     readonly icon: BytesizeIconName;
@@ -10,7 +10,7 @@ interface ControlButtonProps extends React.Props<ControlButton> {
 
 export default class ControlButton extends React.PureComponent<ControlButtonProps, {}> {
     render() {
-        const {icon, enabled, tip, onClick} = this.props;
+        const { icon, enabled, tip, onClick } = this.props;
         const handleClick = enabled ? onClick : undefined;
         return (
             <div
@@ -18,7 +18,7 @@ export default class ControlButton extends React.PureComponent<ControlButtonProp
                 title={tip}
                 onClick={handleClick}
             >
-                <Icon name={icon} size="small"/>
+                <Icon name={icon} size="small" />
             </div>
         );
     }

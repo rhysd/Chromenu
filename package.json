@@ -18,7 +18,8 @@
     "start": "NODE_ENV=production electron .",
     "preversion": "npm run lint",
     "preuninstall": "node ./bin/cli.js --unsetup-launchctl",
-    "release": "npm run lint && ./scripts/make-release.sh"
+    "release": "npm run lint && ./scripts/make-release.sh",
+    "fmt": "prettier --write bin/cli.js 'main/**/*.ts' 'renderer/**/*.ts' 'renderer/**/*.tsx'"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "@types/request": "2.48.1",
     "electron-packager": "^13.1.0",
     "npm-run-all": "^4.0.0",
+    "prettier": "^1.16.4",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.13.1",
@@ -73,5 +75,12 @@
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "request": "^2.79.0"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 120
   }
 }

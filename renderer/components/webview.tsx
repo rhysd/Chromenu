@@ -1,9 +1,10 @@
 import * as React from 'react';
-import searchInPage, {InPageSearch} from 'electron-in-page-search';
-import {Dispatch} from '../store';
+import searchInPage, { InPageSearch } from 'electron-in-page-search';
+import { Dispatch } from '../store';
 import log from '../log';
 
-const DEFAULT_USERAGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1';
+const DEFAULT_USERAGENT =
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1';
 
 interface WebViewProps extends React.Props<WebView> {
     readonly src: string;
@@ -20,7 +21,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
 
     onContainerRef = (ref: HTMLDivElement) => {
         this.container = ref;
-    }
+    };
 
     dispatchProgress(value: number) {
         this.props.dispatch({
@@ -30,7 +31,7 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
     }
 
     componentDidMount() {
-        const {src, useragent, search, element, dispatch} = this.props;
+        const { src, useragent, search, element, dispatch } = this.props;
         if (element !== null && search !== null) {
             this.container.appendChild(element);
             this.webview = element;
@@ -64,7 +65,13 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
         //     'did-frame-finish-load'
         //     'did-finish-load'
         //
-        wv.addEventListener('did-stop-loading', () => dispatch({type: 'LoadingComplete', webview: wv, search: this.search}));
+        wv.addEventListener('did-stop-loading', () =>
+            dispatch({
+                type: 'LoadingComplete',
+                webview: wv,
+                search: this.search,
+            }),
+        );
         // When target="_blank" specified, open the page in the same webview.
         wv.addEventListener('new-window', e => {
             e.preventDefault();
@@ -93,7 +100,6 @@ export default class WebView extends React.PureComponent<WebViewProps, {}> {
     }
 
     render() {
-        return <div className="webview-container" ref={this.onContainerRef}/>;
+        return <div className="webview-container" ref={this.onContainerRef} />;
     }
 }
-

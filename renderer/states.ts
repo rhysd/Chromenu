@@ -1,6 +1,6 @@
-import {List} from 'immutable';
+import { List } from 'immutable';
 import * as Storage from './storage';
-import {InPageSearch} from 'electron-in-page-search';
+import { InPageSearch } from 'electron-in-page-search';
 
 export interface Page {
     readonly url: string;
@@ -19,10 +19,12 @@ export interface PagesState {
 const loaded = Storage.load();
 
 export const DefaultPagesState: PagesState =
-    loaded !== null ? loaded.pages : {
-        index: null,
-        all: List<Page>(),
-    };
+    loaded !== null
+        ? loaded.pages
+        : {
+              index: null,
+              all: List<Page>(),
+          };
 
 export interface WebViewState {
     readonly progress: number;

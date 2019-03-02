@@ -1,4 +1,4 @@
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 import root from './reducers/root';
 import Action from './actions';
 

@@ -4,5 +4,5 @@ interface Config {
     always_on_top: boolean;
     normal_window: boolean;
     url_blacklist: string[];
-    keymaps: {[key: string]: string | null};
+    keymaps: { [key: string]: string | null };
 }

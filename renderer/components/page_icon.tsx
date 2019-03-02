@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Page} from '../states';
+import { Page } from '../states';
 import log from '../log';
-import {Dispatch} from '../store';
+import { Dispatch } from '../store';
 
 interface IconProps extends React.Props<PageIcon> {
     readonly page: Page;
@@ -14,14 +14,14 @@ function renderIconContents(p: Page) {
     if (!p.icon_image) {
         return <div className="page-icon__char">{p.title.charAt(0)}</div>;
     }
-    return <img src={p.icon_image} alt={p.url}/>;
+    return <img src={p.icon_image} alt={p.url} />;
 }
 
 function renderIndicator(enabled: boolean) {
     if (!enabled) {
         return undefined;
     }
-    return <div className="page-icon__indicator"/>;
+    return <div className="page-icon__indicator" />;
 }
 
 export default class PageIcon extends React.PureComponent<IconProps, {}> {
@@ -32,7 +32,7 @@ export default class PageIcon extends React.PureComponent<IconProps, {}> {
 
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
-        const {isCurrent, dispatch, page, index} = this.props;
+        const { isCurrent, dispatch, page, index } = this.props;
         if (isCurrent) {
             log.debug('toggle configuration page:', page);
             const toggle = !page.configured;
@@ -51,7 +51,7 @@ export default class PageIcon extends React.PureComponent<IconProps, {}> {
     }
 
     render() {
-        const {page, isCurrent} = this.props;
+        const { page, isCurrent } = this.props;
         return (
             <div className="page-icon" title={page.title || page.url} onClick={this.onClick}>
                 {renderIconContents(page)}

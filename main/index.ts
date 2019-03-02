@@ -1,12 +1,6 @@
 import * as path from 'path';
 import * as menubar from 'menubar';
-import {
-    app,
-    globalShortcut,
-    BrowserWindow,
-    ipcMain as ipc,
-    session,
-} from 'electron';
+import { app, globalShortcut, BrowserWindow, ipcMain as ipc, session } from 'electron';
 import loadConfig from './config';
 import log from './log';
 
@@ -20,7 +14,7 @@ app.on('will-quit', () => {
 
 const IsDebug = process.env.NODE_ENV === 'development';
 const Html = `file://${path.join(__dirname, '..', 'renderer', 'index.html')}${IsDebug ? '?react_perf' : ''}`;
-const DefaultWidth = 375;  // iPhone 6s
+const DefaultWidth = 375; // iPhone 6s
 const DefaultHeight = 50 + 667 + 40; // Icon area height + iPhone 6s + footer
 
 const appReady = new Promise(resolve => app.on('ready', resolve));
@@ -34,13 +28,10 @@ function setupUrlFilter(config: Config) {
         urls: config.url_blacklist,
     };
 
-    session.fromPartition('persist:chromenu').webRequest.onBeforeRequest(
-        filter,
-        (details, callback) => {
-            log.debug('Blacklisted request canceled: ', details.url);
-            callback({cancel: true});
-        },
-    );
+    session.fromPartition('persist:chromenu').webRequest.onBeforeRequest(filter, (details, callback) => {
+        log.debug('Blacklisted request canceled: ', details.url);
+        callback({ cancel: true });
+    });
 
     return config;
 }
@@ -48,9 +39,12 @@ function setupUrlFilter(config: Config) {
 function setupMenuBar(config: Config) {
     log.debug('Setup a menubar window');
     return new Promise<Menubar.MenubarApp>(resolve => {
-        const icon = path.join(__dirname, '..', 'resources', `chrome-tray-icon-${
-            config.icon_color === 'white' ? 'white' : 'black'
-        }@2x.png`);
+        const icon = path.join(
+            __dirname,
+            '..',
+            'resources',
+            `chrome-tray-icon-${config.icon_color === 'white' ? 'white' : 'black'}@2x.png`,
+        );
         log.debug('Will launch application:', Html, icon);
         const mb = menubar({
             index: Html,
@@ -75,7 +69,7 @@ function setupMenuBar(config: Config) {
                 log.debug('Hot key was set to:', config.hot_key);
             }
             if (IsDebug) {
-                mb.window.webContents.openDevTools({mode: 'detach'});
+                mb.window.webContents.openDevTools({ mode: 'detach' });
             }
             mb.window.webContents.once('dom-ready', () => {
                 mb.window.webContents.send('chromenu:config', config);
@@ -120,7 +114,7 @@ function setupNormalWindow(config: Config) {
             }
             win.webContents.send('chromenu:config', config);
             if (IsDebug) {
-                win.webContents.openDevTools({mode: 'detach'});
+                win.webContents.openDevTools({ mode: 'detach' });
             }
             ipc.on('chromenu:hide-window', () => {
                 win.hide();

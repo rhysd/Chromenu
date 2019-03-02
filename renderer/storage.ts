@@ -1,6 +1,6 @@
-import {List} from 'immutable';
+import { List } from 'immutable';
 import Store from './store';
-import State, {Page} from './states';
+import State, { Page } from './states';
 
 export function save() {
     const state = Store.getState();

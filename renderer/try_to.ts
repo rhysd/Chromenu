@@ -7,7 +7,8 @@ export function findTitle(url: string): Promise<string> {
     const options = {
         url,
         headers: {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36',
+            'User-Agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36',
         },
     };
 
@@ -21,7 +22,10 @@ export function findTitle(url: string): Promise<string> {
             }
 
             const $ = cheerio.load(body);
-            const title = $('title').first().text().replace(/\//g, '');
+            const title = $('title')
+                .first()
+                .text()
+                .replace(/\//g, '');
             log.debug('Fetching title of page: Success:', title);
             resolve(title);
         });
@@ -29,15 +33,17 @@ export function findTitle(url: string): Promise<string> {
 }
 
 export function findIconUrl(url: string): Promise<string | null> {
-    return pageIcon(url).then(icon => {
-        if (!icon) {
-            log.debug('Icon was not found for:', url);
+    return pageIcon(url)
+        .then(icon => {
+            if (!icon) {
+                log.debug('Icon was not found for:', url);
+                return null;
+            }
+            log.debug('Icon was found:', icon);
+            return icon.source;
+        })
+        .catch(e => {
+            log.debug('Error on fetching icon!:', e);
             return null;
-        }
-        log.debug('Icon was found:', icon);
-        return icon.source;
-    }).catch(e => {
-        log.debug('Error on fetching icon!:', e);
-        return null;
-    });
+        });
 }

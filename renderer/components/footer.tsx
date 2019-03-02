@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {InPageSearch} from 'electron-in-page-search';
+import { InPageSearch } from 'electron-in-page-search';
 import ControlButton from './control_button';
 import MoreControl from './more_control';
-import {Dispatch} from '../store';
+import { Dispatch } from '../store';
 
 function cancel(e: React.DragEvent<any>) {
     e.preventDefault();
@@ -35,7 +35,7 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
     }
 
     render() {
-        const {loading, pageUrl, search} = this.props;
+        const { loading, pageUrl, search } = this.props;
         const webview = this.getMountedWebview();
         const reload_icon = loading ? 'close' : 'reload';
         const reload_handler = loading ? this.stopLoading : this.reloadPage;
@@ -44,12 +44,27 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
         const more_open = this.state.more && webview !== null && search !== null;
         return (
             <div className="controls-footer" onDrop={cancel} onDragEnter={cancel} onDragOver={cancel}>
-                <ControlButton icon="arrow-left" onClick={this.goBack} enabled={webview !== null && webview.canGoBack()} tip="Back"/>
-                <ControlButton icon="arrow-right" onClick={this.goForward} enabled={webview !== null && webview.canGoForward()} tip="Forward"/>
-                <ControlButton icon="home" onClick={this.resetPage} enabled={page_open} tip="Home"/>
-                <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open} tip={reload_tip}/>
-                <ControlButton icon="ellipsis-vertical" onClick={this.toggleMoreItems} enabled={page_open} tip="More..."/>
-                <MoreControl opened={more_open} element={webview} search={search} onClick={this.toggleMoreItems}/>
+                <ControlButton
+                    icon="arrow-left"
+                    onClick={this.goBack}
+                    enabled={webview !== null && webview.canGoBack()}
+                    tip="Back"
+                />
+                <ControlButton
+                    icon="arrow-right"
+                    onClick={this.goForward}
+                    enabled={webview !== null && webview.canGoForward()}
+                    tip="Forward"
+                />
+                <ControlButton icon="home" onClick={this.resetPage} enabled={page_open} tip="Home" />
+                <ControlButton icon={reload_icon} onClick={reload_handler} enabled={page_open} tip={reload_tip} />
+                <ControlButton
+                    icon="ellipsis-vertical"
+                    onClick={this.toggleMoreItems}
+                    enabled={page_open}
+                    tip="More..."
+                />
+                <MoreControl opened={more_open} element={webview} search={search} onClick={this.toggleMoreItems} />
             </div>
         );
     }

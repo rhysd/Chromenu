@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {ipcRenderer as ipc, remote} from 'electron';
+import { Provider } from 'react-redux';
+import { ipcRenderer as ipc, remote } from 'electron';
 import Store from './store';
 import App from './components/app';
 import * as Storage from './storage';
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'development') {
 
 ReactDOM.render(
     <Provider store={Store}>
-        <App/>
+        <App />
     </Provider>,
     document.getElementById('chromenu'),
 );
@@ -62,13 +62,11 @@ remote.getCurrentWindow().on('focus', () => {
     if (!current || !current.url || !current.reload_on_show || !elem) {
         return;
     }
-    if (typeof current.reload_min_interval !== 'number' ||
-        typeof state.webview.timestamp !== 'number') {
+    if (typeof current.reload_min_interval !== 'number' || typeof state.webview.timestamp !== 'number') {
         log.debug('Reload page due to window focus without interval check', current);
         elem.reload();
     }
-    if (typeof current.reload_min_interval !== 'number' ||
-        typeof state.webview.timestamp !== 'number') {
+    if (typeof current.reload_min_interval !== 'number' || typeof state.webview.timestamp !== 'number') {
         log.debug('Skipping to reload window after focus since reload_min_interval and/or webview.timestamp are null');
         return;
     }
@@ -77,6 +75,10 @@ remote.getCurrentWindow().on('focus', () => {
         log.debug('Reload page due to window focus with interval check', current, 'spent time (ms): ', spent_ms);
         elem.reload();
     } else {
-        log.debug('Reload page was not reloaded on window focus because interval is shorter than threthold', spent_ms, current.reload_min_interval);
+        log.debug(
+            'Reload page was not reloaded on window focus because interval is shorter than threthold',
+            spent_ms,
+            current.reload_min_interval,
+        );
     }
 });

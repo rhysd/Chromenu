@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import pages from './pages';
 import webview from './webview';
 import State from '../states';

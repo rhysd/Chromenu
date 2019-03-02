@@ -1,6 +1,6 @@
 declare namespace Menubar {
-    type Position
-        = 'trayLeft'
+    type Position =
+        | 'trayLeft'
         | 'trayBottomLeft'
         | 'trayRight'
         | 'trayBottomRight'
@@ -13,8 +13,8 @@ declare namespace Menubar {
         | 'topCenter'
         | 'bottomCenter'
         | 'center';
-    type TrayBounds
-        = 'trayLeft'
+    type TrayBounds =
+        | 'trayLeft'
         | 'trayBottomLeft'
         | 'trayRight'
         | 'trayBottomRight'

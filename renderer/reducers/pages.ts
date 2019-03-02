@@ -1,13 +1,10 @@
 import Action from '../actions';
-import {PagesState, DefaultPagesState} from '../states';
+import { PagesState, DefaultPagesState } from '../states';
 
 export default function pages(state: PagesState = DefaultPagesState, action: Action) {
     switch (action.type) {
         case 'OpenPage': {
-            const index =
-                action.index < 0 ? 0 :
-                state.all.size <= action.index ? state.all.size - 1 :
-                action.index;
+            const index = action.index < 0 ? 0 : state.all.size <= action.index ? state.all.size - 1 : action.index;
             return { ...state, index };
         }
         case 'CreatePage': {
@@ -42,9 +39,8 @@ export default function pages(state: PagesState = DefaultPagesState, action: Act
             return {
                 ...state,
                 index: action.index,
-                all: state.all.update(
-                    action.index,
-                    p => Object.assign({}, p, {
+                all: state.all.update(action.index, p =>
+                    Object.assign({}, p, {
                         configured: action.value,
                     }),
                 ),

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Page} from '../states';
-import {Dispatch} from '../store';
+import { Page } from '../states';
+import { Dispatch } from '../store';
 import log from '../log';
 import * as tryTo from '../try_to';
 import ActionType from '../actions';
@@ -20,30 +20,30 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
 
     onUrlInputRef = (ref: HTMLInputElement) => {
         this.url_input = ref;
-    }
+    };
 
     onImageInputRef = (ref: HTMLInputElement) => {
         this.image_input = ref;
-    }
+    };
 
     onTitleInputRef = (ref: HTMLInputElement) => {
         this.title_input = ref;
-    }
+    };
 
     onReloadOnShowCheckboxRef = (ref: HTMLInputElement) => {
         this.reload_on_show_checkbox = ref;
-    }
+    };
 
     onReloadMinIntervalRef = (ref: HTMLInputElement) => {
         this.reload_min_interval_input = ref;
-    }
+    };
 
     onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         const url = this.url_input.value;
         const reload_on_show = this.reload_on_show_checkbox.checked;
 
-        if (!url || !url.startsWith('http://') && !url.startsWith('https://')) {
+        if (!url || (!url.startsWith('http://') && !url.startsWith('https://'))) {
             this.url_input.className = 'input is-danger';
             log.debug('Invalid URL input:', url);
             return;
@@ -57,10 +57,7 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
             }
         }
 
-        Promise.all([
-            this.getTitle(url),
-            this.getIconUrl(url),
-        ]).then(([title, image_url]) => {
+        Promise.all([this.getTitle(url), this.getIconUrl(url)]).then(([title, image_url]) => {
             const action = {
                 type: 'ConfigurePage',
                 index: this.props.index,
@@ -73,11 +70,11 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
             log.debug('Configure page:', action);
             this.props.dispatch(action);
         });
-    }
+    };
 
     onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        const {page, dispatch, index} = this.props;
+        const { page, dispatch, index } = this.props;
         if (page.url === '') {
             log.debug('Delete this page because configuration for this page has not been done yet');
             dispatch({
@@ -92,17 +89,17 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                 value: true,
             });
         }
-    }
+    };
 
     onDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         log.debug('Delete this page:', this.url_input.value);
-        const {dispatch, index} = this.props;
+        const { dispatch, index } = this.props;
         dispatch({
             type: 'DeletePage',
             index,
         });
-    }
+    };
 
     getTitle(url: string): Promise<string> {
         const title = this.title_input.value || '';
@@ -117,11 +114,11 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
         if (image_url) {
             return Promise.resolve(image_url);
         }
-        return tryTo.findIconUrl(url).then(i => i !== null ? i : '');
+        return tryTo.findIconUrl(url).then(i => (i !== null ? i : ''));
     }
 
     componentDidMount() {
-        const {page} = this.props;
+        const { page } = this.props;
         if (page.url) {
             this.url_input.value = page.url;
         }
@@ -179,19 +176,31 @@ export default class PageConfig extends React.PureComponent<PageConfigProps, {}>
                     </p>
                 </div>
                 <div className="page-config__interval-config">
-                    <input className="page-config__reload-config" type="checkbox" ref={this.onReloadOnShowCheckboxRef}/>
-                    Reload on show (Minimal interval: <input
+                    <input
+                        className="page-config__reload-config"
+                        type="checkbox"
+                        ref={this.onReloadOnShowCheckboxRef}
+                    />
+                    Reload on show (Minimal interval:{' '}
+                    <input
                         className="page-config__min-interval-input"
                         type="text"
                         placeholder="sec"
                         ref={this.onReloadMinIntervalRef}
-                    />)
+                    />
+                    )
                 </div>
                 <div className="page-config__buttons">
                     <p className="control">
-                        <button className="button is-primary" onClick={this.onSubmit}>OK</button>
-                        <button className="button" onClick={this.onCancel}>Cancel</button>
-                        <button className="button is-danger" onClick={this.onDelete}>Delete</button>
+                        <button className="button is-primary" onClick={this.onSubmit}>
+                            OK
+                        </button>
+                        <button className="button" onClick={this.onCancel}>
+                            Cancel
+                        </button>
+                        <button className="button is-danger" onClick={this.onDelete}>
+                            Delete
+                        </button>
                     </p>
                 </div>
             </div>

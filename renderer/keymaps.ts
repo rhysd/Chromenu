@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {EventEmitter} from 'events';
+import { EventEmitter } from 'events';
 import * as Mousetrap from 'mousetrap';
-import {shell, remote} from 'electron';
+import { shell, remote } from 'electron';
 import Store from './store';
 import log from './log';
 
@@ -36,7 +36,7 @@ function evalFileInRemote(file: string) {
 }
 
 export default class Keymaps extends EventEmitter {
-    constructor(public config: {[key: string]: string | null}) {
+    constructor(public config: { [key: string]: string | null }) {
         super();
         for (const key in config) {
             Mousetrap.bind(key, e => {
@@ -59,7 +59,7 @@ export default class Keymaps extends EventEmitter {
 
     registerAllKeymaps() {
         for (let i = 0; i < 9; i++) {
-            this.on(`page${i + 1}`, () => Store.dispatch({type: 'OpenPage', index: i}));
+            this.on(`page${i + 1}`, () => Store.dispatch({ type: 'OpenPage', index: i }));
         }
         this.on('reload', () => {
             const elem = Store.getState().webview.element;
@@ -99,13 +99,13 @@ export default class Keymaps extends EventEmitter {
         this.on('next-page', () => {
             const index = Store.getState().pages.index;
             if (index !== null) {
-                Store.dispatch({type: 'OpenPage', index: index + 1});
+                Store.dispatch({ type: 'OpenPage', index: index + 1 });
             }
         });
         this.on('previous-page', () => {
             const index = Store.getState().pages.index;
             if (index !== null) {
-                Store.dispatch({type: 'OpenPage', index: index - 1});
+                Store.dispatch({ type: 'OpenPage', index: index - 1 });
             }
         });
         this.on('toggle-search', () => {
@@ -119,20 +119,20 @@ export default class Keymaps extends EventEmitter {
                 s.openSearchWindow();
             }
         });
-        this.on('scroll-down',           executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 5)'));
-        this.on('scroll-up',             executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 5)'));
-        this.on('scroll-left',           executeJavaScriptCallback('window.scrollBy(-window.innerWidth / 3, 0)'));
-        this.on('scroll-right',          executeJavaScriptCallback('window.scrollBy(window.innerWidth / 3, 0)'));
+        this.on('scroll-down', executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 5)'));
+        this.on('scroll-up', executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 5)'));
+        this.on('scroll-left', executeJavaScriptCallback('window.scrollBy(-window.innerWidth / 3, 0)'));
+        this.on('scroll-right', executeJavaScriptCallback('window.scrollBy(window.innerWidth / 3, 0)'));
         this.on('scroll-down-half-page', executeJavaScriptCallback('window.scrollBy(0, window.innerHeight / 2)'));
-        this.on('scroll-up-half-page',   executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 2)'));
-        this.on('scroll-down-page',      executeJavaScriptCallback('window.scrollBy(0, window.innerHeight)'));
-        this.on('scroll-up-page',        executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight)'));
-        this.on('scroll-bottom',         executeJavaScriptCallback('window.scrollTo(0, document.body.scrollHeight)'));
-        this.on('scroll-top',            executeJavaScriptCallback('window.scrollTo(0, 0)'));
+        this.on('scroll-up-half-page', executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight / 2)'));
+        this.on('scroll-down-page', executeJavaScriptCallback('window.scrollBy(0, window.innerHeight)'));
+        this.on('scroll-up-page', executeJavaScriptCallback('window.scrollBy(0, -window.innerHeight)'));
+        this.on('scroll-bottom', executeJavaScriptCallback('window.scrollTo(0, document.body.scrollHeight)'));
+        this.on('scroll-top', executeJavaScriptCallback('window.scrollTo(0, 0)'));
         this.on('open-devtools', () => {
             const elem = Store.getState().webview.element;
             if (elem) {
-                elem.getWebContents().openDevTools({mode: 'detach'});
+                elem.getWebContents().openDevTools({ mode: 'detach' });
             }
         });
         this.on('reset-app', () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import shallowCompare = require('react-addons-shallow-compare');
-import {shell, ipcRenderer as ipc, remote} from 'electron';
-import {InPageSearch} from 'electron-in-page-search';
+import { shell, ipcRenderer as ipc, remote } from 'electron';
+import { InPageSearch } from 'electron-in-page-search';
 import log from '../log';
 
 type ClickHandler = (e: React.MouseEvent<HTMLElement>) => void;
@@ -17,7 +17,7 @@ interface ItemProps {
 const Item = (props: ItemProps) => (
     <a className="panel-block is-active" href="#" onClick={props.onClick}>
         <span className="panel-icon">
-            <i className={'fa fa-' + props.icon}/>
+            <i className={'fa fa-' + props.icon} />
         </span>
         {props.text}
     </a>
@@ -58,7 +58,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             return;
         }
         this.props.onClick(e);
-    }
+    };
 
     toggleSearch: ClickHandler = e => {
         e.stopPropagation();
@@ -72,7 +72,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             s.openSearchWindow();
         }
         this.props.onClick(e);
-    }
+    };
 
     showHelp: ClickHandler = e => {
         e.stopPropagation();
@@ -80,7 +80,7 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
             return;
         }
         this.props.onClick(e);
-    }
+    };
 
     openDevTools: ClickHandler = e => {
         e.stopPropagation();
@@ -88,9 +88,9 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         if (elem === null) {
             return;
         }
-        elem.getWebContents().openDevTools({mode: 'detach'});
+        elem.getWebContents().openDevTools({ mode: 'detach' });
         this.props.onClick(e);
-    }
+    };
 
     shouldComponentUpdate(next_props: MoreControlProps, next_state: {}): boolean {
         if (!this.props.opened && !next_props.opened) {
@@ -109,11 +109,11 @@ export default class MoreControl extends React.PureComponent<MoreControlProps, {
         return (
             <div className="more-control" style={style}>
                 <nav className="panel">
-                    <Item text="Quit App" icon="times" onClick={handleClickQuit}/>
-                    <Item text="Open DevTools" icon="wrench " onClick={this.openDevTools}/>
-                    <Item text="Help" icon="question" onClick={this.showHelp}/>
-                    <Item text="Open In Browser" icon="external-link" onClick={this.openInBrowser}/>
-                    <Item text="Search" icon="search" onClick={this.toggleSearch}/>
+                    <Item text="Quit App" icon="times" onClick={handleClickQuit} />
+                    <Item text="Open DevTools" icon="wrench " onClick={this.openDevTools} />
+                    <Item text="Help" icon="question" onClick={this.showHelp} />
+                    <Item text="Open In Browser" icon="external-link" onClick={this.openInBrowser} />
+                    <Item text="Search" icon="search" onClick={this.toggleSearch} />
                 </nav>
             </div>
         );
