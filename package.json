@@ -13,7 +13,7 @@
     "tslint": "tslint -p .",
     "stylelint": "stylelint renderer/style.css",
     "lint": "npm-run-all --parallel tslint stylelint",
-    "watch": "guard --watchdir main renderer bin",
+    "watch": "tsc -p . --watch",
     "debug": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron .",
     "preversion": "npm run lint",
