@@ -70,15 +70,15 @@ export default class Footer extends React.PureComponent<FooterProps, FooterState
     }
 
     private getMountedWebview() {
-        const e = this.props.element;
-        if (e === null) {
+        // webview tag must be mounted into the Dom, even if the webview component is not null!
+        // check if at least one webview is mounted:
+        if (document.getElementsByTagName("webview").length >= 1) {
+            // returns the mounted webview component or null:
+            return this.props.element;
+        } else {
+            // if the webview is not mounted, then return null
             return null;
         }
-        if (e.getWebContents() === null) {
-            // Note: When <webview> is not mounted in DOM, it returns null.
-            return null;
-        }
-        return e;
     }
 
     private goBack(e: React.MouseEvent<HTMLDivElement>) {
