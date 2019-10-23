@@ -75,8 +75,15 @@ function setupMenuBar(config: Config) {
                 mb.window.webContents.send('chromenu:config', config);
             });
             ipc.on('chromenu:hide-window', () => {
+                log.debug('Hiding window');
                 mb.hideWindow();
             });
+            const win = mb.window;
+            ipc.on('chromenu:suspend-window', () => {
+                log.debug('Suspending window', win);
+                win.loadURL(Html);
+            });
+
             resolve(mb);
         });
     });
@@ -117,7 +124,12 @@ function setupNormalWindow(config: Config) {
                 win.webContents.openDevTools({ mode: 'detach' });
             }
             ipc.on('chromenu:hide-window', () => {
+                log.debug('Hiding window');
                 win.hide();
+            });
+            ipc.on('chromenu:suspend-window', () => {
+                log.debug('Suspending window');
+                win.loadURL(Html);
             });
             resolve(win);
         });

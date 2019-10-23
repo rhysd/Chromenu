@@ -82,3 +82,8 @@ remote.getCurrentWindow().on('focus', () => {
         );
     }
 });
+
+remote.getCurrentWindow().on('hide', () => {
+    log.debug('Window hidden');
+    ipc.send('chromenu:suspend-window');
+});
