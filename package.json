@@ -59,7 +59,7 @@
   "dependencies": {
     "bulma": "^0.7.4",
     "cheerio": "^0.22.0",
-    "electron": "^4.0.6",
+    "electron": "^9.1.0",
     "electron-in-page-search": "^1.2.3",
     "font-awesome": "^4.7.0",
     "heredocument": "^2.0.2",
